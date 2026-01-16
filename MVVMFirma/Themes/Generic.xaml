@@ -5,25 +5,54 @@
 
     <BooleanToVisibilityConverter x:Key="BoolToVis" />
 
-    <SolidColorBrush x:Key="MainRedBrush" Color="#B80006"/>
-    <SolidColorBrush x:Key="SurfaceBrush" Color="#FFFFFF"/>
-    <SolidColorBrush x:Key="TextWhiteBrush" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="PrimaryBrush" Color="#B80006"/>
+    <SolidColorBrush x:Key="PrimaryHoverBrush" Color="#8E0005"/>
+    <SolidColorBrush x:Key="BackgroundLightBrush" Color="#F4F7F9"/>
+    <SolidColorBrush x:Key="CardBackgroundBrush" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="BorderBrush" Color="#DCE1E5"/>
 
-    <Style x:Key="ToolbarButtonStyle" TargetType="ToggleButton">
-        <Setter Property="Background" Value="{StaticResource MainRedBrush}"/>
-        <Setter Property="Foreground" Value="{StaticResource TextWhiteBrush}"/>
-        <Setter Property="Padding" Value="15,5"/>
-        <Setter Property="Margin" Value="0,0,10,0"/>
+    <Style x:Key="ModernButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Padding" Value="15,6"/>
+        <Setter Property="Margin" Value="0,0,8,0"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="ToggleButton">
-                    <Border Background="{TemplateBinding Background}" CornerRadius="12">
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="15">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,2"/>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Opacity" Value="0.8"/>
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource PrimaryHoverBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ToolbarToggleStyle" TargetType="ToggleButton">
+        <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Padding" Value="15,6"/>
+        <Setter Property="Margin" Value="0,0,8,0"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="15">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,2"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource PrimaryHoverBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#333"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -35,52 +64,40 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:WszystkieViewBase}">
-                    <Grid Background="{StaticResource SurfaceBrush}">
+                    <Grid Background="{StaticResource BackgroundLightBrush}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
-                        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10,10,10,5">
-                            <ToggleButton Content="Dodaj" Command="{Binding AddCommand}" Style="{StaticResource ToolbarButtonStyle}"/>
-                            <ToggleButton Content="Edytuj" Style="{StaticResource ToolbarButtonStyle}"/>
-                            <ToggleButton Content="Kasuj" Style="{StaticResource ToolbarButtonStyle}"/>
-                            <ToggleButton Content="Odswiez" Command="{Binding LoadCommand}" Style="{StaticResource ToolbarButtonStyle}"/>
+                        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="15,15,15,5">
+                            <ToggleButton Content="➕ Dodaj" IsChecked="{Binding IsAdding, Mode=TwoWay}" Style="{StaticResource ToolbarToggleStyle}"/>
+                            <Button Content="📝 Edytuj" Style="{StaticResource ModernButtonStyle}"/>
+                            <Button Content="🗑️ Kasuj" Style="{StaticResource ModernButtonStyle}"/>
+                            <Button Content="🔄 Odśwież" Command="{Binding LoadCommand}" Style="{StaticResource ModernButtonStyle}"/>
                         </StackPanel>
 
-                        <Border Grid.Row="1" Margin="10,5" BorderBrush="#EEE" BorderThickness="1" CornerRadius="3">
-                            <Expander Header="Sortowanie i filtrowanie" IsExpanded="False" Padding="10" Background="#FBFBFB">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="130"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="150"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="130"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-
-                                    <Label Content="Szukaj w:" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                                    <ComboBox Grid.Column="1" ItemsSource="{Binding FilterColumnOptions}" 
-                                              SelectedItem="{Binding SelectedFilterColumn}" Height="25" VerticalContentAlignment="Center"/>
-
-                                    <Label Grid.Column="2" Content="Fraza:" VerticalAlignment="Center" Margin="15,0,5,0"/>
-                                    <TextBox Grid.Column="3" Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" 
-                                             Height="25" VerticalContentAlignment="Center"/>
-
-                                    <Label Grid.Column="4" Content="Sortuj po:" VerticalAlignment="Center" Margin="15,0,5,0"/>
-                                    <ComboBox Grid.Column="5" ItemsSource="{Binding SortOptions}" 
-                                              SelectedItem="{Binding SortBy}" Height="25" VerticalContentAlignment="Center"/>
-
-                                    <Button Grid.Column="6" Content="Zastosuj" Command="{Binding LoadCommand}" 
-                                            Width="80" HorizontalAlignment="Left" Margin="15,0" Padding="5,0"/>
-                                </Grid>
+                        <Border Grid.Row="1" Background="{StaticResource CardBackgroundBrush}" Margin="15,5" CornerRadius="8" BorderThickness="1" BorderBrush="{StaticResource BorderBrush}">
+                            <Expander Header="Filtrowanie i Sortowanie" Padding="10">
+                                <UniformGrid Columns="3">
+                                    <StackPanel Margin="10,0">
+                                        <Label Content="Szukaj w:"/>
+                                        <ComboBox ItemsSource="{Binding FilterColumnOptions}" SelectedItem="{Binding SelectedFilterColumn}"/>
+                                    </StackPanel>
+                                    <StackPanel Margin="10,0">
+                                        <Label Content="Fraza:"/>
+                                        <TextBox Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </StackPanel>
+                                    <StackPanel Margin="10,0">
+                                        <Label Content="Sortuj:"/>
+                                        <ComboBox ItemsSource="{Binding SortOptions}" SelectedItem="{Binding SortBy}"/>
+                                    </StackPanel>
+                                </UniformGrid>
                             </Expander>
                         </Border>
 
-                        <ContentPresenter Grid.Row="2" Margin="10,5,10,10"/>
+                        <ContentPresenter Grid.Row="2" Margin="15,5,15,15"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -91,20 +108,32 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:JedenViewBase}">
-                    <Border BorderBrush="#B80006" BorderThickness="0,2,0,0" Margin="0,10,0,0">
-                        <Grid Background="{StaticResource SurfaceBrush}">
+                    <Border Background="{StaticResource CardBackgroundBrush}" CornerRadius="12,12,0,0" BorderThickness="0,4,0,0" BorderBrush="{StaticResource PrimaryBrush}">
+                        <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
-                                <ToggleButton Content="Zapisz i zamknij" Command="{Binding SaveAndCloseCommand}" Style="{StaticResource ToolbarButtonStyle}"/>
-                            </StackPanel>
-                            <ContentPresenter Grid.Row="1" Margin="10"/>
+                            <Border Grid.Row="0" Background="#FDFDFD" Padding="15,10" CornerRadius="12,12,0,0">
+                                <Button Content="💾 Zapisz i zamknij" Command="{Binding SaveAndCloseCommand}" Style="{StaticResource ModernButtonStyle}" HorizontalAlignment="Left"/>
+                            </Border>
+                            <ContentPresenter Grid.Row="1" Margin="20"/>
                         </Grid>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style TargetType="TextBox">
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="true">
+                <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                <Setter Property="BorderBrush" Value="Red"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
 </ResourceDictionary>
