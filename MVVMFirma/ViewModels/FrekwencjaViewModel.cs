@@ -27,7 +27,18 @@ namespace KlubSportowy.ViewModels
                 return _LoadCommand;
             }
         }
+
+        private BaseCommand _SaveAndCloseCommand;
+        public ICommand SaveAndCloseCommand
+        {
+            get
+            {
+                if (_SaveAndCloseCommand == null) _SaveAndCloseCommand = new BaseCommand(saveAndClose);
+                return _SaveAndCloseCommand;
+            }
+        }
         #endregion
+
         #region Lista
         private ObservableCollection<Frekwencja> _List;
         public ObservableCollection<Frekwencja> List
@@ -46,28 +57,123 @@ namespace KlubSportowy.ViewModels
                 }
             }
         }
+
         private void Load()
         {
-            List = new ObservableCollection<Frekwencja>(
-                klubSportowyEntities.Frekwencja.ToList()
-                );
+            var query = klubSportowyEntities.Frekwencja.AsQueryable();
+
+            if (!string.IsNullOrEmpty(FilterText))
+            {
+                switch (SelectedFilterColumn)
+                {
+                    case "Status":
+                        query = query.Where(z => z.Status.Contains(FilterText));
+                        break;
+                    case "Uwagi":
+                        query = query.Where(z => z.Uwagi.Contains(FilterText));
+                        break;
+                }
+            }
+
+            switch (SortBy)
+            {
+                case "Status":
+                    query = query.OrderBy(z => z.Status);
+                    break;
+                case "Trening ID":
+                    query = query.OrderBy(z => z.TreningId);
+                    break;
+                case "Zawodnik ID":
+                    query = query.OrderBy(z => z.ZawodnikId);
+                    break;
+                default:
+                    query = query.OrderBy(z => z.Status);
+                    break;
+            }
+
+            List = new ObservableCollection<Frekwencja>(query.ToList());
         }
         #endregion
+
+        #region Filtrowanie i Sortowanie - Wlasciwosci
+        private string _FilterText;
+        public string FilterText
+        {
+            get => _FilterText;
+            set
+            {
+                if (_FilterText != value)
+                {
+                    _FilterText = value;
+                    OnPropertyChanged(() => FilterText);
+                    Load();
+                }
+            }
+        }
+
+        private string _SelectedFilterColumn;
+        public string SelectedFilterColumn
+        {
+            get => _SelectedFilterColumn;
+            set
+            {
+                if (_SelectedFilterColumn != value)
+                {
+                    _SelectedFilterColumn = value;
+                    OnPropertyChanged(() => SelectedFilterColumn);
+                    Load();
+                }
+            }
+        }
+
+        public List<string> FilterColumnOptions
+        {
+            get
+            {
+                return new List<string> { "Status", "Uwagi" };
+            }
+        }
+
+        private string _SortBy;
+        public string SortBy
+        {
+            get => _SortBy;
+            set
+            {
+                if (_SortBy != value)
+                {
+                    _SortBy = value;
+                    OnPropertyChanged(() => SortBy);
+                    Load();
+                }
+            }
+        }
+
+        public List<string> SortOptions
+        {
+            get
+            {
+                return new List<string> { "Status", "Trening ID", "Zawodnik ID" };
+            }
+        }
+        #endregion
+
         #region Konstuktor
         public FrekwencjaViewModel()
         {
             base.DisplayName = "Frekwencja";
             klubSportowyEntities = new KlubSportowyEntities();
             item = new Frekwencja();
+            _SortBy = "Status";
+            _SelectedFilterColumn = "Status";
+            _FilterText = "";
         }
         #endregion
+
         #region Wlasciwosci
         public int? TreningId
         {
-            get
-            {
-                return item.TreningId;
-            }
+            get { return item.TreningId; }
             set
             {
                 if (item.TreningId != value)
@@ -79,10 +185,7 @@ namespace KlubSportowy.ViewModels
         }
         public int? ZawodnikId
         {
-            get
-            {
-                return item.ZawodnikId;
-            }
+            get { return item.ZawodnikId; }
             set
             {
                 if (item.ZawodnikId != value)
@@ -94,10 +197,7 @@ namespace KlubSportowy.ViewModels
         }
         public string Status
         {
-            get
-            {
-                return item.Status;
-            }
+            get { return item.Status; }
             set
             {
                 if (item.Status != value)
@@ -109,10 +209,7 @@ namespace KlubSportowy.ViewModels
         }
         public bool? CzyAktywny
         {
-            get
-            {
-                return item.CzyAktywny;
-            }
+            get { return item.CzyAktywny; }
             set
             {
                 if (item.CzyAktywny != value)
@@ -124,10 +221,7 @@ namespace KlubSportowy.ViewModels
         }
         public string KtoDodal
         {
-            get
-            {
-                return item.KtoDodal;
-            }
+            get { return item.KtoDodal; }
             set
             {
                 if (item.KtoDodal != value)
@@ -139,10 +233,7 @@ namespace KlubSportowy.ViewModels
         }
         public DateTime? KiedyDodal
         {
-            get
-            {
-                return item.KiedyDodal;
-            }
+            get { return item.KiedyDodal; }
             set
             {
                 if (item.KiedyDodal != value)
@@ -154,10 +245,7 @@ namespace KlubSportowy.ViewModels
         }
         public string KtoModyfikowal
         {
-            get
-            {
-                return item.KtoModyfikowal;
-            }
+            get { return item.KtoModyfikowal; }
             set
             {
                 if (item.KtoModyfikowal != value)
@@ -169,10 +257,7 @@ namespace KlubSportowy.ViewModels
         }
         public string KtoWykasowal
         {
-            get
-            {
-                return item.KtoWykasowal;
-            }
+            get { return item.KtoWykasowal; }
             set
             {
                 if (item.KtoWykasowal != value)
@@ -184,10 +269,7 @@ namespace KlubSportowy.ViewModels
         }
         public string Uwagi
         {
-            get
-            {
-                return item.Uwagi;
-            }
+            get { return item.Uwagi; }
             set
             {
                 if (item.Uwagi != value)
@@ -198,20 +280,13 @@ namespace KlubSportowy.ViewModels
             }
         }
         #endregion
-        #region Komendy
-        private BaseCommand _SaveAndCloseCommand;
-        public ICommand SaveAndCloseCommand
-        {
-            get
-            {
-                if (_SaveAndCloseCommand == null) _SaveAndCloseCommand = new BaseCommand(saveAndClose);
-                return _SaveAndCloseCommand;
-            }
-        }
+
+        #region Komendy Logika
         public void Save()
         {
             klubSportowyEntities.Frekwencja.Add(item);
             klubSportowyEntities.SaveChanges();
+            Load();
         }
         private void saveAndClose()
         {
@@ -220,4 +295,3 @@ namespace KlubSportowy.ViewModels
         #endregion
     }
 }
-

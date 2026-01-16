@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace KlubSportowy.ViewModels
 {
-    public class RodziceViewModel:WorkspaceViewModel
+    public class RodziceViewModel : WorkspaceViewModel
     {
         #region BazaDanych
         protected KlubSportowyEntities klubSportowyEntities;
@@ -27,7 +27,18 @@ namespace KlubSportowy.ViewModels
                 return _LoadCommand;
             }
         }
+
+        private BaseCommand _SaveAndCloseCommand;
+        public ICommand SaveAndCloseCommand
+        {
+            get
+            {
+                if (_SaveAndCloseCommand == null) _SaveAndCloseCommand = new BaseCommand(saveAndClose);
+                return _SaveAndCloseCommand;
+            }
+        }
         #endregion
+
         #region Lista
         private ObservableCollection<Rodzice> _List;
         public ObservableCollection<Rodzice> List
@@ -46,48 +57,132 @@ namespace KlubSportowy.ViewModels
                 }
             }
         }
+
         private void Load()
         {
-            List = new ObservableCollection<Rodzice>(
-                klubSportowyEntities.Rodzice.ToList()
-                );
+            var query = klubSportowyEntities.Rodzice.AsQueryable();
+
+            if (!string.IsNullOrEmpty(FilterText))
+            {
+                switch (SelectedFilterColumn)
+                {
+                    case "Nazwisko":
+                        query = query.Where(z => z.Nazwisko.Contains(FilterText));
+                        break;
+                    case "Imie":
+                        query = query.Where(z => z.Imie.Contains(FilterText));
+                        break;
+                    case "Telefon":
+                        query = query.Where(z => z.Telefon.Contains(FilterText));
+                        break;
+                    case "Uwagi":
+                        query = query.Where(z => z.Uwagi.Contains(FilterText));
+                        break;
+                    case "Zawodnik ID":
+                        query = query.Where(z => z.ZawodnikId.ToString().Contains(FilterText));
+                        break;
+                }
+            }
+
+            switch (SortBy)
+            {
+                case "Nazwisko":
+                    query = query.OrderBy(z => z.Nazwisko);
+                    break;
+                case "Imie":
+                    query = query.OrderBy(z => z.Imie);
+                    break;
+                case "Telefon":
+                    query = query.OrderBy(z => z.Telefon);
+                    break;
+                default:
+                    query = query.OrderBy(z => z.Nazwisko);
+                    break;
+            }
+
+            List = new ObservableCollection<Rodzice>(query.ToList());
         }
         #endregion
+
+        #region Filtrowanie i Sortowanie - Wlasciwosci
+        private string _FilterText;
+        public string FilterText
+        {
+            get => _FilterText;
+            set
+            {
+                if (_FilterText != value)
+                {
+                    _FilterText = value;
+                    OnPropertyChanged(() => FilterText);
+                    Load();
+                }
+            }
+        }
+
+        private string _SelectedFilterColumn;
+        public string SelectedFilterColumn
+        {
+            get => _SelectedFilterColumn;
+            set
+            {
+                if (_SelectedFilterColumn != value)
+                {
+                    _SelectedFilterColumn = value;
+                    OnPropertyChanged(() => SelectedFilterColumn);
+                    Load();
+                }
+            }
+        }
+
+        public List<string> FilterColumnOptions
+        {
+            get
+            {
+                return new List<string> { "Nazwisko", "Imie", "Telefon", "Uwagi", "Zawodnik ID" };
+            }
+        }
+
+        private string _SortBy;
+        public string SortBy
+        {
+            get => _SortBy;
+            set
+            {
+                if (_SortBy != value)
+                {
+                    _SortBy = value;
+                    OnPropertyChanged(() => SortBy);
+                    Load();
+                }
+            }
+        }
+
+        public List<string> SortOptions
+        {
+            get
+            {
+                return new List<string> { "Nazwisko", "Imie", "Telefon" };
+            }
+        }
+        #endregion
+
         #region Konstuktor
         public RodziceViewModel()
         {
             base.DisplayName = "Rodzice";
             klubSportowyEntities = new KlubSportowyEntities();
             item = new Rodzice();
+            _SortBy = "Nazwisko";
+            _SelectedFilterColumn = "Nazwisko";
+            _FilterText = "";
         }
         #endregion
-        #region Komendy
-        private BaseCommand _SaveAndCloseCommand;
-        public ICommand SaveAndCloseCommand
-        {
-            get
-            {
-                if (_SaveAndCloseCommand == null) _SaveAndCloseCommand = new BaseCommand(saveAndClose);
-                return _SaveAndCloseCommand;
-            }
-        }
-        public void Save()
-        {
-            klubSportowyEntities.Rodzice.Add(item);
-            klubSportowyEntities.SaveChanges();
-        }
-        private void saveAndClose()
-        {
-            Save();
-        }
-        #endregion
+
         #region Wlasciwosci
         public int? ZawodnikId
         {
-            get
-            {
-                return item.ZawodnikId;
-            }
+            get { return item.ZawodnikId; }
             set
             {
                 if (item.ZawodnikId != value)
@@ -99,10 +194,7 @@ namespace KlubSportowy.ViewModels
         }
         public string Imie
         {
-            get
-            {
-                return item.Imie;
-            }
+            get { return item.Imie; }
             set
             {
                 if (item.Imie != value)
@@ -114,10 +206,7 @@ namespace KlubSportowy.ViewModels
         }
         public string Nazwisko
         {
-            get
-            {
-                return item.Nazwisko;
-            }
+            get { return item.Nazwisko; }
             set
             {
                 if (item.Nazwisko != value)
@@ -127,13 +216,9 @@ namespace KlubSportowy.ViewModels
                 }
             }
         }
-
         public string Telefon
         {
-            get
-            {
-                return item.Telefon;
-            }
+            get { return item.Telefon; }
             set
             {
                 if (item.Telefon != value)
@@ -145,10 +230,7 @@ namespace KlubSportowy.ViewModels
         }
         public bool? CzyAktywny
         {
-            get
-            {
-                return item.CzyAktywny;
-            }
+            get { return item.CzyAktywny; }
             set
             {
                 if (item.CzyAktywny != value)
@@ -160,10 +242,7 @@ namespace KlubSportowy.ViewModels
         }
         public string KtoDodal
         {
-            get
-            {
-                return item.KtoDodal;
-            }
+            get { return item.KtoDodal; }
             set
             {
                 if (item.KtoDodal != value)
@@ -175,10 +254,7 @@ namespace KlubSportowy.ViewModels
         }
         public DateTime? KiedyDodal
         {
-            get
-            {
-                return item.KiedyDodal;
-            }
+            get { return item.KiedyDodal; }
             set
             {
                 if (item.KiedyDodal != value)
@@ -190,10 +266,7 @@ namespace KlubSportowy.ViewModels
         }
         public string KtoModyfikowal
         {
-            get
-            {
-                return item.KtoModyfikowal;
-            }
+            get { return item.KtoModyfikowal; }
             set
             {
                 if (item.KtoModyfikowal != value)
@@ -205,10 +278,7 @@ namespace KlubSportowy.ViewModels
         }
         public string KtoWykasowal
         {
-            get
-            {
-                return item.KtoWykasowal;
-            }
+            get { return item.KtoWykasowal; }
             set
             {
                 if (item.KtoWykasowal != value)
@@ -220,10 +290,7 @@ namespace KlubSportowy.ViewModels
         }
         public string Uwagi
         {
-            get
-            {
-                return item.Uwagi;
-            }
+            get { return item.Uwagi; }
             set
             {
                 if (item.Uwagi != value)
@@ -232,6 +299,19 @@ namespace KlubSportowy.ViewModels
                     OnPropertyChanged(() => Uwagi);
                 }
             }
+        }
+        #endregion
+
+        #region Komendy Logika
+        public void Save()
+        {
+            klubSportowyEntities.Rodzice.Add(item);
+            klubSportowyEntities.SaveChanges();
+            Load();
+        }
+        private void saveAndClose()
+        {
+            Save();
         }
         #endregion
     }

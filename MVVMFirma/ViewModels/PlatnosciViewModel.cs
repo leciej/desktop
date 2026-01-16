@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace KlubSportowy.ViewModels
 {
-    public class PlatnosciViewModel:WorkspaceViewModel
+    public class PlatnosciViewModel : WorkspaceViewModel
     {
         #region BazaDanych
         protected KlubSportowyEntities klubSportowyEntities;
@@ -27,7 +27,18 @@ namespace KlubSportowy.ViewModels
                 return _LoadCommand;
             }
         }
+
+        private BaseCommand _SaveAndCloseCommand;
+        public ICommand SaveAndCloseCommand
+        {
+            get
+            {
+                if (_SaveAndCloseCommand == null) _SaveAndCloseCommand = new BaseCommand(saveAndClose);
+                return _SaveAndCloseCommand;
+            }
+        }
         #endregion
+
         #region Lista
         private ObservableCollection<Platnosci> _List;
         public ObservableCollection<Platnosci> List
@@ -46,48 +57,129 @@ namespace KlubSportowy.ViewModels
                 }
             }
         }
+
         private void Load()
         {
-            List = new ObservableCollection<Platnosci>(
-                klubSportowyEntities.Platnosci.ToList()
-                );
+            var query = klubSportowyEntities.Platnosci.AsQueryable();
+
+            if (!string.IsNullOrEmpty(FilterText))
+            {
+                switch (SelectedFilterColumn)
+                {
+                    case "Miesiąc":
+                        query = query.Where(z => z.Miesiac.Contains(FilterText));
+                        break;
+                    case "Status":
+                        query = query.Where(z => z.Status.Contains(FilterText));
+                        break;
+                    case "Zawodnik ID":
+                        query = query.Where(z => z.ZawodnikId.ToString().Contains(FilterText));
+                        break;
+                    case "Uwagi":
+                        query = query.Where(z => z.Uwagi.Contains(FilterText));
+                        break;
+                }
+            }
+
+            switch (SortBy)
+            {
+                case "Kwota":
+                    query = query.OrderBy(z => z.Kwota);
+                    break;
+                case "Miesiąc":
+                    query = query.OrderBy(z => z.Miesiac);
+                    break;
+                case "Status":
+                    query = query.OrderBy(z => z.Status);
+                    break;
+                default:
+                    query = query.OrderByDescending(z => z.Miesiac);
+                    break;
+            }
+
+            List = new ObservableCollection<Platnosci>(query.ToList());
         }
         #endregion
+
+        #region Filtrowanie i Sortowanie - Wlasciwosci
+        private string _FilterText;
+        public string FilterText
+        {
+            get => _FilterText;
+            set
+            {
+                if (_FilterText != value)
+                {
+                    _FilterText = value;
+                    OnPropertyChanged(() => FilterText);
+                    Load();
+                }
+            }
+        }
+
+        private string _SelectedFilterColumn;
+        public string SelectedFilterColumn
+        {
+            get => _SelectedFilterColumn;
+            set
+            {
+                if (_SelectedFilterColumn != value)
+                {
+                    _SelectedFilterColumn = value;
+                    OnPropertyChanged(() => SelectedFilterColumn);
+                    Load();
+                }
+            }
+        }
+
+        public List<string> FilterColumnOptions
+        {
+            get
+            {
+                return new List<string> { "Miesiąc", "Status", "Zawodnik ID", "Uwagi" };
+            }
+        }
+
+        private string _SortBy;
+        public string SortBy
+        {
+            get => _SortBy;
+            set
+            {
+                if (_SortBy != value)
+                {
+                    _SortBy = value;
+                    OnPropertyChanged(() => SortBy);
+                    Load();
+                }
+            }
+        }
+
+        public List<string> SortOptions
+        {
+            get
+            {
+                return new List<string> { "Kwota", "Miesiąc", "Status" };
+            }
+        }
+        #endregion
+
         #region Konstuktor
         public PlatnosciViewModel()
         {
             base.DisplayName = "Płatności";
             klubSportowyEntities = new KlubSportowyEntities();
             item = new Platnosci();
+            _SortBy = "Miesiąc";
+            _SelectedFilterColumn = "Status";
+            _FilterText = "";
         }
         #endregion
-        #region Komendy
-        private BaseCommand _SaveAndCloseCommand;
-        public ICommand SaveAndCloseCommand
-        {
-            get
-            {
-                if (_SaveAndCloseCommand == null) _SaveAndCloseCommand = new BaseCommand(saveAndClose);
-                return _SaveAndCloseCommand;
-            }
-        }
-        public void Save()
-        {
-            klubSportowyEntities.Platnosci.Add(item);
-            klubSportowyEntities.SaveChanges();
-        }
-        private void saveAndClose()
-        {
-            Save();
-        }
-        #endregion
+
         #region Wlasciwosci
         public int? ZawodnikId
         {
-            get
-            {
-                return item.ZawodnikId;
-            }
+            get { return item.ZawodnikId; }
             set
             {
                 if (item.ZawodnikId != value)
@@ -99,10 +191,7 @@ namespace KlubSportowy.ViewModels
         }
         public decimal? Kwota
         {
-            get
-            {
-                return item.Kwota;
-            }
+            get { return item.Kwota; }
             set
             {
                 if (item.Kwota != value)
@@ -114,10 +203,7 @@ namespace KlubSportowy.ViewModels
         }
         public string Miesiac
         {
-            get
-            {
-                return item.Miesiac;
-            }
+            get { return item.Miesiac; }
             set
             {
                 if (item.Miesiac != value)
@@ -127,13 +213,9 @@ namespace KlubSportowy.ViewModels
                 }
             }
         }
-
         public string Status
         {
-            get
-            {
-                return item.Status;
-            }
+            get { return item.Status; }
             set
             {
                 if (item.Status != value)
@@ -145,10 +227,7 @@ namespace KlubSportowy.ViewModels
         }
         public bool? CzyAktywny
         {
-            get
-            {
-                return item.CzyAktywny;
-            }
+            get { return item.CzyAktywny; }
             set
             {
                 if (item.CzyAktywny != value)
@@ -160,10 +239,7 @@ namespace KlubSportowy.ViewModels
         }
         public string KtoDodal
         {
-            get
-            {
-                return item.KtoDodal;
-            }
+            get { return item.KtoDodal; }
             set
             {
                 if (item.KtoDodal != value)
@@ -175,10 +251,7 @@ namespace KlubSportowy.ViewModels
         }
         public DateTime? KiedyDodal
         {
-            get
-            {
-                return item.KiedyDodal;
-            }
+            get { return item.KiedyDodal; }
             set
             {
                 if (item.KiedyDodal != value)
@@ -190,10 +263,7 @@ namespace KlubSportowy.ViewModels
         }
         public string KtoModyfikowal
         {
-            get
-            {
-                return item.KtoModyfikowal;
-            }
+            get { return item.KtoModyfikowal; }
             set
             {
                 if (item.KtoModyfikowal != value)
@@ -205,10 +275,7 @@ namespace KlubSportowy.ViewModels
         }
         public string KtoWykasowal
         {
-            get
-            {
-                return item.KtoWykasowal;
-            }
+            get { return item.KtoWykasowal; }
             set
             {
                 if (item.KtoWykasowal != value)
@@ -220,10 +287,7 @@ namespace KlubSportowy.ViewModels
         }
         public string Uwagi
         {
-            get
-            {
-                return item.Uwagi;
-            }
+            get { return item.Uwagi; }
             set
             {
                 if (item.Uwagi != value)
@@ -232,6 +296,19 @@ namespace KlubSportowy.ViewModels
                     OnPropertyChanged(() => Uwagi);
                 }
             }
+        }
+        #endregion
+
+        #region Komendy Logika
+        public void Save()
+        {
+            klubSportowyEntities.Platnosci.Add(item);
+            klubSportowyEntities.SaveChanges();
+            Load();
+        }
+        private void saveAndClose()
+        {
+            Save();
         }
         #endregion
     }

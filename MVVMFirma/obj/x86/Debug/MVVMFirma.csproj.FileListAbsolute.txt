@@ -266,3 +266,4 @@ C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Deb
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\MVVMFirma.csproj.Up2Date
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\KlubSportowy.exe
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\KlubSportowy.pdb
+C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\KlubSportowy.exe.config

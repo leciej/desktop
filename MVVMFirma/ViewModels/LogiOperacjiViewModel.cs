@@ -27,7 +27,18 @@ namespace KlubSportowy.ViewModels
                 return _LoadCommand;
             }
         }
+
+        private BaseCommand _SaveAndCloseCommand;
+        public ICommand SaveAndCloseCommand
+        {
+            get
+            {
+                if (_SaveAndCloseCommand == null) _SaveAndCloseCommand = new BaseCommand(saveAndClose);
+                return _SaveAndCloseCommand;
+            }
+        }
         #endregion
+
         #region Lista
         private ObservableCollection<LogiOperacji> _List;
         public ObservableCollection<LogiOperacji> List
@@ -46,41 +57,122 @@ namespace KlubSportowy.ViewModels
                 }
             }
         }
+
         private void Load()
         {
-            List = new ObservableCollection<LogiOperacji>(
-                klubSportowyEntities.LogiOperacji.ToList()
-                );
+            var query = klubSportowyEntities.LogiOperacji.AsQueryable();
+
+            if (!string.IsNullOrEmpty(FilterText))
+            {
+                switch (SelectedFilterColumn)
+                {
+                    case "Operacja":
+                        query = query.Where(z => z.Operacja.Contains(FilterText));
+                        break;
+                    case "Opis":
+                        query = query.Where(z => z.Opis.Contains(FilterText));
+                        break;
+                    case "Uzytkownik ID":
+                        query = query.Where(z => z.UzytkownikId.ToString().Contains(FilterText));
+                        break;
+                }
+            }
+
+            switch (SortBy)
+            {
+                case "Data Operacji":
+                    query = query.OrderByDescending(z => z.DataOperacji);
+                    break;
+                case "Operacja":
+                    query = query.OrderBy(z => z.Operacja);
+                    break;
+                case "Uzytkownik ID":
+                    query = query.OrderBy(z => z.UzytkownikId);
+                    break;
+                default:
+                    query = query.OrderByDescending(z => z.DataOperacji);
+                    break;
+            }
+
+            List = new ObservableCollection<LogiOperacji>(query.ToList());
         }
         #endregion
+
+        #region Filtrowanie i Sortowanie - Wlasciwosci
+        private string _FilterText;
+        public string FilterText
+        {
+            get => _FilterText;
+            set
+            {
+                if (_FilterText != value)
+                {
+                    _FilterText = value;
+                    OnPropertyChanged(() => FilterText);
+                    Load();
+                }
+            }
+        }
+
+        private string _SelectedFilterColumn;
+        public string SelectedFilterColumn
+        {
+            get => _SelectedFilterColumn;
+            set
+            {
+                if (_SelectedFilterColumn != value)
+                {
+                    _SelectedFilterColumn = value;
+                    OnPropertyChanged(() => SelectedFilterColumn);
+                    Load();
+                }
+            }
+        }
+
+        public List<string> FilterColumnOptions
+        {
+            get
+            {
+                return new List<string> { "Operacja", "Opis", "Uzytkownik ID" };
+            }
+        }
+
+        private string _SortBy;
+        public string SortBy
+        {
+            get => _SortBy;
+            set
+            {
+                if (_SortBy != value)
+                {
+                    _SortBy = value;
+                    OnPropertyChanged(() => SortBy);
+                    Load();
+                }
+            }
+        }
+
+        public List<string> SortOptions
+        {
+            get
+            {
+                return new List<string> { "Data Operacji", "Operacja", "Uzytkownik ID" };
+            }
+        }
+        #endregion
+
         #region Konstuktor
         public LogiOperacjiViewModel()
         {
             base.DisplayName = "Logi Operacji";
             klubSportowyEntities = new KlubSportowyEntities();
             item = new LogiOperacji();
+            _SortBy = "Data Operacji";
+            _SelectedFilterColumn = "Operacja";
+            _FilterText = "";
         }
         #endregion
-        #region Komendy
-        private BaseCommand _SaveAndCloseCommand;
-        public ICommand SaveAndCloseCommand
-        {
-            get
-            {
-                if (_SaveAndCloseCommand == null) _SaveAndCloseCommand = new BaseCommand(saveAndClose);
-                return _SaveAndCloseCommand;
-            }
-        }
-        public void Save()
-        {
-            klubSportowyEntities.LogiOperacji.Add(item);
-            klubSportowyEntities.SaveChanges();
-        }
-        private void saveAndClose()
-        {
-            Save();
-        }
-        #endregion
+
         #region Wlasciwosci
         public int? UzytkownikId
         {
@@ -127,7 +219,6 @@ namespace KlubSportowy.ViewModels
                 }
             }
         }
-
         public DateTime? DataOperacji
         {
             get
@@ -232,6 +323,19 @@ namespace KlubSportowy.ViewModels
                     OnPropertyChanged(() => Uwagi);
                 }
             }
+        }
+        #endregion
+
+        #region Komendy Logika
+        public void Save()
+        {
+            klubSportowyEntities.LogiOperacji.Add(item);
+            klubSportowyEntities.SaveChanges();
+            Load();
+        }
+        private void saveAndClose()
+        {
+            Save();
         }
         #endregion
     }

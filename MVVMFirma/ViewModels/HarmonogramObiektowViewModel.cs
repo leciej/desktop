@@ -27,7 +27,18 @@ namespace KlubSportowy.ViewModels
                 return _LoadCommand;
             }
         }
+
+        private BaseCommand _SaveAndCloseCommand;
+        public ICommand SaveAndCloseCommand
+        {
+            get
+            {
+                if (_SaveAndCloseCommand == null) _SaveAndCloseCommand = new BaseCommand(saveAndClose);
+                return _SaveAndCloseCommand;
+            }
+        }
         #endregion
+
         #region Lista
         private ObservableCollection<HarmonogramObiektow> _List;
         public ObservableCollection<HarmonogramObiektow> List
@@ -46,21 +57,119 @@ namespace KlubSportowy.ViewModels
                 }
             }
         }
+
         private void Load()
         {
-            List = new ObservableCollection<HarmonogramObiektow>(
-                klubSportowyEntities.HarmonogramObiektow.ToList()
-                );
+            var query = klubSportowyEntities.HarmonogramObiektow.AsQueryable();
+
+            if (!string.IsNullOrEmpty(FilterText))
+            {
+                switch (SelectedFilterColumn)
+                {
+                    case "Obiekt":
+                        query = query.Where(z => z.Obiekt.Contains(FilterText));
+                        break;
+                    case "Druzyna ID":
+                        query = query.Where(z => z.DruzynaId.ToString().Contains(FilterText));
+                        break;
+                }
+            }
+
+            switch (SortBy)
+            {
+                case "Obiekt":
+                    query = query.OrderBy(z => z.Obiekt);
+                    break;
+                case "Data":
+                    query = query.OrderBy(z => z.Data);
+                    break;
+                case "Godzina Od":
+                    query = query.OrderBy(z => z.GodzinaOd);
+                    break;
+                default:
+                    query = query.OrderBy(z => z.Data);
+                    break;
+            }
+
+            List = new ObservableCollection<HarmonogramObiektow>(query.ToList());
         }
         #endregion
+
+        #region Filtrowanie i Sortowanie - Wlasciwosci
+        private string _FilterText;
+        public string FilterText
+        {
+            get => _FilterText;
+            set
+            {
+                if (_FilterText != value)
+                {
+                    _FilterText = value;
+                    OnPropertyChanged(() => FilterText);
+                    Load();
+                }
+            }
+        }
+
+        private string _SelectedFilterColumn;
+        public string SelectedFilterColumn
+        {
+            get => _SelectedFilterColumn;
+            set
+            {
+                if (_SelectedFilterColumn != value)
+                {
+                    _SelectedFilterColumn = value;
+                    OnPropertyChanged(() => SelectedFilterColumn);
+                    Load();
+                }
+            }
+        }
+
+        public List<string> FilterColumnOptions
+        {
+            get
+            {
+                return new List<string> { "Obiekt", "Druzyna ID" };
+            }
+        }
+
+        private string _SortBy;
+        public string SortBy
+        {
+            get => _SortBy;
+            set
+            {
+                if (_SortBy != value)
+                {
+                    _SortBy = value;
+                    OnPropertyChanged(() => SortBy);
+                    Load();
+                }
+            }
+        }
+
+        public List<string> SortOptions
+        {
+            get
+            {
+                return new List<string> { "Obiekt", "Data", "Godzina Od" };
+            }
+        }
+        #endregion
+
         #region Konstuktor
         public HarmonogramObiektowViewModel()
         {
             base.DisplayName = "Harmonogram Obiektów";
             klubSportowyEntities = new KlubSportowyEntities();
             item = new HarmonogramObiektow();
+            _SortBy = "Data";
+            _SelectedFilterColumn = "Obiekt";
+            _FilterText = "";
         }
         #endregion
+
         #region Wlasciwosci
         public string Obiekt
         {
@@ -138,20 +247,13 @@ namespace KlubSportowy.ViewModels
             }
         }
         #endregion
-        #region Komendy
-        private BaseCommand _SaveAndCloseCommand;
-        public ICommand SaveAndCloseCommand
-        {
-            get
-            {
-                if (_SaveAndCloseCommand == null) _SaveAndCloseCommand = new BaseCommand(saveAndClose);
-                return _SaveAndCloseCommand;
-            }
-        }
+
+        #region Komendy Logika
         public void Save()
         {
             klubSportowyEntities.HarmonogramObiektow.Add(item);
             klubSportowyEntities.SaveChanges();
+            Load();
         }
         private void saveAndClose()
         {

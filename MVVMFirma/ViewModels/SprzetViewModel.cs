@@ -27,7 +27,18 @@ namespace KlubSportowy.ViewModels
                 return _LoadCommand;
             }
         }
+
+        private BaseCommand _SaveAndCloseCommand;
+        public ICommand SaveAndCloseCommand
+        {
+            get
+            {
+                if (_SaveAndCloseCommand == null) _SaveAndCloseCommand = new BaseCommand(saveAndClose);
+                return _SaveAndCloseCommand;
+            }
+        }
         #endregion
+
         #region Lista
         private ObservableCollection<Sprzet> _List;
         public ObservableCollection<Sprzet> List
@@ -46,48 +57,140 @@ namespace KlubSportowy.ViewModels
                 }
             }
         }
+
         private void Load()
         {
-            List = new ObservableCollection<Sprzet>(
-                klubSportowyEntities.Sprzet.ToList()
-                );
+            var query = klubSportowyEntities.Sprzet.AsQueryable();
+
+            if (!string.IsNullOrEmpty(FilterText))
+            {
+                switch (SelectedFilterColumn)
+                {
+                    case "Nazwa":
+                        query = query.Where(z => z.Nazwa.Contains(FilterText));
+                        break;
+                    case "Kategoria":
+                        query = query.Where(z => z.Kategoria.Contains(FilterText));
+                        break;
+                    case "Uwagi":
+                        query = query.Where(z => z.Uwagi.Contains(FilterText));
+                        break;
+                }
+            }
+
+            switch (SortBy)
+            {
+                case "Nazwa":
+                    query = query.OrderBy(z => z.Nazwa);
+                    break;
+                case "Kategoria":
+                    query = query.OrderBy(z => z.Kategoria);
+                    break;
+                case "Ilosc":
+                    query = query.OrderBy(z => z.Ilosc);
+                    break;
+                default:
+                    query = query.OrderBy(z => z.Nazwa);
+                    break;
+            }
+
+            List = new ObservableCollection<Sprzet>(query.ToList());
         }
         #endregion
+
+        #region Filtrowanie i Sortowanie - Wlasciwosci
+        private string _FilterText;
+        public string FilterText
+        {
+            get => _FilterText;
+            set
+            {
+                if (_FilterText != value)
+                {
+                    _FilterText = value;
+                    OnPropertyChanged(() => FilterText);
+                    Load();
+                }
+            }
+        }
+
+        private string _SelectedFilterColumn;
+        public string SelectedFilterColumn
+        {
+            get => _SelectedFilterColumn;
+            set
+            {
+                if (_SelectedFilterColumn != value)
+                {
+                    _SelectedFilterColumn = value;
+                    OnPropertyChanged(() => SelectedFilterColumn);
+                    Load();
+                }
+            }
+        }
+
+        public List<string> FilterColumnOptions
+        {
+            get
+            {
+                return new List<string> { "Nazwa", "Kategoria", "Uwagi" };
+            }
+        }
+
+        private string _SortBy;
+        public string SortBy
+        {
+            get => _SortBy;
+            set
+            {
+                if (_SortBy != value)
+                {
+                    _SortBy = value;
+                    OnPropertyChanged(() => SortBy);
+                    Load();
+                }
+            }
+        }
+
+        public List<string> SortOptions
+        {
+            get
+            {
+                return new List<string> { "Nazwa", "Kategoria", "Ilosc" };
+            }
+        }
+        #endregion
+
         #region Konstuktor
         public SprzetViewModel()
         {
             base.DisplayName = "Sprzęt";
             klubSportowyEntities = new KlubSportowyEntities();
             item = new Sprzet();
+            _SortBy = "Nazwa";
+            _SelectedFilterColumn = "Nazwa";
+            _FilterText = "";
         }
         #endregion
-        #region Komendy
-        private BaseCommand _SaveAndCloseCommand;
-        public ICommand SaveAndCloseCommand
-        {
-            get
-            {
-                if (_SaveAndCloseCommand == null) _SaveAndCloseCommand = new BaseCommand(saveAndClose);
-                return _SaveAndCloseCommand;
-            }
-        }
+
+        #region Komendy Logika
         public void Save()
         {
             klubSportowyEntities.Sprzet.Add(item);
             klubSportowyEntities.SaveChanges();
+            Load();
         }
+
         private void saveAndClose()
         {
             Save();
         }
         #endregion
+
         #region Wlasciwosci
         public string Nazwa
         {
-            get
-            {
-                return item.Nazwa;
-            }
+            get { return item.Nazwa; }
             set
             {
                 if (item.Nazwa != value)
@@ -97,12 +200,10 @@ namespace KlubSportowy.ViewModels
                 }
             }
         }
+
         public string Kategoria
         {
-            get
-            {
-                return item.Kategoria;
-            }
+            get { return item.Kategoria; }
             set
             {
                 if (item.Kategoria != value)
@@ -112,12 +213,10 @@ namespace KlubSportowy.ViewModels
                 }
             }
         }
+
         public int? Ilosc
         {
-            get
-            {
-                return item.Ilosc;
-            }
+            get { return item.Ilosc; }
             set
             {
                 if (item.Ilosc != value)
@@ -130,10 +229,7 @@ namespace KlubSportowy.ViewModels
 
         public int? MagazynId
         {
-            get
-            {
-                return item.MagazynId;
-            }
+            get { return item.MagazynId; }
             set
             {
                 if (item.MagazynId != value)
@@ -146,10 +242,7 @@ namespace KlubSportowy.ViewModels
 
         public bool? CzyAktywny
         {
-            get
-            {
-                return item.CzyAktywny;
-            }
+            get { return item.CzyAktywny; }
             set
             {
                 if (item.CzyAktywny != value)
@@ -159,12 +252,10 @@ namespace KlubSportowy.ViewModels
                 }
             }
         }
+
         public string KtoDodal
         {
-            get
-            {
-                return item.KtoDodal;
-            }
+            get { return item.KtoDodal; }
             set
             {
                 if (item.KtoDodal != value)
@@ -174,12 +265,10 @@ namespace KlubSportowy.ViewModels
                 }
             }
         }
+
         public DateTime? KiedyDodal
         {
-            get
-            {
-                return item.KiedyDodal;
-            }
+            get { return item.KiedyDodal; }
             set
             {
                 if (item.KiedyDodal != value)
@@ -189,12 +278,10 @@ namespace KlubSportowy.ViewModels
                 }
             }
         }
+
         public string KtoModyfikowal
         {
-            get
-            {
-                return item.KtoModyfikowal;
-            }
+            get { return item.KtoModyfikowal; }
             set
             {
                 if (item.KtoModyfikowal != value)
@@ -204,12 +291,10 @@ namespace KlubSportowy.ViewModels
                 }
             }
         }
+
         public string KtoWykasowal
         {
-            get
-            {
-                return item.KtoWykasowal;
-            }
+            get { return item.KtoWykasowal; }
             set
             {
                 if (item.KtoWykasowal != value)
@@ -219,12 +304,10 @@ namespace KlubSportowy.ViewModels
                 }
             }
         }
+
         public string Uwagi
         {
-            get
-            {
-                return item.Uwagi;
-            }
+            get { return item.Uwagi; }
             set
             {
                 if (item.Uwagi != value)

@@ -3,7 +3,7 @@ using KlubSportowy.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq; // Wymagane dla LINQ
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -48,12 +48,10 @@ namespace KlubSportowy.ViewModels
             }
         }
 
-        // METODA LOAD - Laboratorium 5 (Dynamiczne Filtrowanie i Sortowanie LINQ)
         private void Load()
         {
             var query = klubSportowyEntities.Zawodnicy.AsQueryable();
 
-            // 1. DYNAMICZNE FILTROWANIE (LINQ - wybór kolumny i frazy)
             if (!string.IsNullOrEmpty(FilterText))
             {
                 switch (SelectedFilterColumn)
@@ -73,7 +71,6 @@ namespace KlubSportowy.ViewModels
                 }
             }
 
-            // 2. SORTOWANIE (LINQ)
             switch (SortBy)
             {
                 case "Nazwisko":
@@ -99,7 +96,6 @@ namespace KlubSportowy.ViewModels
 
         #region Filtrowanie i Sortowanie - Wlasciwosci
 
-        // Tekst wpisywany w wyszukiwarke
         private string _FilterText;
         public string FilterText
         {
@@ -110,12 +106,11 @@ namespace KlubSportowy.ViewModels
                 {
                     _FilterText = value;
                     OnPropertyChanged(() => FilterText);
-                    Load(); // Odswiezanie na zywo przy pisaniu
+                    Load();
                 }
             }
         }
 
-        // Wybrana kolumna z listy rozwijalnej "Szukaj w:"
         private string _SelectedFilterColumn;
         public string SelectedFilterColumn
         {
@@ -126,12 +121,11 @@ namespace KlubSportowy.ViewModels
                 {
                     _SelectedFilterColumn = value;
                     OnPropertyChanged(() => SelectedFilterColumn);
-                    Load(); // Odswiezanie po zmianie kolumny
+                    Load();
                 }
             }
         }
 
-        // Lista dostepnych kolumn do filtrowania
         public List<string> FilterColumnOptions
         {
             get
@@ -168,7 +162,6 @@ namespace KlubSportowy.ViewModels
             klubSportowyEntities = new KlubSportowyEntities();
             item = new Zawodnicy();
 
-            // Inicjalizacja domyslnych wartosci
             _SortBy = "Nazwisko";
             _SelectedFilterColumn = "Nazwisko";
             _FilterText = "";

@@ -13,7 +13,7 @@ namespace KlubSportowy.ViewModels
     public class KontuzjeViewModel : WorkspaceViewModel
     {
         #region BazaDanych
-        private readonly KlubSportowyEntities klubSportowyEntities;
+        protected KlubSportowyEntities klubSportowyEntities;
         private Kontuzje item;
         #endregion
 
@@ -27,7 +27,18 @@ namespace KlubSportowy.ViewModels
                 return _LoadCommand;
             }
         }
+
+        private BaseCommand _SaveAndCloseCommand;
+        public ICommand SaveAndCloseCommand
+        {
+            get
+            {
+                if (_SaveAndCloseCommand == null) _SaveAndCloseCommand = new BaseCommand(saveAndClose);
+                return _SaveAndCloseCommand;
+            }
+        }
         #endregion
+
         #region Lista
         private ObservableCollection<Kontuzje> _List;
         public ObservableCollection<Kontuzje> List
@@ -46,28 +57,126 @@ namespace KlubSportowy.ViewModels
                 }
             }
         }
+
         private void Load()
         {
-            List = new ObservableCollection<Kontuzje>(
-                klubSportowyEntities.Kontuzje.ToList()
-                );
+            var query = klubSportowyEntities.Kontuzje.AsQueryable();
+
+            if (!string.IsNullOrEmpty(FilterText))
+            {
+                switch (SelectedFilterColumn)
+                {
+                    case "Typ Kontuzji":
+                        query = query.Where(z => z.TypKontuzji.Contains(FilterText));
+                        break;
+                    case "Uwagi":
+                        query = query.Where(z => z.Uwagi.Contains(FilterText));
+                        break;
+                    case "Zawodnik ID":
+                        query = query.Where(z => z.ZawodnikId.ToString().Contains(FilterText));
+                        break;
+                }
+            }
+
+            switch (SortBy)
+            {
+                case "Typ Kontuzji":
+                    query = query.OrderBy(z => z.TypKontuzji);
+                    break;
+                case "Data Zdarzenia":
+                    query = query.OrderBy(z => z.DataZdarzenia);
+                    break;
+                case "Przewidywany Powrót":
+                    query = query.OrderBy(z => z.PrzewidywanyPowrot);
+                    break;
+                default:
+                    query = query.OrderByDescending(z => z.DataZdarzenia);
+                    break;
+            }
+
+            List = new ObservableCollection<Kontuzje>(query.ToList());
         }
         #endregion
-        #region Konstuktor
+
+        #region Filtrowanie i Sortowanie - Wlasciwosci
+        private string _FilterText;
+        public string FilterText
+        {
+            get => _FilterText;
+            set
+            {
+                if (_FilterText != value)
+                {
+                    _FilterText = value;
+                    OnPropertyChanged(() => FilterText);
+                    Load();
+                }
+            }
+        }
+
+        private string _SelectedFilterColumn;
+        public string SelectedFilterColumn
+        {
+            get => _SelectedFilterColumn;
+            set
+            {
+                if (_SelectedFilterColumn != value)
+                {
+                    _SelectedFilterColumn = value;
+                    OnPropertyChanged(() => SelectedFilterColumn);
+                    Load();
+                }
+            }
+        }
+
+        public List<string> FilterColumnOptions
+        {
+            get
+            {
+                return new List<string> { "Typ Kontuzji", "Uwagi", "Zawodnik ID" };
+            }
+        }
+
+        private string _SortBy;
+        public string SortBy
+        {
+            get => _SortBy;
+            set
+            {
+                if (_SortBy != value)
+                {
+                    _SortBy = value;
+                    OnPropertyChanged(() => SortBy);
+                    Load();
+                }
+            }
+        }
+
+        public List<string> SortOptions
+        {
+            get
+            {
+                return new List<string> { "Data Zdarzenia", "Typ Kontuzji", "Przewidywany Powrót" };
+            }
+        }
+        #endregion
+
+        #region Konstruktor
         public KontuzjeViewModel()
         {
             base.DisplayName = "Kontuzje";
             klubSportowyEntities = new KlubSportowyEntities();
             item = new Kontuzje();
+            _SortBy = "Data Zdarzenia";
+            _SelectedFilterColumn = "Typ Kontuzji";
+            _FilterText = "";
         }
         #endregion
+
         #region Wlasciwosci
         public int? ZawodnikId
         {
-            get
-            {
-                return item.ZawodnikId;
-            }
+            get { return item.ZawodnikId; }
             set
             {
                 if (item.ZawodnikId != value)
@@ -79,10 +188,7 @@ namespace KlubSportowy.ViewModels
         }
         public string TypKontuzji
         {
-            get
-            {
-                return item.TypKontuzji;
-            }
+            get { return item.TypKontuzji; }
             set
             {
                 if (item.TypKontuzji != value)
@@ -94,10 +200,7 @@ namespace KlubSportowy.ViewModels
         }
         public DateTime? DataZdarzenia
         {
-            get
-            {
-                return item.DataZdarzenia;
-            }
+            get { return item.DataZdarzenia; }
             set
             {
                 if (item.DataZdarzenia != value)
@@ -109,10 +212,7 @@ namespace KlubSportowy.ViewModels
         }
         public DateTime? PrzewidywanyPowrot
         {
-            get
-            {
-                return item.PrzewidywanyPowrot;
-            }
+            get { return item.PrzewidywanyPowrot; }
             set
             {
                 if (item.PrzewidywanyPowrot != value)
@@ -124,10 +224,7 @@ namespace KlubSportowy.ViewModels
         }
         public bool? CzyAktywny
         {
-            get
-            {
-                return item.CzyAktywny;
-            }
+            get { return item.CzyAktywny; }
             set
             {
                 if (item.CzyAktywny != value)
@@ -139,10 +236,7 @@ namespace KlubSportowy.ViewModels
         }
         public string KtoDodal
         {
-            get
-            {
-                return item.KtoDodal;
-            }
+            get { return item.KtoDodal; }
             set
             {
                 if (item.KtoDodal != value)
@@ -154,10 +248,7 @@ namespace KlubSportowy.ViewModels
         }
         public DateTime? KiedyDodal
         {
-            get
-            {
-                return item.KiedyDodal;
-            }
+            get { return item.KiedyDodal; }
             set
             {
                 if (item.KiedyDodal != value)
@@ -169,10 +260,7 @@ namespace KlubSportowy.ViewModels
         }
         public string KtoModyfikowal
         {
-            get
-            {
-                return item.KtoModyfikowal;
-            }
+            get { return item.KtoModyfikowal; }
             set
             {
                 if (item.KtoModyfikowal != value)
@@ -184,10 +272,7 @@ namespace KlubSportowy.ViewModels
         }
         public string KtoWykasowal
         {
-            get
-            {
-                return item.KtoWykasowal;
-            }
+            get { return item.KtoWykasowal; }
             set
             {
                 if (item.KtoWykasowal != value)
@@ -199,10 +284,7 @@ namespace KlubSportowy.ViewModels
         }
         public string Uwagi
         {
-            get
-            {
-                return item.Uwagi;
-            }
+            get { return item.Uwagi; }
             set
             {
                 if (item.Uwagi != value)
@@ -212,20 +294,14 @@ namespace KlubSportowy.ViewModels
                 }
             }
         }
-        #region Komendy
-        private BaseCommand _SaveAndCloseCommand;
-        public ICommand SaveAndCloseCommand
-        {
-            get
-            {
-                if (_SaveAndCloseCommand == null) _SaveAndCloseCommand = new BaseCommand(saveAndClose);
-                return _SaveAndCloseCommand;
-            }
-        }
+        #endregion
+
+        #region Komendy Logika
         public void Save()
         {
             klubSportowyEntities.Kontuzje.Add(item);
             klubSportowyEntities.SaveChanges();
+            Load();
         }
         private void saveAndClose()
         {
@@ -234,4 +310,3 @@ namespace KlubSportowy.ViewModels
         #endregion
     }
 }
-#endregion

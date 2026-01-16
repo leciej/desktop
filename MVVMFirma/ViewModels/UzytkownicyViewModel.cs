@@ -27,6 +27,16 @@ namespace KlubSportowy.ViewModels
                 return _LoadCommand;
             }
         }
+
+        private BaseCommand _SaveAndCloseCommand;
+        public ICommand SaveAndCloseCommand
+        {
+            get
+            {
+                if (_SaveAndCloseCommand == null) _SaveAndCloseCommand = new BaseCommand(saveAndClose);
+                return _SaveAndCloseCommand;
+            }
+        }
         #endregion
 
         #region Lista
@@ -47,41 +57,119 @@ namespace KlubSportowy.ViewModels
                 }
             }
         }
+
         private void Load()
         {
-            List = new ObservableCollection<Uzytkownicy>(
-                klubSportowyEntities.Uzytkownicy.ToList()
-                );
+            var query = klubSportowyEntities.Uzytkownicy.AsQueryable();
+
+            if (!string.IsNullOrEmpty(FilterText))
+            {
+                switch (SelectedFilterColumn)
+                {
+                    case "Login":
+                        query = query.Where(z => z.Login.Contains(FilterText));
+                        break;
+                    case "Rola":
+                        query = query.Where(z => z.Rola.Contains(FilterText));
+                        break;
+                    case "Uwagi":
+                        query = query.Where(z => z.Uwagi.Contains(FilterText));
+                        break;
+                }
+            }
+
+            switch (SortBy)
+            {
+                case "Login":
+                    query = query.OrderBy(z => z.Login);
+                    break;
+                case "Rola":
+                    query = query.OrderBy(z => z.Rola);
+                    break;
+                default:
+                    query = query.OrderBy(z => z.Login);
+                    break;
+            }
+
+            List = new ObservableCollection<Uzytkownicy>(query.ToList());
         }
         #endregion
+
+        #region Filtrowanie i Sortowanie - Wlasciwosci
+        private string _FilterText;
+        public string FilterText
+        {
+            get => _FilterText;
+            set
+            {
+                if (_FilterText != value)
+                {
+                    _FilterText = value;
+                    OnPropertyChanged(() => FilterText);
+                    Load();
+                }
+            }
+        }
+
+        private string _SelectedFilterColumn;
+        public string SelectedFilterColumn
+        {
+            get => _SelectedFilterColumn;
+            set
+            {
+                if (_SelectedFilterColumn != value)
+                {
+                    _SelectedFilterColumn = value;
+                    OnPropertyChanged(() => SelectedFilterColumn);
+                    Load();
+                }
+            }
+        }
+
+        public List<string> FilterColumnOptions
+        {
+            get
+            {
+                return new List<string> { "Login", "Rola", "Uwagi" };
+            }
+        }
+
+        private string _SortBy;
+        public string SortBy
+        {
+            get => _SortBy;
+            set
+            {
+                if (_SortBy != value)
+                {
+                    _SortBy = value;
+                    OnPropertyChanged(() => SortBy);
+                    Load();
+                }
+            }
+        }
+
+        public List<string> SortOptions
+        {
+            get
+            {
+                return new List<string> { "Login", "Rola" };
+            }
+        }
+        #endregion
+
         #region Konstuktor
         public UzytkownicyViewModel()
         {
             base.DisplayName = "Użytkownicy";
             klubSportowyEntities = new KlubSportowyEntities();
             item = new Uzytkownicy();
+            _SortBy = "Login";
+            _SelectedFilterColumn = "Login";
+            _FilterText = "";
         }
         #endregion
-        #region Komendy
-        private BaseCommand _SaveAndCloseCommand;
-        public ICommand SaveAndCloseCommand
-        {
-            get
-            {
-                if (_SaveAndCloseCommand == null) _SaveAndCloseCommand = new BaseCommand(saveAndClose);
-                return _SaveAndCloseCommand;
-            }
-        }
-        public void Save()
-        {
-            klubSportowyEntities.Uzytkownicy.Add(item);
-            klubSportowyEntities.SaveChanges();
-        }
-        private void saveAndClose()
-        {
-            Save();
-        }
-        #endregion
+
         #region Wlasciwosci
         public string Login
         {
@@ -128,7 +216,6 @@ namespace KlubSportowy.ViewModels
                 }
             }
         }
-
         public bool? CzyAktywny
         {
             get
@@ -218,6 +305,19 @@ namespace KlubSportowy.ViewModels
                     OnPropertyChanged(() => Uwagi);
                 }
             }
+        }
+        #endregion
+
+        #region Komendy Logika
+        public void Save()
+        {
+            klubSportowyEntities.Uzytkownicy.Add(item);
+            klubSportowyEntities.SaveChanges();
+            Load();
+        }
+        private void saveAndClose()
+        {
+            Save();
         }
         #endregion
     }

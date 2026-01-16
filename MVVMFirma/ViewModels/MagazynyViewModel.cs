@@ -1,6 +1,5 @@
 ﻿using KlubSportowy.Helper;
 using KlubSportowy.Models;
-using KlubSportowy.ViewModels.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -28,7 +27,18 @@ namespace KlubSportowy.ViewModels
                 return _LoadCommand;
             }
         }
+
+        private BaseCommand _SaveAndCloseCommand;
+        public ICommand SaveAndCloseCommand
+        {
+            get
+            {
+                if (_SaveAndCloseCommand == null) _SaveAndCloseCommand = new BaseCommand(saveAndClose);
+                return _SaveAndCloseCommand;
+            }
+        }
         #endregion
+
         #region Lista
         private ObservableCollection<Magazyny> _List;
         public ObservableCollection<Magazyny> List
@@ -47,41 +57,116 @@ namespace KlubSportowy.ViewModels
                 }
             }
         }
+
         private void Load()
         {
-            List = new ObservableCollection<Magazyny>(
-                klubSportowyEntities.Magazyny.ToList()
-                );
+            var query = klubSportowyEntities.Magazyny.AsQueryable();
+
+            if (!string.IsNullOrEmpty(FilterText))
+            {
+                switch (SelectedFilterColumn)
+                {
+                    case "Nazwa":
+                        query = query.Where(z => z.Nazwa.Contains(FilterText));
+                        break;
+                    case "Uwagi":
+                        query = query.Where(z => z.Uwagi.Contains(FilterText));
+                        break;
+                }
+            }
+
+            switch (SortBy)
+            {
+                case "Nazwa":
+                    query = query.OrderBy(z => z.Nazwa);
+                    break;
+                case "Data Dodania":
+                    query = query.OrderBy(z => z.KiedyDodal);
+                    break;
+                default:
+                    query = query.OrderBy(z => z.Nazwa);
+                    break;
+            }
+
+            List = new ObservableCollection<Magazyny>(query.ToList());
         }
         #endregion
-        #region Konstuktor
+
+        #region Filtrowanie i Sortowanie - Wlasciwosci
+        private string _FilterText;
+        public string FilterText
+        {
+            get => _FilterText;
+            set
+            {
+                if (_FilterText != value)
+                {
+                    _FilterText = value;
+                    OnPropertyChanged(() => FilterText);
+                    Load();
+                }
+            }
+        }
+
+        private string _SelectedFilterColumn;
+        public string SelectedFilterColumn
+        {
+            get => _SelectedFilterColumn;
+            set
+            {
+                if (_SelectedFilterColumn != value)
+                {
+                    _SelectedFilterColumn = value;
+                    OnPropertyChanged(() => SelectedFilterColumn);
+                    Load();
+                }
+            }
+        }
+
+        public List<string> FilterColumnOptions
+        {
+            get
+            {
+                return new List<string> { "Nazwa", "Uwagi" };
+            }
+        }
+
+        private string _SortBy;
+        public string SortBy
+        {
+            get => _SortBy;
+            set
+            {
+                if (_SortBy != value)
+                {
+                    _SortBy = value;
+                    OnPropertyChanged(() => SortBy);
+                    Load();
+                }
+            }
+        }
+
+        public List<string> SortOptions
+        {
+            get
+            {
+                return new List<string> { "Nazwa", "Data Dodania" };
+            }
+        }
+        #endregion
+
+        #region Konstruktor
         public MagazynyViewModel()
         {
             base.DisplayName = "Magazyny";
             klubSportowyEntities = new KlubSportowyEntities();
             item = new Magazyny();
+            _SortBy = "Nazwa";
+            _SelectedFilterColumn = "Nazwa";
+            _FilterText = "";
         }
         #endregion
-        #region Komendy
-        private BaseCommand _SaveAndCloseCommand;
-        public ICommand SaveAndCloseCommand
-        {
-            get
-            {
-                if (_SaveAndCloseCommand == null) _SaveAndCloseCommand = new BaseCommand(saveAndClose);
-                return _SaveAndCloseCommand;
-            }
-        }
-        public void Save()
-        {
-            klubSportowyEntities.Magazyny.Add(item);
-            klubSportowyEntities.SaveChanges();
-        }
-        private void saveAndClose()
-        {
-            Save();
-        }
-        #endregion
+
         #region Wlasciwosci
         public string Nazwa
         {
@@ -187,6 +272,19 @@ namespace KlubSportowy.ViewModels
                     OnPropertyChanged(() => Uwagi);
                 }
             }
+        }
+        #endregion
+
+        #region Komendy Logika
+        public void Save()
+        {
+            klubSportowyEntities.Magazyny.Add(item);
+            klubSportowyEntities.SaveChanges();
+            Load();
+        }
+        private void saveAndClose()
+        {
+            Save();
         }
         #endregion
     }

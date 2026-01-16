@@ -3,16 +3,44 @@
   "WorkspaceRootPath": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|c:\\users\\leciej\\desktop\\projekt desktop\\projekt2\\mvvmfirma\\mvvmfirma\\viewmodels\\magazynyviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|solutionrelative:mvvmfirma\\viewmodels\\magazynyviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|c:\\users\\leciej\\desktop\\projekt desktop\\projekt2\\mvvmfirma\\mvvmfirma\\viewmodels\\logioperacjiviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|solutionrelative:mvvmfirma\\viewmodels\\logioperacjiviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|c:\\users\\leciej\\desktop\\projekt desktop\\projekt2\\mvvmfirma\\mvvmfirma\\viewmodels\\kontuzjeviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|solutionrelative:mvvmfirma\\viewmodels\\kontuzjeviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|c:\\users\\leciej\\desktop\\projekt desktop\\projekt2\\mvvmfirma\\mvvmfirma\\viewmodels\\harmonogramobiektowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|solutionrelative:mvvmfirma\\viewmodels\\harmonogramobiektowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|c:\\users\\leciej\\desktop\\projekt desktop\\projekt2\\mvvmfirma\\mvvmfirma\\viewmodels\\frekwencjaviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|solutionrelative:mvvmfirma\\viewmodels\\frekwencjaviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|c:\\users\\leciej\\desktop\\projekt desktop\\projekt2\\mvvmfirma\\mvvmfirma\\viewmodels\\druzynyviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|solutionrelative:mvvmfirma\\viewmodels\\druzynyviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|c:\\users\\leciej\\desktop\\projekt desktop\\projekt2\\mvvmfirma\\mvvmfirma\\viewmodels\\meczeviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|solutionrelative:mvvmfirma\\viewmodels\\meczeviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|c:\\users\\leciej\\desktop\\projekt desktop\\projekt2\\mvvmfirma\\mvvmfirma\\viewmodels\\zawodnicyviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|solutionrelative:mvvmfirma\\viewmodels\\zawodnicyviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|c:\\users\\leciej\\desktop\\projekt desktop\\projekt2\\mvvmfirma\\mvvmfirma\\themes\\generic.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|solutionrelative:mvvmfirma\\themes\\generic.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|c:\\users\\leciej\\desktop\\projekt desktop\\projekt2\\mvvmfirma\\mvvmfirma\\views\\zawodnicyview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|solutionrelative:mvvmfirma\\views\\zawodnicyview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|c:\\users\\leciej\\desktop\\projekt desktop\\projekt2\\mvvmfirma\\mvvmfirma\\viewmodels\\zawodnicyviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|solutionrelative:mvvmfirma\\viewmodels\\zawodnicyviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,11 +50,102 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MagazynyViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\ViewModels\\MagazynyViewModel.cs",
+              "RelativeDocumentMoniker": "MVVMFirma\\ViewModels\\MagazynyViewModel.cs",
+              "ToolTip": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\ViewModels\\MagazynyViewModel.cs",
+              "RelativeToolTip": "MVVMFirma\\ViewModels\\MagazynyViewModel.cs",
+              "ViewState": "AgIAAAgBAAAAAAAAAAAAwCIBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-16T19:57:44.917Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "LogiOperacjiViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\ViewModels\\LogiOperacjiViewModel.cs",
+              "RelativeDocumentMoniker": "MVVMFirma\\ViewModels\\LogiOperacjiViewModel.cs",
+              "ToolTip": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\ViewModels\\LogiOperacjiViewModel.cs",
+              "RelativeToolTip": "MVVMFirma\\ViewModels\\LogiOperacjiViewModel.cs",
+              "ViewState": "AgIAADkBAAAAAAAAAAAswFUBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-16T19:57:11.166Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "KontuzjeViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\ViewModels\\KontuzjeViewModel.cs",
+              "RelativeDocumentMoniker": "MVVMFirma\\ViewModels\\KontuzjeViewModel.cs",
+              "ToolTip": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\ViewModels\\KontuzjeViewModel.cs",
+              "RelativeToolTip": "MVVMFirma\\ViewModels\\KontuzjeViewModel.cs",
+              "ViewState": "AgIAACQBAAAAAAAAAADwvzcBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-16T19:56:35.454Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "HarmonogramObiektowViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\ViewModels\\HarmonogramObiektowViewModel.cs",
+              "RelativeDocumentMoniker": "MVVMFirma\\ViewModels\\HarmonogramObiektowViewModel.cs",
+              "ToolTip": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\ViewModels\\HarmonogramObiektowViewModel.cs",
+              "RelativeToolTip": "MVVMFirma\\ViewModels\\HarmonogramObiektowViewModel.cs",
+              "ViewState": "AgIAAPQAAAAAAAAAAAAswAcBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-16T19:55:54.972Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FrekwencjaViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\ViewModels\\FrekwencjaViewModel.cs",
+              "RelativeDocumentMoniker": "MVVMFirma\\ViewModels\\FrekwencjaViewModel.cs",
+              "ToolTip": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\ViewModels\\FrekwencjaViewModel.cs",
+              "RelativeToolTip": "MVVMFirma\\ViewModels\\FrekwencjaViewModel.cs",
+              "ViewState": "AgIAABUBAAAAAAAAAADwvygBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-16T19:54:25.156Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DruzynyViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\ViewModels\\DruzynyViewModel.cs",
+              "RelativeDocumentMoniker": "MVVMFirma\\ViewModels\\DruzynyViewModel.cs",
+              "ToolTip": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\ViewModels\\DruzynyViewModel.cs",
+              "RelativeToolTip": "MVVMFirma\\ViewModels\\DruzynyViewModel.cs",
+              "ViewState": "AgIAABkBAAAAAAAAAADwvykBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-16T19:53:31.634Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MeczeViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\ViewModels\\MeczeViewModel.cs",
+              "RelativeDocumentMoniker": "MVVMFirma\\ViewModels\\MeczeViewModel.cs",
+              "ToolTip": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\ViewModels\\MeczeViewModel.cs",
+              "RelativeToolTip": "MVVMFirma\\ViewModels\\MeczeViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEEBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-16T19:49:49.836Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "ZawodnicyView.xaml",
               "DocumentMoniker": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\Views\\ZawodnicyView.xaml",
               "RelativeDocumentMoniker": "MVVMFirma\\Views\\ZawodnicyView.xaml",
@@ -38,25 +157,25 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 8,
               "Title": "Generic.xaml",
               "DocumentMoniker": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\Themes\\Generic.xaml",
               "RelativeDocumentMoniker": "MVVMFirma\\Themes\\Generic.xaml",
-              "ToolTip": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\Themes\\Generic.xaml*",
-              "RelativeToolTip": "MVVMFirma\\Themes\\Generic.xaml*",
+              "ToolTip": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\Themes\\Generic.xaml",
+              "RelativeToolTip": "MVVMFirma\\Themes\\Generic.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2026-01-16T18:56:31.475Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 7,
               "Title": "ZawodnicyViewModel.cs",
               "DocumentMoniker": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\ViewModels\\ZawodnicyViewModel.cs",
               "RelativeDocumentMoniker": "MVVMFirma\\ViewModels\\ZawodnicyViewModel.cs",
               "ToolTip": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\ViewModels\\ZawodnicyViewModel.cs",
               "RelativeToolTip": "MVVMFirma\\ViewModels\\ZawodnicyViewModel.cs",
-              "ViewState": "AgIAAO8AAAAAAAAAAAAiwP4AAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAOIAAAAAAAAAAAAwwPQAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-16T18:31:43.115Z",
               "EditorCaption": ""

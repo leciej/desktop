@@ -27,6 +27,16 @@ namespace KlubSportowy.ViewModels
                 return _LoadCommand;
             }
         }
+
+        private BaseCommand _SaveAndCloseCommand;
+        public ICommand SaveAndCloseCommand
+        {
+            get
+            {
+                if (_SaveAndCloseCommand == null) _SaveAndCloseCommand = new BaseCommand(saveAndClose);
+                return _SaveAndCloseCommand;
+            }
+        }
         #endregion
 
         #region Lista
@@ -47,48 +57,126 @@ namespace KlubSportowy.ViewModels
                 }
             }
         }
+
         private void Load()
         {
-            List = new ObservableCollection<Treningi>(
-                klubSportowyEntities.Treningi.ToList()
-                );
+            var query = klubSportowyEntities.Treningi.AsQueryable();
+
+            if (!string.IsNullOrEmpty(FilterText))
+            {
+                switch (SelectedFilterColumn)
+                {
+                    case "Typ Treningu":
+                        query = query.Where(z => z.TypTreningu.Contains(FilterText));
+                        break;
+                    case "Lokalizacja":
+                        query = query.Where(z => z.Lokalizacja.Contains(FilterText));
+                        break;
+                    case "Uwagi":
+                        query = query.Where(z => z.Uwagi.Contains(FilterText));
+                        break;
+                }
+            }
+
+            switch (SortBy)
+            {
+                case "Data Treningu":
+                    query = query.OrderByDescending(z => z.DataTreningu);
+                    break;
+                case "Lokalizacja":
+                    query = query.OrderBy(z => z.Lokalizacja);
+                    break;
+                case "Typ Treningu":
+                    query = query.OrderBy(z => z.TypTreningu);
+                    break;
+                default:
+                    query = query.OrderByDescending(z => z.DataTreningu);
+                    break;
+            }
+
+            List = new ObservableCollection<Treningi>(query.ToList());
         }
         #endregion
+
+        #region Filtrowanie i Sortowanie - Wlasciwosci
+        private string _FilterText;
+        public string FilterText
+        {
+            get => _FilterText;
+            set
+            {
+                if (_FilterText != value)
+                {
+                    _FilterText = value;
+                    OnPropertyChanged(() => FilterText);
+                    Load();
+                }
+            }
+        }
+
+        private string _SelectedFilterColumn;
+        public string SelectedFilterColumn
+        {
+            get => _SelectedFilterColumn;
+            set
+            {
+                if (_SelectedFilterColumn != value)
+                {
+                    _SelectedFilterColumn = value;
+                    OnPropertyChanged(() => SelectedFilterColumn);
+                    Load();
+                }
+            }
+        }
+
+        public List<string> FilterColumnOptions
+        {
+            get
+            {
+                return new List<string> { "Typ Treningu", "Lokalizacja", "Uwagi" };
+            }
+        }
+
+        private string _SortBy;
+        public string SortBy
+        {
+            get => _SortBy;
+            set
+            {
+                if (_SortBy != value)
+                {
+                    _SortBy = value;
+                    OnPropertyChanged(() => SortBy);
+                    Load();
+                }
+            }
+        }
+
+        public List<string> SortOptions
+        {
+            get
+            {
+                return new List<string> { "Data Treningu", "Lokalizacja", "Typ Treningu" };
+            }
+        }
+        #endregion
+
         #region Konstuktor
         public TreningiViewModel()
         {
             base.DisplayName = "Treningi";
             klubSportowyEntities = new KlubSportowyEntities();
             item = new Treningi();
+            _SortBy = "Data Treningu";
+            _SelectedFilterColumn = "Typ Treningu";
+            _FilterText = "";
         }
         #endregion
-        #region Komendy
-        private BaseCommand _SaveAndCloseCommand;
-        public ICommand SaveAndCloseCommand
-        {
-            get
-            {
-                if (_SaveAndCloseCommand == null) _SaveAndCloseCommand = new BaseCommand(saveAndClose);
-                return _SaveAndCloseCommand;
-            }
-        }
-        public void Save()
-        {
-            klubSportowyEntities.Treningi.Add(item);
-            klubSportowyEntities.SaveChanges();
-        }
-        private void saveAndClose()
-        {
-            Save();
-        }
-        #endregion
+
         #region Wlasciwosci
         public int? DruzynaId
         {
-            get
-            {
-                return item.DruzynaId;
-            }
+            get { return item.DruzynaId; }
             set
             {
                 if (item.DruzynaId != value)
@@ -100,10 +188,7 @@ namespace KlubSportowy.ViewModels
         }
         public DateTime? DataTreningu
         {
-            get
-            {
-                return item.DataTreningu;
-            }
+            get { return item.DataTreningu; }
             set
             {
                 if (item.DataTreningu != value)
@@ -115,10 +200,7 @@ namespace KlubSportowy.ViewModels
         }
         public string Lokalizacja
         {
-            get
-            {
-                return item.Lokalizacja;
-            }
+            get { return item.Lokalizacja; }
             set
             {
                 if (item.Lokalizacja != value)
@@ -128,13 +210,9 @@ namespace KlubSportowy.ViewModels
                 }
             }
         }
-
         public string TypTreningu
         {
-            get
-            {
-                return item.TypTreningu;
-            }
+            get { return item.TypTreningu; }
             set
             {
                 if (item.TypTreningu != value)
@@ -146,10 +224,7 @@ namespace KlubSportowy.ViewModels
         }
         public bool? CzyAktywny
         {
-            get
-            {
-                return item.CzyAktywny;
-            }
+            get { return item.CzyAktywny; }
             set
             {
                 if (item.CzyAktywny != value)
@@ -161,10 +236,7 @@ namespace KlubSportowy.ViewModels
         }
         public string KtoDodal
         {
-            get
-            {
-                return item.KtoDodal;
-            }
+            get { return item.KtoDodal; }
             set
             {
                 if (item.KtoDodal != value)
@@ -176,10 +248,7 @@ namespace KlubSportowy.ViewModels
         }
         public DateTime? KiedyDodal
         {
-            get
-            {
-                return item.KiedyDodal;
-            }
+            get { return item.KiedyDodal; }
             set
             {
                 if (item.KiedyDodal != value)
@@ -191,10 +260,7 @@ namespace KlubSportowy.ViewModels
         }
         public string KtoModyfikowal
         {
-            get
-            {
-                return item.KtoModyfikowal;
-            }
+            get { return item.KtoModyfikowal; }
             set
             {
                 if (item.KtoModyfikowal != value)
@@ -206,10 +272,7 @@ namespace KlubSportowy.ViewModels
         }
         public string KtoWykasowal
         {
-            get
-            {
-                return item.KtoWykasowal;
-            }
+            get { return item.KtoWykasowal; }
             set
             {
                 if (item.KtoWykasowal != value)
@@ -221,10 +284,7 @@ namespace KlubSportowy.ViewModels
         }
         public string Uwagi
         {
-            get
-            {
-                return item.Uwagi;
-            }
+            get { return item.Uwagi; }
             set
             {
                 if (item.Uwagi != value)
@@ -233,6 +293,19 @@ namespace KlubSportowy.ViewModels
                     OnPropertyChanged(() => Uwagi);
                 }
             }
+        }
+        #endregion
+
+        #region Komendy Logika
+        public void Save()
+        {
+            klubSportowyEntities.Treningi.Add(item);
+            klubSportowyEntities.SaveChanges();
+            Load();
+        }
+        private void saveAndClose()
+        {
+            Save();
         }
         #endregion
     }
