@@ -1,0 +1,83 @@
+﻿<Window x:Class="KlubSportowy.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="KlubSportowy"
+        WindowState="Maximized"
+        Background="{DynamicResource SurfaceBrush}">
+
+    <Window.Resources>
+        <ResourceDictionary Source="MainWindowResources.xaml"/>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="32"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- TOP BAR -->
+        <Border Grid.Row="0" Grid.ColumnSpan="2"
+                Background="{DynamicResource PrimaryBrush}"
+                BorderBrush="{DynamicResource BorderLineBrush}"
+                BorderThickness="0,0,0,1">
+            <DockPanel VerticalAlignment="Center">
+                <TextBlock Text="KlubSportowy"
+                           FontSize="20"
+                           FontWeight="Bold"
+                           Foreground="White"
+                           Margin="16,0"
+                           DockPanel.Dock="Left"/>
+                <Menu DockPanel.Dock="Right"
+                      Background="Transparent"
+                      BorderThickness="0"
+                      Foreground="White"
+                      FontWeight="SemiBold">
+                    <MenuItem Header="Plik"/>
+                    <MenuItem Header="Magazyn"/>
+                    <MenuItem Header="Program"/>
+                </Menu>
+            </DockPanel>
+        </Border>
+
+        <!-- SIDEBAR -->
+        <HeaderedContentControl Grid.Row="1" Grid.Column="0"
+                                Header="Operacje"
+                                Content="{Binding Commands}"
+                                ContentTemplate="{StaticResource CommandsTemplate}"
+                                Style="{StaticResource MainHCCStyle}"/>
+
+        <!-- WORKSPACE -->
+        <HeaderedContentControl Grid.Row="1" Grid.Column="1"
+                                Header="Przestrzeń robocza"
+                                Content="{Binding Workspaces}"
+                                ContentTemplate="{StaticResource WorkspacesTemplate}"
+                                Style="{StaticResource MainHCCStyle}"/>
+
+        <!-- STATUS BAR -->
+        <Border Grid.Row="2" Grid.ColumnSpan="2"
+                Background="{DynamicResource SurfaceBrush}"
+                BorderBrush="{DynamicResource BorderLineBrush}"
+                BorderThickness="1,1,1,0"
+                Padding="8">
+            <DockPanel>
+                <TextBlock Text="Mateusz Leciejewski"
+                           Foreground="{DynamicResource TextSecondaryBrush}"
+                           FontWeight="SemiBold"
+                           Margin="12,0"
+                           DockPanel.Dock="Left"/>
+                <TextBlock Text="Programowanie aplikacji biznesowych"
+                           Foreground="{DynamicResource TextSecondaryBrush}"
+                           FontWeight="SemiBold"
+                           Margin="12,0"
+                           DockPanel.Dock="Right"/>
+            </DockPanel>
+        </Border>
+
+    </Grid>
+</Window>

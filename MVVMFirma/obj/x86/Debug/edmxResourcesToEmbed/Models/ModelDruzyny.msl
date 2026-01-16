@@ -1,0 +1,301 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="KlubSportowyModelStoreContainer" CdmEntityContainer="KlubSportowyEntities">
+    <EntitySetMapping Name="Druzyny">
+      <EntityTypeMapping TypeName="KlubSportowyModel.Druzyny">
+        <MappingFragment StoreEntitySet="Druzyny">
+          <ScalarProperty Name="DruzynaId" ColumnName="DruzynaId" />
+          <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+          <ScalarProperty Name="Kategoria" ColumnName="Kategoria" />
+          <ScalarProperty Name="TrenerId" ColumnName="TrenerId" />
+          <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+          <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+          <ScalarProperty Name="KiedyDodal" ColumnName="KiedyDodal" />
+          <ScalarProperty Name="KtoModyfikowal" ColumnName="KtoModyfikowal" />
+          <ScalarProperty Name="KiedyModyfikowal" ColumnName="KiedyModyfikowal" />
+          <ScalarProperty Name="KtoWykasowal" ColumnName="KtoWykasowal" />
+          <ScalarProperty Name="Uwagi" ColumnName="Uwagi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Frekwencja">
+      <EntityTypeMapping TypeName="KlubSportowyModel.Frekwencja">
+        <MappingFragment StoreEntitySet="Frekwencja">
+          <ScalarProperty Name="FrekwencjaId" ColumnName="FrekwencjaId" />
+          <ScalarProperty Name="TreningId" ColumnName="TreningId" />
+          <ScalarProperty Name="ZawodnikId" ColumnName="ZawodnikId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+          <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+          <ScalarProperty Name="KiedyDodal" ColumnName="KiedyDodal" />
+          <ScalarProperty Name="KtoModyfikowal" ColumnName="KtoModyfikowal" />
+          <ScalarProperty Name="KiedyModyfikowal" ColumnName="KiedyModyfikowal" />
+          <ScalarProperty Name="KtoWykasowal" ColumnName="KtoWykasowal" />
+          <ScalarProperty Name="Uwagi" ColumnName="Uwagi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HarmonogramObiektow">
+      <EntityTypeMapping TypeName="KlubSportowyModel.HarmonogramObiektow">
+        <MappingFragment StoreEntitySet="HarmonogramObiektow">
+          <ScalarProperty Name="HarmonogramId" ColumnName="HarmonogramId" />
+          <ScalarProperty Name="Obiekt" ColumnName="Obiekt" />
+          <ScalarProperty Name="Data" ColumnName="Data" />
+          <ScalarProperty Name="GodzinaOd" ColumnName="GodzinaOd" />
+          <ScalarProperty Name="GodzinaDo" ColumnName="GodzinaDo" />
+          <ScalarProperty Name="DruzynaId" ColumnName="DruzynaId" />
+          <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+          <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+          <ScalarProperty Name="KiedyDodal" ColumnName="KiedyDodal" />
+          <ScalarProperty Name="KtoModyfikowal" ColumnName="KtoModyfikowal" />
+          <ScalarProperty Name="KiedyModyfikowal" ColumnName="KiedyModyfikowal" />
+          <ScalarProperty Name="KtoWykasowal" ColumnName="KtoWykasowal" />
+          <ScalarProperty Name="Uwagi" ColumnName="Uwagi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kontuzje">
+      <EntityTypeMapping TypeName="KlubSportowyModel.Kontuzje">
+        <MappingFragment StoreEntitySet="Kontuzje">
+          <ScalarProperty Name="KontuzjaId" ColumnName="KontuzjaId" />
+          <ScalarProperty Name="ZawodnikId" ColumnName="ZawodnikId" />
+          <ScalarProperty Name="TypKontuzji" ColumnName="TypKontuzji" />
+          <ScalarProperty Name="DataZdarzenia" ColumnName="DataZdarzenia" />
+          <ScalarProperty Name="PrzewidywanyPowrot" ColumnName="PrzewidywanyPowrot" />
+          <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+          <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+          <ScalarProperty Name="KiedyDodal" ColumnName="KiedyDodal" />
+          <ScalarProperty Name="KtoModyfikowal" ColumnName="KtoModyfikowal" />
+          <ScalarProperty Name="KiedyModyfikowal" ColumnName="KiedyModyfikowal" />
+          <ScalarProperty Name="KtoWykasowal" ColumnName="KtoWykasowal" />
+          <ScalarProperty Name="Uwagi" ColumnName="Uwagi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LogiOperacji">
+      <EntityTypeMapping TypeName="KlubSportowyModel.LogiOperacji">
+        <MappingFragment StoreEntitySet="LogiOperacji">
+          <ScalarProperty Name="LogId" ColumnName="LogId" />
+          <ScalarProperty Name="UzytkownikId" ColumnName="UzytkownikId" />
+          <ScalarProperty Name="Operacja" ColumnName="Operacja" />
+          <ScalarProperty Name="Opis" ColumnName="Opis" />
+          <ScalarProperty Name="DataOperacji" ColumnName="DataOperacji" />
+          <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+          <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+          <ScalarProperty Name="KiedyDodal" ColumnName="KiedyDodal" />
+          <ScalarProperty Name="KtoModyfikowal" ColumnName="KtoModyfikowal" />
+          <ScalarProperty Name="KiedyModyfikowal" ColumnName="KiedyModyfikowal" />
+          <ScalarProperty Name="KtoWykasowal" ColumnName="KtoWykasowal" />
+          <ScalarProperty Name="Uwagi" ColumnName="Uwagi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Magazyny">
+      <EntityTypeMapping TypeName="KlubSportowyModel.Magazyny">
+        <MappingFragment StoreEntitySet="Magazyny">
+          <ScalarProperty Name="MagazynId" ColumnName="MagazynId" />
+          <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+          <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+          <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+          <ScalarProperty Name="KiedyDodal" ColumnName="KiedyDodal" />
+          <ScalarProperty Name="KtoModyfikowal" ColumnName="KtoModyfikowal" />
+          <ScalarProperty Name="KiedyModyfikowal" ColumnName="KiedyModyfikowal" />
+          <ScalarProperty Name="KtoWykasowal" ColumnName="KtoWykasowal" />
+          <ScalarProperty Name="Uwagi" ColumnName="Uwagi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mecze">
+      <EntityTypeMapping TypeName="KlubSportowyModel.Mecze">
+        <MappingFragment StoreEntitySet="Mecze">
+          <ScalarProperty Name="MeczId" ColumnName="MeczId" />
+          <ScalarProperty Name="DruzynaId" ColumnName="DruzynaId" />
+          <ScalarProperty Name="Przeciwnik" ColumnName="Przeciwnik" />
+          <ScalarProperty Name="DataMeczu" ColumnName="DataMeczu" />
+          <ScalarProperty Name="Wynik" ColumnName="Wynik" />
+          <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+          <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+          <ScalarProperty Name="KiedyDodal" ColumnName="KiedyDodal" />
+          <ScalarProperty Name="KtoModyfikowal" ColumnName="KtoModyfikowal" />
+          <ScalarProperty Name="KiedyModyfikowal" ColumnName="KiedyModyfikowal" />
+          <ScalarProperty Name="KtoWykasowal" ColumnName="KtoWykasowal" />
+          <ScalarProperty Name="Uwagi" ColumnName="Uwagi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Platnosci">
+      <EntityTypeMapping TypeName="KlubSportowyModel.Platnosci">
+        <MappingFragment StoreEntitySet="Platnosci">
+          <ScalarProperty Name="PlatnoscId" ColumnName="PlatnoscId" />
+          <ScalarProperty Name="ZawodnikId" ColumnName="ZawodnikId" />
+          <ScalarProperty Name="Kwota" ColumnName="Kwota" />
+          <ScalarProperty Name="Miesiac" ColumnName="Miesiac" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+          <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+          <ScalarProperty Name="KiedyDodal" ColumnName="KiedyDodal" />
+          <ScalarProperty Name="KtoModyfikowal" ColumnName="KtoModyfikowal" />
+          <ScalarProperty Name="KiedyModyfikowal" ColumnName="KiedyModyfikowal" />
+          <ScalarProperty Name="KtoWykasowal" ColumnName="KtoWykasowal" />
+          <ScalarProperty Name="Uwagi" ColumnName="Uwagi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rodzice">
+      <EntityTypeMapping TypeName="KlubSportowyModel.Rodzice">
+        <MappingFragment StoreEntitySet="Rodzice">
+          <ScalarProperty Name="RodzicId" ColumnName="RodzicId" />
+          <ScalarProperty Name="ZawodnikId" ColumnName="ZawodnikId" />
+          <ScalarProperty Name="Imie" ColumnName="Imie" />
+          <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+          <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+          <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+          <ScalarProperty Name="KiedyDodal" ColumnName="KiedyDodal" />
+          <ScalarProperty Name="KtoModyfikowal" ColumnName="KtoModyfikowal" />
+          <ScalarProperty Name="KiedyModyfikowal" ColumnName="KiedyModyfikowal" />
+          <ScalarProperty Name="KtoWykasowal" ColumnName="KtoWykasowal" />
+          <ScalarProperty Name="Uwagi" ColumnName="Uwagi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sprzet">
+      <EntityTypeMapping TypeName="KlubSportowyModel.Sprzet">
+        <MappingFragment StoreEntitySet="Sprzet">
+          <ScalarProperty Name="SprzetId" ColumnName="SprzetId" />
+          <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+          <ScalarProperty Name="Kategoria" ColumnName="Kategoria" />
+          <ScalarProperty Name="Ilosc" ColumnName="Ilosc" />
+          <ScalarProperty Name="MagazynId" ColumnName="MagazynId" />
+          <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+          <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+          <ScalarProperty Name="KiedyDodal" ColumnName="KiedyDodal" />
+          <ScalarProperty Name="KtoModyfikowal" ColumnName="KtoModyfikowal" />
+          <ScalarProperty Name="KiedyModyfikowal" ColumnName="KiedyModyfikowal" />
+          <ScalarProperty Name="KtoWykasowal" ColumnName="KtoWykasowal" />
+          <ScalarProperty Name="Uwagi" ColumnName="Uwagi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StatystykiMeczowe">
+      <EntityTypeMapping TypeName="KlubSportowyModel.StatystykiMeczowe">
+        <MappingFragment StoreEntitySet="StatystykiMeczowe">
+          <ScalarProperty Name="StatystykaId" ColumnName="StatystykaId" />
+          <ScalarProperty Name="MeczId" ColumnName="MeczId" />
+          <ScalarProperty Name="ZawodnikId" ColumnName="ZawodnikId" />
+          <ScalarProperty Name="Gole" ColumnName="Gole" />
+          <ScalarProperty Name="Asysty" ColumnName="Asysty" />
+          <ScalarProperty Name="CzasGry" ColumnName="CzasGry" />
+          <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+          <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+          <ScalarProperty Name="KiedyDodal" ColumnName="KiedyDodal" />
+          <ScalarProperty Name="KtoModyfikowal" ColumnName="KtoModyfikowal" />
+          <ScalarProperty Name="KiedyModyfikowal" ColumnName="KiedyModyfikowal" />
+          <ScalarProperty Name="KtoWykasowal" ColumnName="KtoWykasowal" />
+          <ScalarProperty Name="Uwagi" ColumnName="Uwagi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="KlubSportowyModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Trenerzy">
+      <EntityTypeMapping TypeName="KlubSportowyModel.Trenerzy">
+        <MappingFragment StoreEntitySet="Trenerzy">
+          <ScalarProperty Name="TrenerId" ColumnName="TrenerId" />
+          <ScalarProperty Name="Imie" ColumnName="Imie" />
+          <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+          <ScalarProperty Name="Specjalizacja" ColumnName="Specjalizacja" />
+          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+          <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+          <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+          <ScalarProperty Name="KiedyDodal" ColumnName="KiedyDodal" />
+          <ScalarProperty Name="KtoModyfikowal" ColumnName="KtoModyfikowal" />
+          <ScalarProperty Name="KiedyModyfikowal" ColumnName="KiedyModyfikowal" />
+          <ScalarProperty Name="KtoWykasowal" ColumnName="KtoWykasowal" />
+          <ScalarProperty Name="Uwagi" ColumnName="Uwagi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Treningi">
+      <EntityTypeMapping TypeName="KlubSportowyModel.Treningi">
+        <MappingFragment StoreEntitySet="Treningi">
+          <ScalarProperty Name="TreningId" ColumnName="TreningId" />
+          <ScalarProperty Name="DruzynaId" ColumnName="DruzynaId" />
+          <ScalarProperty Name="DataTreningu" ColumnName="DataTreningu" />
+          <ScalarProperty Name="Lokalizacja" ColumnName="Lokalizacja" />
+          <ScalarProperty Name="TypTreningu" ColumnName="TypTreningu" />
+          <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+          <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+          <ScalarProperty Name="KiedyDodal" ColumnName="KiedyDodal" />
+          <ScalarProperty Name="KtoModyfikowal" ColumnName="KtoModyfikowal" />
+          <ScalarProperty Name="KiedyModyfikowal" ColumnName="KiedyModyfikowal" />
+          <ScalarProperty Name="KtoWykasowal" ColumnName="KtoWykasowal" />
+          <ScalarProperty Name="Uwagi" ColumnName="Uwagi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Uzytkownicy">
+      <EntityTypeMapping TypeName="KlubSportowyModel.Uzytkownicy">
+        <MappingFragment StoreEntitySet="Uzytkownicy">
+          <ScalarProperty Name="UzytkownikId" ColumnName="UzytkownikId" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Haslo" ColumnName="Haslo" />
+          <ScalarProperty Name="Rola" ColumnName="Rola" />
+          <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+          <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+          <ScalarProperty Name="KiedyDodal" ColumnName="KiedyDodal" />
+          <ScalarProperty Name="KtoModyfikowal" ColumnName="KtoModyfikowal" />
+          <ScalarProperty Name="KiedyModyfikowal" ColumnName="KiedyModyfikowal" />
+          <ScalarProperty Name="KtoWykasowal" ColumnName="KtoWykasowal" />
+          <ScalarProperty Name="Uwagi" ColumnName="Uwagi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WypozyczeniaSprzetu">
+      <EntityTypeMapping TypeName="KlubSportowyModel.WypozyczeniaSprzetu">
+        <MappingFragment StoreEntitySet="WypozyczeniaSprzetu">
+          <ScalarProperty Name="WypozyczenieId" ColumnName="WypozyczenieId" />
+          <ScalarProperty Name="SprzetId" ColumnName="SprzetId" />
+          <ScalarProperty Name="ZawodnikId" ColumnName="ZawodnikId" />
+          <ScalarProperty Name="DataWydania" ColumnName="DataWydania" />
+          <ScalarProperty Name="DataZwrotu" ColumnName="DataZwrotu" />
+          <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+          <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+          <ScalarProperty Name="KiedyDodal" ColumnName="KiedyDodal" />
+          <ScalarProperty Name="KtoModyfikowal" ColumnName="KtoModyfikowal" />
+          <ScalarProperty Name="KiedyModyfikowal" ColumnName="KiedyModyfikowal" />
+          <ScalarProperty Name="KtoWykasowal" ColumnName="KtoWykasowal" />
+          <ScalarProperty Name="Uwagi" ColumnName="Uwagi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Zawodnicy">
+      <EntityTypeMapping TypeName="KlubSportowyModel.Zawodnicy">
+        <MappingFragment StoreEntitySet="Zawodnicy">
+          <ScalarProperty Name="ZawodnikId" ColumnName="ZawodnikId" />
+          <ScalarProperty Name="Imie" ColumnName="Imie" />
+          <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+          <ScalarProperty Name="DataUrodzenia" ColumnName="DataUrodzenia" />
+          <ScalarProperty Name="Pozycja" ColumnName="Pozycja" />
+          <ScalarProperty Name="DruzynaId" ColumnName="DruzynaId" />
+          <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+          <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+          <ScalarProperty Name="KiedyDodal" ColumnName="KiedyDodal" />
+          <ScalarProperty Name="KtoModyfikowal" ColumnName="KtoModyfikowal" />
+          <ScalarProperty Name="KiedyModyfikowal" ColumnName="KiedyModyfikowal" />
+          <ScalarProperty Name="KtoWykasowal" ColumnName="KtoWykasowal" />
+          <ScalarProperty Name="Uwagi" ColumnName="Uwagi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

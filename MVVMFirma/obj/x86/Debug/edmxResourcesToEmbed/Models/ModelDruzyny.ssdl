@@ -1,0 +1,557 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KlubSportowyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Druzyny">
+    <Key>
+      <PropertyRef Name="DruzynaId" />
+    </Key>
+    <Property Name="DruzynaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nazwa" Type="nvarchar" MaxLength="100" />
+    <Property Name="Kategoria" Type="nvarchar" MaxLength="50" />
+    <Property Name="TrenerId" Type="int" />
+    <Property Name="CzyAktywny" Type="bit" />
+    <Property Name="KtoDodal" Type="nvarchar" MaxLength="100" />
+    <Property Name="KiedyDodal" Type="datetime" />
+    <Property Name="KtoModyfikowal" Type="nvarchar" MaxLength="100" />
+    <Property Name="KiedyModyfikowal" Type="datetime" />
+    <Property Name="KtoWykasowal" Type="nvarchar" MaxLength="100" />
+    <Property Name="Uwagi" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Frekwencja">
+    <Key>
+      <PropertyRef Name="FrekwencjaId" />
+    </Key>
+    <Property Name="FrekwencjaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TreningId" Type="int" />
+    <Property Name="ZawodnikId" Type="int" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="CzyAktywny" Type="bit" />
+    <Property Name="KtoDodal" Type="nvarchar" MaxLength="100" />
+    <Property Name="KiedyDodal" Type="datetime" />
+    <Property Name="KtoModyfikowal" Type="nvarchar" MaxLength="100" />
+    <Property Name="KiedyModyfikowal" Type="datetime" />
+    <Property Name="KtoWykasowal" Type="nvarchar" MaxLength="100" />
+    <Property Name="Uwagi" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="HarmonogramObiektow">
+    <Key>
+      <PropertyRef Name="HarmonogramId" />
+    </Key>
+    <Property Name="HarmonogramId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Obiekt" Type="nvarchar" MaxLength="100" />
+    <Property Name="Data" Type="date" />
+    <Property Name="GodzinaOd" Type="time" Precision="7" />
+    <Property Name="GodzinaDo" Type="time" Precision="7" />
+    <Property Name="DruzynaId" Type="int" />
+    <Property Name="CzyAktywny" Type="bit" />
+    <Property Name="KtoDodal" Type="nvarchar" MaxLength="100" />
+    <Property Name="KiedyDodal" Type="datetime" />
+    <Property Name="KtoModyfikowal" Type="nvarchar" MaxLength="100" />
+    <Property Name="KiedyModyfikowal" Type="datetime" />
+    <Property Name="KtoWykasowal" Type="nvarchar" MaxLength="100" />
+    <Property Name="Uwagi" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Kontuzje">
+    <Key>
+      <PropertyRef Name="KontuzjaId" />
+    </Key>
+    <Property Name="KontuzjaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ZawodnikId" Type="int" />
+    <Property Name="TypKontuzji" Type="nvarchar" MaxLength="200" />
+    <Property Name="DataZdarzenia" Type="date" />
+    <Property Name="PrzewidywanyPowrot" Type="date" />
+    <Property Name="CzyAktywny" Type="bit" />
+    <Property Name="KtoDodal" Type="nvarchar" MaxLength="100" />
+    <Property Name="KiedyDodal" Type="datetime" />
+    <Property Name="KtoModyfikowal" Type="nvarchar" MaxLength="100" />
+    <Property Name="KiedyModyfikowal" Type="datetime" />
+    <Property Name="KtoWykasowal" Type="nvarchar" MaxLength="100" />
+    <Property Name="Uwagi" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="LogiOperacji">
+    <Key>
+      <PropertyRef Name="LogId" />
+    </Key>
+    <Property Name="LogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UzytkownikId" Type="int" />
+    <Property Name="Operacja" Type="nvarchar" MaxLength="200" />
+    <Property Name="Opis" Type="nvarchar(max)" />
+    <Property Name="DataOperacji" Type="datetime" />
+    <Property Name="CzyAktywny" Type="bit" />
+    <Property Name="KtoDodal" Type="nvarchar" MaxLength="100" />
+    <Property Name="KiedyDodal" Type="datetime" />
+    <Property Name="KtoModyfikowal" Type="nvarchar" MaxLength="100" />
+    <Property Name="KiedyModyfikowal" Type="datetime" />
+    <Property Name="KtoWykasowal" Type="nvarchar" MaxLength="100" />
+    <Property Name="Uwagi" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Magazyny">
+    <Key>
+      <PropertyRef Name="MagazynId" />
+    </Key>
+    <Property Name="MagazynId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nazwa" Type="nvarchar" MaxLength="100" />
+    <Property Name="CzyAktywny" Type="bit" />
+    <Property Name="KtoDodal" Type="nvarchar" MaxLength="100" />
+    <Property Name="KiedyDodal" Type="datetime" />
+    <Property Name="KtoModyfikowal" Type="nvarchar" MaxLength="100" />
+    <Property Name="KiedyModyfikowal" Type="datetime" />
+    <Property Name="KtoWykasowal" Type="nvarchar" MaxLength="100" />
+    <Property Name="Uwagi" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Mecze">
+    <Key>
+      <PropertyRef Name="MeczId" />
+    </Key>
+    <Property Name="MeczId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DruzynaId" Type="int" />
+    <Property Name="Przeciwnik" Type="nvarchar" MaxLength="100" />
+    <Property Name="DataMeczu" Type="date" />
+    <Property Name="Wynik" Type="nvarchar" MaxLength="20" />
+    <Property Name="CzyAktywny" Type="bit" />
+    <Property Name="KtoDodal" Type="nvarchar" MaxLength="100" />
+    <Property Name="KiedyDodal" Type="datetime" />
+    <Property Name="KtoModyfikowal" Type="nvarchar" MaxLength="100" />
+    <Property Name="KiedyModyfikowal" Type="datetime" />
+    <Property Name="KtoWykasowal" Type="nvarchar" MaxLength="100" />
+    <Property Name="Uwagi" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Platnosci">
+    <Key>
+      <PropertyRef Name="PlatnoscId" />
+    </Key>
+    <Property Name="PlatnoscId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ZawodnikId" Type="int" />
+    <Property Name="Kwota" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="Miesiac" Type="nvarchar" MaxLength="20" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="CzyAktywny" Type="bit" />
+    <Property Name="KtoDodal" Type="nvarchar" MaxLength="100" />
+    <Property Name="KiedyDodal" Type="datetime" />
+    <Property Name="KtoModyfikowal" Type="nvarchar" MaxLength="100" />
+    <Property Name="KiedyModyfikowal" Type="datetime" />
+    <Property Name="KtoWykasowal" Type="nvarchar" MaxLength="100" />
+    <Property Name="Uwagi" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Rodzice">
+    <Key>
+      <PropertyRef Name="RodzicId" />
+    </Key>
+    <Property Name="RodzicId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ZawodnikId" Type="int" />
+    <Property Name="Imie" Type="nvarchar" MaxLength="100" />
+    <Property Name="Nazwisko" Type="nvarchar" MaxLength="100" />
+    <Property Name="Telefon" Type="nvarchar" MaxLength="30" />
+    <Property Name="CzyAktywny" Type="bit" />
+    <Property Name="KtoDodal" Type="nvarchar" MaxLength="100" />
+    <Property Name="KiedyDodal" Type="datetime" />
+    <Property Name="KtoModyfikowal" Type="nvarchar" MaxLength="100" />
+    <Property Name="KiedyModyfikowal" Type="datetime" />
+    <Property Name="KtoWykasowal" Type="nvarchar" MaxLength="100" />
+    <Property Name="Uwagi" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Sprzet">
+    <Key>
+      <PropertyRef Name="SprzetId" />
+    </Key>
+    <Property Name="SprzetId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nazwa" Type="nvarchar" MaxLength="100" />
+    <Property Name="Kategoria" Type="nvarchar" MaxLength="100" />
+    <Property Name="Ilosc" Type="int" />
+    <Property Name="MagazynId" Type="int" />
+    <Property Name="CzyAktywny" Type="bit" />
+    <Property Name="KtoDodal" Type="nvarchar" MaxLength="100" />
+    <Property Name="KiedyDodal" Type="datetime" />
+    <Property Name="KtoModyfikowal" Type="nvarchar" MaxLength="100" />
+    <Property Name="KiedyModyfikowal" Type="datetime" />
+    <Property Name="KtoWykasowal" Type="nvarchar" MaxLength="100" />
+    <Property Name="Uwagi" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="StatystykiMeczowe">
+    <Key>
+      <PropertyRef Name="StatystykaId" />
+    </Key>
+    <Property Name="StatystykaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MeczId" Type="int" />
+    <Property Name="ZawodnikId" Type="int" />
+    <Property Name="Gole" Type="int" />
+    <Property Name="Asysty" Type="int" />
+    <Property Name="CzasGry" Type="int" />
+    <Property Name="CzyAktywny" Type="bit" />
+    <Property Name="KtoDodal" Type="nvarchar" MaxLength="100" />
+    <Property Name="KiedyDodal" Type="datetime" />
+    <Property Name="KtoModyfikowal" Type="nvarchar" MaxLength="100" />
+    <Property Name="KiedyModyfikowal" Type="datetime" />
+    <Property Name="KtoWykasowal" Type="nvarchar" MaxLength="100" />
+    <Property Name="Uwagi" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Trenerzy">
+    <Key>
+      <PropertyRef Name="TrenerId" />
+    </Key>
+    <Property Name="TrenerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Imie" Type="nvarchar" MaxLength="100" />
+    <Property Name="Nazwisko" Type="nvarchar" MaxLength="100" />
+    <Property Name="Specjalizacja" Type="nvarchar" MaxLength="200" />
+    <Property Name="Telefon" Type="nvarchar" MaxLength="30" />
+    <Property Name="CzyAktywny" Type="bit" />
+    <Property Name="KtoDodal" Type="nvarchar" MaxLength="100" />
+    <Property Name="KiedyDodal" Type="datetime" />
+    <Property Name="KtoModyfikowal" Type="nvarchar" MaxLength="100" />
+    <Property Name="KiedyModyfikowal" Type="datetime" />
+    <Property Name="KtoWykasowal" Type="nvarchar" MaxLength="100" />
+    <Property Name="Uwagi" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Treningi">
+    <Key>
+      <PropertyRef Name="TreningId" />
+    </Key>
+    <Property Name="TreningId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DruzynaId" Type="int" />
+    <Property Name="DataTreningu" Type="datetime" />
+    <Property Name="Lokalizacja" Type="nvarchar" MaxLength="200" />
+    <Property Name="TypTreningu" Type="nvarchar" MaxLength="100" />
+    <Property Name="CzyAktywny" Type="bit" />
+    <Property Name="KtoDodal" Type="nvarchar" MaxLength="100" />
+    <Property Name="KiedyDodal" Type="datetime" />
+    <Property Name="KtoModyfikowal" Type="nvarchar" MaxLength="100" />
+    <Property Name="KiedyModyfikowal" Type="datetime" />
+    <Property Name="KtoWykasowal" Type="nvarchar" MaxLength="100" />
+    <Property Name="Uwagi" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Uzytkownicy">
+    <Key>
+      <PropertyRef Name="UzytkownikId" />
+    </Key>
+    <Property Name="UzytkownikId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Login" Type="nvarchar" MaxLength="100" />
+    <Property Name="Haslo" Type="nvarchar" MaxLength="200" />
+    <Property Name="Rola" Type="nvarchar" MaxLength="50" />
+    <Property Name="CzyAktywny" Type="bit" />
+    <Property Name="KtoDodal" Type="nvarchar" MaxLength="100" />
+    <Property Name="KiedyDodal" Type="datetime" />
+    <Property Name="KtoModyfikowal" Type="nvarchar" MaxLength="100" />
+    <Property Name="KiedyModyfikowal" Type="datetime" />
+    <Property Name="KtoWykasowal" Type="nvarchar" MaxLength="100" />
+    <Property Name="Uwagi" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="WypozyczeniaSprzetu">
+    <Key>
+      <PropertyRef Name="WypozyczenieId" />
+    </Key>
+    <Property Name="WypozyczenieId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SprzetId" Type="int" />
+    <Property Name="ZawodnikId" Type="int" />
+    <Property Name="DataWydania" Type="date" />
+    <Property Name="DataZwrotu" Type="date" />
+    <Property Name="CzyAktywny" Type="bit" />
+    <Property Name="KtoDodal" Type="nvarchar" MaxLength="100" />
+    <Property Name="KiedyDodal" Type="datetime" />
+    <Property Name="KtoModyfikowal" Type="nvarchar" MaxLength="100" />
+    <Property Name="KiedyModyfikowal" Type="datetime" />
+    <Property Name="KtoWykasowal" Type="nvarchar" MaxLength="100" />
+    <Property Name="Uwagi" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Zawodnicy">
+    <Key>
+      <PropertyRef Name="ZawodnikId" />
+    </Key>
+    <Property Name="ZawodnikId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Imie" Type="nvarchar" MaxLength="100" />
+    <Property Name="Nazwisko" Type="nvarchar" MaxLength="100" />
+    <Property Name="DataUrodzenia" Type="date" />
+    <Property Name="Pozycja" Type="nvarchar" MaxLength="50" />
+    <Property Name="DruzynaId" Type="int" />
+    <Property Name="CzyAktywny" Type="bit" />
+    <Property Name="KtoDodal" Type="nvarchar" MaxLength="100" />
+    <Property Name="KiedyDodal" Type="datetime" />
+    <Property Name="KtoModyfikowal" Type="nvarchar" MaxLength="100" />
+    <Property Name="KiedyModyfikowal" Type="datetime" />
+    <Property Name="KtoWykasowal" Type="nvarchar" MaxLength="100" />
+    <Property Name="Uwagi" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK__Druzyny__TrenerI__398D8EEE">
+    <End Role="Trenerzy" Type="Self.Trenerzy" Multiplicity="0..1" />
+    <End Role="Druzyny" Type="Self.Druzyny" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trenerzy">
+        <PropertyRef Name="TrenerId" />
+      </Principal>
+      <Dependent Role="Druzyny">
+        <PropertyRef Name="TrenerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Frekwencj__Treni__4222D4EF">
+    <End Role="Treningi" Type="Self.Treningi" Multiplicity="0..1" />
+    <End Role="Frekwencja" Type="Self.Frekwencja" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Treningi">
+        <PropertyRef Name="TreningId" />
+      </Principal>
+      <Dependent Role="Frekwencja">
+        <PropertyRef Name="TreningId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Frekwencj__Zawod__4316F928">
+    <End Role="Zawodnicy" Type="Self.Zawodnicy" Multiplicity="0..1" />
+    <End Role="Frekwencja" Type="Self.Frekwencja" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Zawodnicy">
+        <PropertyRef Name="ZawodnikId" />
+      </Principal>
+      <Dependent Role="Frekwencja">
+        <PropertyRef Name="ZawodnikId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Harmonogr__Druzy__5DCAEF64">
+    <End Role="Druzyny" Type="Self.Druzyny" Multiplicity="0..1" />
+    <End Role="HarmonogramObiektow" Type="Self.HarmonogramObiektow" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Druzyny">
+        <PropertyRef Name="DruzynaId" />
+      </Principal>
+      <Dependent Role="HarmonogramObiektow">
+        <PropertyRef Name="DruzynaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Kontuzje__Zawodn__5535A963">
+    <End Role="Zawodnicy" Type="Self.Zawodnicy" Multiplicity="0..1" />
+    <End Role="Kontuzje" Type="Self.Kontuzje" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Zawodnicy">
+        <PropertyRef Name="ZawodnikId" />
+      </Principal>
+      <Dependent Role="Kontuzje">
+        <PropertyRef Name="ZawodnikId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__LogiOpera__Uzytk__628FA481">
+    <End Role="Uzytkownicy" Type="Self.Uzytkownicy" Multiplicity="0..1" />
+    <End Role="LogiOperacji" Type="Self.LogiOperacji" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Uzytkownicy">
+        <PropertyRef Name="UzytkownikId" />
+      </Principal>
+      <Dependent Role="LogiOperacji">
+        <PropertyRef Name="UzytkownikId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Mecze__DruzynaId__45F365D3">
+    <End Role="Druzyny" Type="Self.Druzyny" Multiplicity="0..1" />
+    <End Role="Mecze" Type="Self.Mecze" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Druzyny">
+        <PropertyRef Name="DruzynaId" />
+      </Principal>
+      <Dependent Role="Mecze">
+        <PropertyRef Name="DruzynaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Platnosci__Zawod__5812160E">
+    <End Role="Zawodnicy" Type="Self.Zawodnicy" Multiplicity="0..1" />
+    <End Role="Platnosci" Type="Self.Platnosci" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Zawodnicy">
+        <PropertyRef Name="ZawodnikId" />
+      </Principal>
+      <Dependent Role="Platnosci">
+        <PropertyRef Name="ZawodnikId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Rodzice__Zawodni__5AEE82B9">
+    <End Role="Zawodnicy" Type="Self.Zawodnicy" Multiplicity="0..1" />
+    <End Role="Rodzice" Type="Self.Rodzice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Zawodnicy">
+        <PropertyRef Name="ZawodnikId" />
+      </Principal>
+      <Dependent Role="Rodzice">
+        <PropertyRef Name="ZawodnikId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Sprzet__MagazynI__4E88ABD4">
+    <End Role="Magazyny" Type="Self.Magazyny" Multiplicity="0..1" />
+    <End Role="Sprzet" Type="Self.Sprzet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Magazyny">
+        <PropertyRef Name="MagazynId" />
+      </Principal>
+      <Dependent Role="Sprzet">
+        <PropertyRef Name="MagazynId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Statystyk__MeczI__48CFD27E">
+    <End Role="Mecze" Type="Self.Mecze" Multiplicity="0..1" />
+    <End Role="StatystykiMeczowe" Type="Self.StatystykiMeczowe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mecze">
+        <PropertyRef Name="MeczId" />
+      </Principal>
+      <Dependent Role="StatystykiMeczowe">
+        <PropertyRef Name="MeczId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Statystyk__Zawod__49C3F6B7">
+    <End Role="Zawodnicy" Type="Self.Zawodnicy" Multiplicity="0..1" />
+    <End Role="StatystykiMeczowe" Type="Self.StatystykiMeczowe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Zawodnicy">
+        <PropertyRef Name="ZawodnikId" />
+      </Principal>
+      <Dependent Role="StatystykiMeczowe">
+        <PropertyRef Name="ZawodnikId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Treningi__Druzyn__3F466844">
+    <End Role="Druzyny" Type="Self.Druzyny" Multiplicity="0..1" />
+    <End Role="Treningi" Type="Self.Treningi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Druzyny">
+        <PropertyRef Name="DruzynaId" />
+      </Principal>
+      <Dependent Role="Treningi">
+        <PropertyRef Name="DruzynaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Wypozycze__Sprze__5165187F">
+    <End Role="Sprzet" Type="Self.Sprzet" Multiplicity="0..1" />
+    <End Role="WypozyczeniaSprzetu" Type="Self.WypozyczeniaSprzetu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sprzet">
+        <PropertyRef Name="SprzetId" />
+      </Principal>
+      <Dependent Role="WypozyczeniaSprzetu">
+        <PropertyRef Name="SprzetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Wypozycze__Zawod__52593CB8">
+    <End Role="Zawodnicy" Type="Self.Zawodnicy" Multiplicity="0..1" />
+    <End Role="WypozyczeniaSprzetu" Type="Self.WypozyczeniaSprzetu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Zawodnicy">
+        <PropertyRef Name="ZawodnikId" />
+      </Principal>
+      <Dependent Role="WypozyczeniaSprzetu">
+        <PropertyRef Name="ZawodnikId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Zawodnicy__Druzy__3C69FB99">
+    <End Role="Druzyny" Type="Self.Druzyny" Multiplicity="0..1" />
+    <End Role="Zawodnicy" Type="Self.Zawodnicy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Druzyny">
+        <PropertyRef Name="DruzynaId" />
+      </Principal>
+      <Dependent Role="Zawodnicy">
+        <PropertyRef Name="DruzynaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="KlubSportowyModelStoreContainer">
+    <EntitySet Name="Druzyny" EntityType="Self.Druzyny" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Frekwencja" EntityType="Self.Frekwencja" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HarmonogramObiektow" EntityType="Self.HarmonogramObiektow" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kontuzje" EntityType="Self.Kontuzje" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LogiOperacji" EntityType="Self.LogiOperacji" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Magazyny" EntityType="Self.Magazyny" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mecze" EntityType="Self.Mecze" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Platnosci" EntityType="Self.Platnosci" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rodzice" EntityType="Self.Rodzice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sprzet" EntityType="Self.Sprzet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StatystykiMeczowe" EntityType="Self.StatystykiMeczowe" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Trenerzy" EntityType="Self.Trenerzy" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Treningi" EntityType="Self.Treningi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Uzytkownicy" EntityType="Self.Uzytkownicy" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WypozyczeniaSprzetu" EntityType="Self.WypozyczeniaSprzetu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Zawodnicy" EntityType="Self.Zawodnicy" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Druzyny__TrenerI__398D8EEE" Association="Self.FK__Druzyny__TrenerI__398D8EEE">
+      <End Role="Trenerzy" EntitySet="Trenerzy" />
+      <End Role="Druzyny" EntitySet="Druzyny" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Frekwencj__Treni__4222D4EF" Association="Self.FK__Frekwencj__Treni__4222D4EF">
+      <End Role="Treningi" EntitySet="Treningi" />
+      <End Role="Frekwencja" EntitySet="Frekwencja" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Frekwencj__Zawod__4316F928" Association="Self.FK__Frekwencj__Zawod__4316F928">
+      <End Role="Zawodnicy" EntitySet="Zawodnicy" />
+      <End Role="Frekwencja" EntitySet="Frekwencja" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Harmonogr__Druzy__5DCAEF64" Association="Self.FK__Harmonogr__Druzy__5DCAEF64">
+      <End Role="Druzyny" EntitySet="Druzyny" />
+      <End Role="HarmonogramObiektow" EntitySet="HarmonogramObiektow" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Kontuzje__Zawodn__5535A963" Association="Self.FK__Kontuzje__Zawodn__5535A963">
+      <End Role="Zawodnicy" EntitySet="Zawodnicy" />
+      <End Role="Kontuzje" EntitySet="Kontuzje" />
+    </AssociationSet>
+    <AssociationSet Name="FK__LogiOpera__Uzytk__628FA481" Association="Self.FK__LogiOpera__Uzytk__628FA481">
+      <End Role="Uzytkownicy" EntitySet="Uzytkownicy" />
+      <End Role="LogiOperacji" EntitySet="LogiOperacji" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Mecze__DruzynaId__45F365D3" Association="Self.FK__Mecze__DruzynaId__45F365D3">
+      <End Role="Druzyny" EntitySet="Druzyny" />
+      <End Role="Mecze" EntitySet="Mecze" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Platnosci__Zawod__5812160E" Association="Self.FK__Platnosci__Zawod__5812160E">
+      <End Role="Zawodnicy" EntitySet="Zawodnicy" />
+      <End Role="Platnosci" EntitySet="Platnosci" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Rodzice__Zawodni__5AEE82B9" Association="Self.FK__Rodzice__Zawodni__5AEE82B9">
+      <End Role="Zawodnicy" EntitySet="Zawodnicy" />
+      <End Role="Rodzice" EntitySet="Rodzice" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Sprzet__MagazynI__4E88ABD4" Association="Self.FK__Sprzet__MagazynI__4E88ABD4">
+      <End Role="Magazyny" EntitySet="Magazyny" />
+      <End Role="Sprzet" EntitySet="Sprzet" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Statystyk__MeczI__48CFD27E" Association="Self.FK__Statystyk__MeczI__48CFD27E">
+      <End Role="Mecze" EntitySet="Mecze" />
+      <End Role="StatystykiMeczowe" EntitySet="StatystykiMeczowe" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Statystyk__Zawod__49C3F6B7" Association="Self.FK__Statystyk__Zawod__49C3F6B7">
+      <End Role="Zawodnicy" EntitySet="Zawodnicy" />
+      <End Role="StatystykiMeczowe" EntitySet="StatystykiMeczowe" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Treningi__Druzyn__3F466844" Association="Self.FK__Treningi__Druzyn__3F466844">
+      <End Role="Druzyny" EntitySet="Druzyny" />
+      <End Role="Treningi" EntitySet="Treningi" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Wypozycze__Sprze__5165187F" Association="Self.FK__Wypozycze__Sprze__5165187F">
+      <End Role="Sprzet" EntitySet="Sprzet" />
+      <End Role="WypozyczeniaSprzetu" EntitySet="WypozyczeniaSprzetu" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Wypozycze__Zawod__52593CB8" Association="Self.FK__Wypozycze__Zawod__52593CB8">
+      <End Role="Zawodnicy" EntitySet="Zawodnicy" />
+      <End Role="WypozyczeniaSprzetu" EntitySet="WypozyczeniaSprzetu" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Zawodnicy__Druzy__3C69FB99" Association="Self.FK__Zawodnicy__Druzy__3C69FB99">
+      <End Role="Druzyny" EntitySet="Druzyny" />
+      <End Role="Zawodnicy" EntitySet="Zawodnicy" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
