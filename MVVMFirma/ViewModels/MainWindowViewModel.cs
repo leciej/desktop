@@ -8,6 +8,9 @@ using System.Diagnostics;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Windows.Data;
+using GalaSoft.MvvmLight.Messaging;
+using System.Windows;
+using KlubSportowy.Views;
 
 namespace KlubSportowy.ViewModels
 {
@@ -33,6 +36,8 @@ namespace KlubSportowy.ViewModels
         }
         private List<CommandViewModel> CreateCommands()
         {
+            Messenger.Default.Register<string>(this, open);
+
             return new List<CommandViewModel>
             {
                 new CommandViewModel(
@@ -128,13 +133,32 @@ namespace KlubSportowy.ViewModels
         private void OnWorkspaceRequestClose(object sender, EventArgs e)
         {
             WorkspaceViewModel workspace = sender as WorkspaceViewModel;
-            //workspace.Dispos();
             this.Workspaces.Remove(workspace);
         }
 
-        #endregion // Workspaces
+        #endregion
 
         #region Private Helpers
+        private void open(string name)
+        {
+            if (name == "Trenerzy All")
+            {
+                var viewModel = new WybierzTreneraViewModel();
+                Window window = new Window
+                {
+                    Title = "Wybierz Trenera",
+                    Width = 600,
+                    Height = 450,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen,
+                    Content = new WybierzTreneraView(),
+                    DataContext = viewModel
+                };
+
+                viewModel.RequestClose += (s, e) => window.Close();
+
+                window.ShowDialog();
+            }
+        }
         private void CreateView(WorkspaceViewModel workspace)
         {
             this.Workspaces.Add(workspace);
@@ -148,25 +172,25 @@ namespace KlubSportowy.ViewModels
         }
         private void CreateMecze()
         {
-            KontuzjeViewModel workspace = new KontuzjeViewModel();
+            MeczeViewModel workspace = new MeczeViewModel();
             this.Workspaces.Add(workspace);
             this.SetActiveWorkspace(workspace);
         }
         private void CreatePlatnosci()
         {
-            KontuzjeViewModel workspace = new KontuzjeViewModel();
+            PlatnosciViewModel workspace = new PlatnosciViewModel();
             this.Workspaces.Add(workspace);
             this.SetActiveWorkspace(workspace);
         }
         private void CreateTreningi()
         {
-            KontuzjeViewModel workspace = new KontuzjeViewModel();
+            TreningiViewModel workspace = new TreningiViewModel();
             this.Workspaces.Add(workspace);
             this.SetActiveWorkspace(workspace);
         }
         private void CreateZawodnicy()
         {
-            KontuzjeViewModel workspace = new KontuzjeViewModel();
+            ZawodnicyViewModel workspace = new ZawodnicyViewModel();
             this.Workspaces.Add(workspace);
             this.SetActiveWorkspace(workspace);
         }

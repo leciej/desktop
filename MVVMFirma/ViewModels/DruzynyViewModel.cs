@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel; // Wymagane dla IDataErrorInfo
 using System.Linq;
 using System.Windows.Input;
+using GalaSoft.MvvmLight.Messaging; // Wymagane dla mechanizmu Messenger
 
 namespace KlubSportowy.ViewModels
 {
@@ -23,23 +24,32 @@ namespace KlubSportowy.ViewModels
             item = new Druzyny();
             klubSportowyEntities = new KlubSportowyEntities();
 
-            // Ustawienia początkowe
+            // Ustawienia początkowe listy
             _SortBy = "Nazwa";
             _SelectedFilterColumn = "Nazwa";
             _FilterText = "";
             _IsAdding = false;
 
-            // Domyślne wartości dla nowego rekordu
+            // Domyślne wartości dla nowego rekordu (formularz)
             item.KiedyDodal = DateTime.Now;
             item.CzyAktywny = true;
+
+            // REJESTRACJA MESSENGERA:
+            // Słuchamy, czy jakiekolwiek okno (WybierzTreneraViewModel) wyśle obiekt typu Trenerzy.
+            Messenger.Default.Register<Trenerzy>(this, trener =>
+            {
+                if (trener != null)
+                {
+                    // Przypisujemy ID trenera odebrane z okna modalnego do naszego obiektu drużyny
+                    this.TrenerId = trener.TrenerId;
+                }
+            });
         }
         #endregion
 
         #region Opcje Wyboru (Statusy i ComboBox)
-        // Lista tekstowa dla ComboBoxa w widoku
         public List<string> StatusyOptions => new List<string> { "Tak", "Nie" };
 
-        // Właściwość pośrednicząca między bool w bazie a string w ComboBox
         public string CzyAktywnyWybor
         {
             get => item.CzyAktywny == true ? "Tak" : "Nie";
@@ -51,7 +61,7 @@ namespace KlubSportowy.ViewModels
         }
         #endregion
 
-        #region Walidacja (IDataErrorInfo) - Wymóg Lab 5 (8 pól)
+        #region Walidacja (IDataErrorInfo)
         public string Error => null;
 
         public string this[string columnName]
@@ -62,37 +72,37 @@ namespace KlubSportowy.ViewModels
 
                 switch (columnName)
                 {
-                    case nameof(Nazwa): // 1
+                    case nameof(Nazwa):
                         if (string.IsNullOrWhiteSpace(Nazwa)) result = "Nazwa drużyny jest wymagana!";
                         else if (Nazwa.Length < 3) result = "Nazwa musi mieć co najmniej 3 znaki!";
                         break;
 
-                    case nameof(Kategoria): // 2
+                    case nameof(Kategoria):
                         if (string.IsNullOrWhiteSpace(Kategoria)) result = "Kategoria jest wymagana!";
                         break;
 
-                    case nameof(TrenerId): // 3
-                        if (TrenerId == null || TrenerId <= 0) result = "Wprowadź poprawne ID trenera (liczba > 0)!";
+                    case nameof(TrenerId):
+                        if (TrenerId == null || TrenerId <= 0) result = "Wybierz trenera z listy!";
                         break;
 
-                    case nameof(KtoDodal): // 4
+                    case nameof(KtoDodal):
                         if (string.IsNullOrWhiteSpace(KtoDodal)) result = "Podaj osobę dodającą rekord!";
                         break;
 
-                    case nameof(KiedyDodal): // 5
+                    case nameof(KiedyDodal):
                         if (KiedyDodal == null) result = "Wybierz datę z kalendarza!";
                         else if (KiedyDodal > DateTime.Now) result = "Data nie może być z przyszłości!";
                         break;
 
-                    case nameof(CzyAktywnyWybor): // 6
+                    case nameof(CzyAktywnyWybor):
                         if (string.IsNullOrEmpty(CzyAktywnyWybor)) result = "Musisz wybrać status!";
                         break;
 
-                    case nameof(Uwagi): // 7
+                    case nameof(Uwagi):
                         if (Uwagi != null && Uwagi.Length > 200) result = "Uwagi są zbyt długie (max 200 zn)!";
                         break;
 
-                    case nameof(KtoModyfikowal): // 8
+                    case nameof(KtoModyfikowal):
                         if (KtoModyfikowal != null && KtoModyfikowal.Length > 50) result = "Nazwa edytora jest za długa!";
                         break;
                 }
@@ -160,6 +170,13 @@ namespace KlubSportowy.ViewModels
         public ICommand AddCommand => new BaseCommand(() => IsAdding = true);
         public ICommand SaveAndCloseCommand => new BaseCommand(saveAndClose);
 
+        // KOMENDA OTWIERAJĄCA OKNO MODALNE:
+        // Wysyłamy wiadomość tekstową, którą musi odebrać MainWindowViewModel, aby otworzyć okno.
+        public ICommand WybierzTreneraCommand => new BaseCommand(() =>
+        {
+            Messenger.Default.Send("Trenerzy All");
+        });
+
         private void saveAndClose()
         {
             if (IsValid())
@@ -168,8 +185,19 @@ namespace KlubSportowy.ViewModels
                 klubSportowyEntities.SaveChanges();
                 Load();
                 IsAdding = false;
+
+                // Reset formularza po zapisie
                 item = new Druzyny { KiedyDodal = DateTime.Now, CzyAktywny = true };
+
+                // Odświeżenie widoku formularza
                 OnPropertyChanged(() => Nazwa);
+                OnPropertyChanged(() => Kategoria);
+                OnPropertyChanged(() => TrenerId);
+                OnPropertyChanged(() => KtoDodal);
+                OnPropertyChanged(() => KiedyDodal);
+                OnPropertyChanged(() => Uwagi);
+                OnPropertyChanged(() => KtoModyfikowal);
+                OnPropertyChanged(() => CzyAktywnyWybor);
             }
             else
             {
@@ -178,7 +206,7 @@ namespace KlubSportowy.ViewModels
         }
         #endregion
 
-        #region Filtrowanie i Sortowanie - Właściwości
+        #region Filtrowanie i Sortowanie
         private string _FilterText;
         public string FilterText { get => _FilterText; set { if (_FilterText != value) { _FilterText = value; OnPropertyChanged(() => FilterText); Load(); } } }
 
@@ -193,7 +221,7 @@ namespace KlubSportowy.ViewModels
         public List<string> SortOptions => new List<string> { "Nazwa", "Kategoria", "Trener ID" };
         #endregion
 
-        #region Właściwości modelu (Binding)
+        #region Właściwości modelu (Binding do formularza)
         public string Nazwa { get => item.Nazwa; set { item.Nazwa = value; OnPropertyChanged(() => Nazwa); } }
         public string Kategoria { get => item.Kategoria; set { item.Kategoria = value; OnPropertyChanged(() => Kategoria); } }
         public int? TrenerId { get => item.TrenerId; set { item.TrenerId = value; OnPropertyChanged(() => TrenerId); } }

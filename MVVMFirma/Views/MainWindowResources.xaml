@@ -3,29 +3,67 @@
                     xmlns:vm="clr-namespace:KlubSportowy.ViewModels"
                     xmlns:vw="clr-namespace:KlubSportowy.Views">
 
-    <!-- ===================================================== -->
-    <!-- BRUSHES – STONOWANE BARWY ARSENALU                  -->
-    <!-- ===================================================== -->
     <SolidColorBrush x:Key="PrimaryBrush" Color="#B71C1C"/>
-    <!-- ciemny czerwony – top bar -->
     <SolidColorBrush x:Key="SecondaryBrush" Color="#FFEBEE"/>
-    <!-- jasny czerwony – sidebar -->
     <SolidColorBrush x:Key="SurfaceBrush" Color="#FAFAFA"/>
-    <!-- workspace tło -->
     <SolidColorBrush x:Key="BorderLineBrush" Color="#E0E0E0"/>
-    <!-- szare obramowania -->
     <SolidColorBrush x:Key="TextBrush" Color="#212121"/>
-    <!-- główny tekst -->
     <SolidColorBrush x:Key="TextSecondaryBrush" Color="#616161"/>
-    <!-- tekst poboczny -->
     <SolidColorBrush x:Key="AccentBrush" Color="#FFC107"/>
-    <!-- złoty akcent -->
     <SolidColorBrush x:Key="SidebarItemBrush" Color="#FFCDD2"/>
-    <!-- lekki czerwony element sidebar -->
 
-    <!-- ===================================================== -->
-    <!-- VIEW ↔ VIEWMODEL                                     -->
-    <!-- ===================================================== -->
+    <Style x:Key="ModernButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Padding" Value="10,5"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" 
+                            CornerRadius="6" 
+                            BorderBrush="{StaticResource BorderLineBrush}" 
+                            BorderThickness="1">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,2"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource AccentBrush}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="TextBox">
+        <Setter Property="Height" Value="28"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="5,0"/>
+        <Setter Property="Margin" Value="0,2"/>
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="True">
+                <Setter Property="ToolTip" 
+                        Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource PrimaryBrush}"/>
+                <Setter Property="BorderThickness" Value="1.5"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="Control" x:Key="ValidatableControlStyle">
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="True">
+                <Setter Property="ToolTip" 
+                        Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <DataTemplate DataType="{x:Type vm:WybierzTreneraViewModel}">
+        <vw:TrenerzyView/>
+    </DataTemplate>
+
     <DataTemplate DataType="{x:Type vm:DruzynyViewModel}">
         <vw:DruzynyView/>
     </DataTemplate>
@@ -75,9 +113,6 @@
         <vw:ZawodnicyView/>
     </DataTemplate>
 
-    <!-- ===================================================== -->
-    <!-- HEADERED CONTENT CONTROL                              -->
-    <!-- ===================================================== -->
     <Style x:Key="MainHCCStyle" TargetType="HeaderedContentControl">
         <Setter Property="Template">
             <Setter.Value>
@@ -89,7 +124,6 @@
                             Margin="6"
                             SnapsToDevicePixels="True">
                         <DockPanel>
-                            <!-- HEADER -->
                             <Border DockPanel.Dock="Top"
                                     Background="{DynamicResource PrimaryBrush}"
                                     CornerRadius="10,10,0,0"
@@ -100,7 +134,6 @@
                                            FontWeight="SemiBold"/>
                             </Border>
 
-                            <!-- CONTENT -->
                             <ContentPresenter Margin="10"/>
                         </DockPanel>
                     </Border>
@@ -109,9 +142,6 @@
         </Setter>
     </Style>
 
-    <!-- ===================================================== -->
-    <!-- COMMANDS (SIDEBAR)                                    -->
-    <!-- ===================================================== -->
     <DataTemplate x:Key="CommandsTemplate">
         <ItemsControl ItemsSource="{Binding}">
             <ItemsControl.ItemTemplate>
@@ -121,45 +151,16 @@
                             HorizontalContentAlignment="Left"
                             Padding="12,8"
                             Margin="0,2"
-                            Background="{DynamicResource SidebarItemBrush}"
-                            BorderBrush="{DynamicResource BorderLineBrush}"
-                            Foreground="{DynamicResource TextBrush}">
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Background" Value="{DynamicResource SidebarItemBrush}"/>
-                                <Setter Property="BorderBrush" Value="{DynamicResource BorderLineBrush}"/>
-                                <Setter Property="Cursor" Value="Hand"/>
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="Button">
-                                            <Border Background="{TemplateBinding Background}"
-                                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                                    BorderThickness="1"
-                                                    CornerRadius="6"
-                                                    Padding="{TemplateBinding Padding}">
-                                                <ContentPresenter HorizontalAlignment="Left"
-                                                                  VerticalAlignment="Center"/>
-                                            </Border>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="{DynamicResource AccentBrush}"/>
-                                        <Setter Property="Foreground" Value="White"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
+                            Style="{StaticResource ModernButtonStyle}">
+                        <Button.Resources>
+                            <SolidColorBrush x:Key="PrimaryBrush" Color="#FFCDD2"/>
+                        </Button.Resources>
                     </Button>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
     </DataTemplate>
 
-    <!-- ===================================================== -->
-    <!-- TABS                                                  -->
-    <!-- ===================================================== -->
     <DataTemplate x:Key="ClosableTabItemTemplate">
         <DockPanel LastChildFill="True">
             <Button Command="{Binding CloseCommand}"

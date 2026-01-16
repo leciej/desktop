@@ -3,20 +3,80 @@
   "WorkspaceRootPath": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|c:\\users\\leciej\\desktop\\projekt desktop\\projekt2\\mvvmfirma\\mvvmfirma\\themes\\generic.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|solutionrelative:mvvmfirma\\themes\\generic.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|c:\\users\\leciej\\desktop\\projekt desktop\\projekt2\\mvvmfirma\\mvvmfirma\\viewmodels\\mainwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|solutionrelative:mvvmfirma\\viewmodels\\mainwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|c:\\users\\leciej\\desktop\\projekt desktop\\projekt2\\mvvmfirma\\mvvmfirma\\viewmodels\\druzynyviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|solutionrelative:mvvmfirma\\viewmodels\\druzynyviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|c:\\users\\leciej\\desktop\\projekt desktop\\projekt2\\mvvmfirma\\mvvmfirma\\views\\wybierztreneraview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|solutionrelative:mvvmfirma\\views\\wybierztreneraview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|c:\\users\\leciej\\desktop\\projekt desktop\\projekt2\\mvvmfirma\\mvvmfirma\\views\\druzynyview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|solutionrelative:mvvmfirma\\views\\druzynyview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|c:\\users\\leciej\\desktop\\projekt desktop\\projekt2\\mvvmfirma\\mvvmfirma\\views\\wszystkieviewbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\mvvmfirma\\viewmodels\\druzynyviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|solutionrelative:mvvmfirma\\viewmodels\\druzynyviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|c:\\users\\leciej\\desktop\\projekt desktop\\projekt2\\mvvmfirma\\mvvmfirma\\viewmodels\\wybierztreneraviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|solutionrelative:mvvmfirma\\viewmodels\\wybierztreneraviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|c:\\users\\leciej\\desktop\\projekt desktop\\projekt2\\mvvmfirma\\mvvmfirma\\views\\mainwindowresources.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|solutionrelative:mvvmfirma\\views\\mainwindowresources.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|c:\\users\\leciej\\desktop\\projekt desktop\\projekt2\\mvvmfirma\\mvvmfirma\\viewmodels\\zawodnicyviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|solutionrelative:mvvmfirma\\viewmodels\\zawodnicyviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|c:\\users\\leciej\\desktop\\projekt desktop\\projekt2\\mvvmfirma\\mvvmfirma\\themes\\generic.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|solutionrelative:mvvmfirma\\themes\\generic.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|c:\\users\\leciej\\desktop\\projekt desktop\\projekt2\\mvvmfirma\\mvvmfirma\\views\\wybierztreneraview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|solutionrelative:mvvmfirma\\views\\wybierztreneraview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|c:\\users\\leciej\\desktop\\projekt desktop\\projekt2\\mvvmfirma\\mvvmfirma\\views\\druzynyview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|solutionrelative:mvvmfirma\\views\\druzynyview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\mvvmfirma\\views\\wszystkieviewbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|solutionrelative:mvvmfirma\\views\\wszystkieviewbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|c:\\users\\leciej\\desktop\\projekt desktop\\projekt2\\mvvmfirma\\mvvmfirma\\views\\jedenviewbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|solutionrelative:mvvmfirma\\views\\jedenviewbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|c:\\users\\leciej\\desktop\\projekt desktop\\projekt2\\mvvmfirma\\mvvmfirma\\views\\rodziceview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|solutionrelative:mvvmfirma\\views\\rodziceview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|c:\\users\\leciej\\desktop\\projekt desktop\\projekt2\\mvvmfirma\\mvvmfirma\\views\\sprzetview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|solutionrelative:mvvmfirma\\views\\sprzetview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|c:\\users\\leciej\\desktop\\projekt desktop\\projekt2\\mvvmfirma\\mvvmfirma\\views\\statystykiview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|solutionrelative:mvvmfirma\\views\\statystykiview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|c:\\users\\leciej\\desktop\\projekt desktop\\projekt2\\mvvmfirma\\mvvmfirma\\views\\trenerzyview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|solutionrelative:mvvmfirma\\views\\trenerzyview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|c:\\users\\leciej\\desktop\\projekt desktop\\projekt2\\mvvmfirma\\mvvmfirma\\views\\treningiview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|solutionrelative:mvvmfirma\\views\\treningiview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|c:\\users\\leciej\\desktop\\projekt desktop\\projekt2\\mvvmfirma\\mvvmfirma\\views\\uzytkownicyview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|solutionrelative:mvvmfirma\\views\\uzytkownicyview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|c:\\users\\leciej\\desktop\\projekt desktop\\projekt2\\mvvmfirma\\mvvmfirma\\views\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|solutionrelative:mvvmfirma\\views\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,11 +86,88 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
+              "Title": "ZawodnicyViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\ViewModels\\ZawodnicyViewModel.cs",
+              "RelativeDocumentMoniker": "MVVMFirma\\ViewModels\\ZawodnicyViewModel.cs",
+              "ToolTip": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\ViewModels\\ZawodnicyViewModel.cs",
+              "RelativeToolTip": "MVVMFirma\\ViewModels\\ZawodnicyViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-16T22:59:53.99Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Generic.xaml",
+              "DocumentMoniker": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\Themes\\Generic.xaml",
+              "RelativeDocumentMoniker": "MVVMFirma\\Themes\\Generic.xaml",
+              "ToolTip": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\Themes\\Generic.xaml",
+              "RelativeToolTip": "MVVMFirma\\Themes\\Generic.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-01-16T22:59:43.24Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainWindowViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\ViewModels\\MainWindowViewModel.cs",
+              "RelativeDocumentMoniker": "MVVMFirma\\ViewModels\\MainWindowViewModel.cs",
+              "ToolTip": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\ViewModels\\MainWindowViewModel.cs*",
+              "RelativeToolTip": "MVVMFirma\\ViewModels\\MainWindowViewModel.cs*",
+              "ViewState": "AgIAAIwAAAAAAAAAAAAMwJgAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-16T22:56:05.7Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "WybierzTreneraViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\ViewModels\\WybierzTreneraViewModel.cs",
+              "RelativeDocumentMoniker": "MVVMFirma\\ViewModels\\WybierzTreneraViewModel.cs",
+              "ToolTip": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\ViewModels\\WybierzTreneraViewModel.cs",
+              "RelativeToolTip": "MVVMFirma\\ViewModels\\WybierzTreneraViewModel.cs",
+              "ViewState": "AgIAAI0AAAAAAAAAAAAcwKcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-16T22:52:05.727Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "WybierzTreneraView.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\Views\\WybierzTreneraView.xaml.cs",
+              "RelativeDocumentMoniker": "MVVMFirma\\Views\\WybierzTreneraView.xaml.cs",
+              "ToolTip": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\Views\\WybierzTreneraView.xaml.cs",
+              "RelativeToolTip": "MVVMFirma\\Views\\WybierzTreneraView.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-16T22:49:35.215Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "DruzynyView.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\Views\\DruzynyView.xaml.cs",
+              "RelativeDocumentMoniker": "MVVMFirma\\Views\\DruzynyView.xaml.cs",
+              "ToolTip": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\Views\\DruzynyView.xaml.cs",
+              "RelativeToolTip": "MVVMFirma\\Views\\DruzynyView.xaml.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAmwBwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-16T21:45:57.8Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "WszystkieViewBase.cs",
               "DocumentMoniker": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\Views\\WszystkieViewBase.cs",
               "RelativeDocumentMoniker": "MVVMFirma\\Views\\WszystkieViewBase.cs",
@@ -43,14 +180,136 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Generic.xaml",
-              "DocumentMoniker": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\Themes\\Generic.xaml",
-              "RelativeDocumentMoniker": "MVVMFirma\\Themes\\Generic.xaml",
-              "ToolTip": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\Themes\\Generic.xaml",
-              "RelativeToolTip": "MVVMFirma\\Themes\\Generic.xaml",
+              "DocumentIndex": 11,
+              "Title": "JedenViewBase.cs",
+              "DocumentMoniker": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\Views\\JedenViewBase.cs",
+              "RelativeDocumentMoniker": "MVVMFirma\\Views\\JedenViewBase.cs",
+              "ToolTip": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\Views\\JedenViewBase.cs",
+              "RelativeToolTip": "MVVMFirma\\Views\\JedenViewBase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-16T22:45:08.897Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "RodziceView.xaml",
+              "DocumentMoniker": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\Views\\RodziceView.xaml",
+              "RelativeDocumentMoniker": "MVVMFirma\\Views\\RodziceView.xaml",
+              "ToolTip": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\Views\\RodziceView.xaml",
+              "RelativeToolTip": "MVVMFirma\\Views\\RodziceView.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-01-16T20:17:26.373Z",
+              "WhenOpened": "2026-01-16T22:45:03.156Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "SprzetView.xaml",
+              "DocumentMoniker": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\Views\\SprzetView.xaml",
+              "RelativeDocumentMoniker": "MVVMFirma\\Views\\SprzetView.xaml",
+              "ToolTip": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\Views\\SprzetView.xaml",
+              "RelativeToolTip": "MVVMFirma\\Views\\SprzetView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-01-16T22:45:02.195Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "StatystykiView.xaml",
+              "DocumentMoniker": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\Views\\StatystykiView.xaml",
+              "RelativeDocumentMoniker": "MVVMFirma\\Views\\StatystykiView.xaml",
+              "ToolTip": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\Views\\StatystykiView.xaml",
+              "RelativeToolTip": "MVVMFirma\\Views\\StatystykiView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-01-16T22:45:01.046Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "TrenerzyView.xaml",
+              "DocumentMoniker": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\Views\\TrenerzyView.xaml",
+              "RelativeDocumentMoniker": "MVVMFirma\\Views\\TrenerzyView.xaml",
+              "ToolTip": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\Views\\TrenerzyView.xaml",
+              "RelativeToolTip": "MVVMFirma\\Views\\TrenerzyView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-01-16T22:45:00.02Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "TreningiView.xaml",
+              "DocumentMoniker": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\Views\\TreningiView.xaml",
+              "RelativeDocumentMoniker": "MVVMFirma\\Views\\TreningiView.xaml",
+              "ToolTip": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\Views\\TreningiView.xaml",
+              "RelativeToolTip": "MVVMFirma\\Views\\TreningiView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-01-16T22:44:58.8Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "UzytkownicyView.xaml",
+              "DocumentMoniker": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\Views\\UzytkownicyView.xaml",
+              "RelativeDocumentMoniker": "MVVMFirma\\Views\\UzytkownicyView.xaml",
+              "ToolTip": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\Views\\UzytkownicyView.xaml",
+              "RelativeToolTip": "MVVMFirma\\Views\\UzytkownicyView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-01-16T22:43:24.394Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "WybierzTreneraView.xaml",
+              "DocumentMoniker": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\Views\\WybierzTreneraView.xaml",
+              "RelativeDocumentMoniker": "MVVMFirma\\Views\\WybierzTreneraView.xaml",
+              "ToolTip": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\Views\\WybierzTreneraView.xaml",
+              "RelativeToolTip": "MVVMFirma\\Views\\WybierzTreneraView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-01-16T22:40:47.74Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DruzynyViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\ViewModels\\DruzynyViewModel.cs",
+              "RelativeDocumentMoniker": "MVVMFirma\\ViewModels\\DruzynyViewModel.cs",
+              "ToolTip": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\ViewModels\\DruzynyViewModel.cs",
+              "RelativeToolTip": "MVVMFirma\\ViewModels\\DruzynyViewModel.cs",
+              "ViewState": "AgIAAM8AAAAAAAAAAAAhwNoAAABlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-16T20:15:16.721Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\Views\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "MVVMFirma\\Views\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\Views\\MainWindow.xaml",
+              "RelativeToolTip": "MVVMFirma\\Views\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-01-16T22:37:39.848Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MainWindowResources.xaml",
+              "DocumentMoniker": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\Views\\MainWindowResources.xaml",
+              "RelativeDocumentMoniker": "MVVMFirma\\Views\\MainWindowResources.xaml",
+              "ToolTip": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\Views\\MainWindowResources.xaml",
+              "RelativeToolTip": "MVVMFirma\\Views\\MainWindowResources.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-01-16T22:37:38.763Z",
               "EditorCaption": ""
             },
             {
@@ -62,20 +321,7 @@
               "ToolTip": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\Views\\DruzynyView.xaml",
               "RelativeToolTip": "MVVMFirma\\Views\\DruzynyView.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-01-16T20:16:10.142Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "DruzynyViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\ViewModels\\DruzynyViewModel.cs",
-              "RelativeDocumentMoniker": "MVVMFirma\\ViewModels\\DruzynyViewModel.cs",
-              "ToolTip": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\ViewModels\\DruzynyViewModel.cs",
-              "RelativeToolTip": "MVVMFirma\\ViewModels\\DruzynyViewModel.cs",
-              "ViewState": "AgIAAL4AAAAAAAAAAAA6wM0AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-16T20:15:16.721Z",
+              "WhenOpened": "2026-01-16T22:35:43.867Z",
               "EditorCaption": ""
             }
           ]
