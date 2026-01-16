@@ -3,6 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:KlubSportowy.Views">
 
+    <BooleanToVisibilityConverter x:Key="BoolToVis" />
+
     <SolidColorBrush x:Key="MainRedBrush" Color="#B80006"/>
     <SolidColorBrush x:Key="SurfaceBrush" Color="#FFFFFF"/>
     <SolidColorBrush x:Key="TextWhiteBrush" Color="#FFFFFF"/>
@@ -41,13 +43,14 @@
                         </Grid.RowDefinitions>
 
                         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10,10,10,5">
+                            <ToggleButton Content="Dodaj" Command="{Binding AddCommand}" Style="{StaticResource ToolbarButtonStyle}"/>
                             <ToggleButton Content="Edytuj" Style="{StaticResource ToolbarButtonStyle}"/>
                             <ToggleButton Content="Kasuj" Style="{StaticResource ToolbarButtonStyle}"/>
                             <ToggleButton Content="Odswiez" Command="{Binding LoadCommand}" Style="{StaticResource ToolbarButtonStyle}"/>
                         </StackPanel>
 
                         <Border Grid.Row="1" Margin="10,5" BorderBrush="#EEE" BorderThickness="1" CornerRadius="3">
-                            <Expander Header="Sortowanie i filtrowanie" IsExpanded="True" Padding="10" Background="#FBFBFB">
+                            <Expander Header="Sortowanie i filtrowanie" IsExpanded="False" Padding="10" Background="#FBFBFB">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"/>
@@ -88,19 +91,20 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:JedenViewBase}">
-                    <Grid Background="{StaticResource SurfaceBrush}">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
-                            <ToggleButton Content="Zapisz i zamknij" Command="{Binding SaveAndCloseCommand}" Style="{StaticResource ToolbarButtonStyle}"/>
-                        </StackPanel>
-                        <ContentPresenter Grid.Row="1" Margin="10"/>
-                    </Grid>
+                    <Border BorderBrush="#B80006" BorderThickness="0,2,0,0" Margin="0,10,0,0">
+                        <Grid Background="{StaticResource SurfaceBrush}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
+                                <ToggleButton Content="Zapisz i zamknij" Command="{Binding SaveAndCloseCommand}" Style="{StaticResource ToolbarButtonStyle}"/>
+                            </StackPanel>
+                            <ContentPresenter Grid.Row="1" Margin="10"/>
+                        </Grid>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-
 </ResourceDictionary>

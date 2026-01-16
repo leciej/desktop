@@ -17,7 +17,7 @@ namespace KlubSportowy.ViewModels
         private KlubSportowyEntities klubSportowyEntities;
         #endregion
 
-        #region Konstruktor
+        #region Konstuktor
         public DruzynyViewModel()
         {
             base.DisplayName = "Drużyny";
@@ -26,6 +26,7 @@ namespace KlubSportowy.ViewModels
             _SortBy = "Nazwa";
             _SelectedFilterColumn = "Nazwa";
             _FilterText = "";
+            _IsAdding = false;
         }
         #endregion
 
@@ -50,8 +51,11 @@ namespace KlubSportowy.ViewModels
 
         public void Load()
         {
+            // Odświeżanie kontekstu, aby pobrać aktualne dane z bazy
+            klubSportowyEntities = new KlubSportowyEntities();
             var query = klubSportowyEntities.Druzyny.AsQueryable();
 
+            // Logika Filtrowania LINQ
             if (!string.IsNullOrEmpty(FilterText))
             {
                 switch (SelectedFilterColumn)
@@ -68,6 +72,7 @@ namespace KlubSportowy.ViewModels
                 }
             }
 
+            // Logika Sortowania LINQ
             switch (SortBy)
             {
                 case "Nazwa":
@@ -151,112 +156,17 @@ namespace KlubSportowy.ViewModels
         }
         #endregion
 
-        #region Wlasciwosci
-        public string Nazwa
+        #region Zarzadzanie formularzem (Logika Dodawania)
+        private bool _IsAdding;
+        public bool IsAdding
         {
-            get { return item.Nazwa; }
+            get => _IsAdding;
             set
             {
-                if (item.Nazwa != value)
+                if (_IsAdding != value)
                 {
-                    item.Nazwa = value;
-                    OnPropertyChanged(() => Nazwa);
-                }
-            }
-        }
-        public string Kategoria
-        {
-            get { return item.Kategoria; }
-            set
-            {
-                if (item.Kategoria != value)
-                {
-                    item.Kategoria = value;
-                    OnPropertyChanged(() => Kategoria);
-                }
-            }
-        }
-        public int? TrenerId
-        {
-            get { return item.TrenerId; }
-            set
-            {
-                if (item.TrenerId != value)
-                {
-                    item.TrenerId = value;
-                    OnPropertyChanged(() => TrenerId);
-                }
-            }
-        }
-        public bool? CzyAktywny
-        {
-            get { return item.CzyAktywny; }
-            set
-            {
-                if (item.CzyAktywny != value)
-                {
-                    item.CzyAktywny = value;
-                    OnPropertyChanged(() => CzyAktywny);
-                }
-            }
-        }
-        public string KtoDodal
-        {
-            get { return item.KtoDodal; }
-            set
-            {
-                if (item.KtoDodal != value)
-                {
-                    item.KtoDodal = value;
-                    OnPropertyChanged(() => KtoDodal);
-                }
-            }
-        }
-        public DateTime? KiedyDodal
-        {
-            get { return item.KiedyDodal; }
-            set
-            {
-                if (item.KiedyDodal != value)
-                {
-                    item.KiedyDodal = value;
-                    OnPropertyChanged(() => KiedyDodal);
-                }
-            }
-        }
-        public string KtoModyfikowal
-        {
-            get { return item.KtoModyfikowal; }
-            set
-            {
-                if (item.KtoModyfikowal != value)
-                {
-                    item.KtoModyfikowal = value;
-                    OnPropertyChanged(() => KtoModyfikowal);
-                }
-            }
-        }
-        public string KtoWykasowal
-        {
-            get { return item.KtoWykasowal; }
-            set
-            {
-                if (item.KtoWykasowal != value)
-                {
-                    item.KtoWykasowal = value;
-                    OnPropertyChanged(() => KtoWykasowal);
-                }
-            }
-        }
-        public string Uwagi
-        {
-            get { return item.Uwagi; }
-            set
-            {
-                if (item.Uwagi != value)
-                {
-                    item.Uwagi = value;
-                    OnPropertyChanged(() => Uwagi);
+                    _IsAdding = value;
+                    OnPropertyChanged(() => IsAdding);
                 }
             }
         }
@@ -272,6 +182,17 @@ namespace KlubSportowy.ViewModels
                 return _LoadCommand;
             }
         }
+
+        private BaseCommand _AddCommand;
+        public ICommand AddCommand
+        {
+            get
+            {
+                if (_AddCommand == null) _AddCommand = new BaseCommand(() => IsAdding = true);
+                return _AddCommand;
+            }
+        }
+
         private BaseCommand _SaveAndCloseCommand;
         public ICommand SaveAndCloseCommand
         {
@@ -281,6 +202,7 @@ namespace KlubSportowy.ViewModels
                 return _SaveAndCloseCommand;
             }
         }
+
         public void Save()
         {
             item.CzyAktywny = true;
@@ -289,9 +211,150 @@ namespace KlubSportowy.ViewModels
             klubSportowyEntities.SaveChanges();
             Load();
         }
+
         private void saveAndClose()
         {
             Save();
+            IsAdding = false;
+            item = new Druzyny(); // Reset obiektu do stanu początkowego
+        }
+        #endregion
+
+        #region Wlasciwosci Modelu
+        public string Nazwa
+        {
+            get
+            {
+                return item.Nazwa;
+            }
+            set
+            {
+                if (item.Nazwa != value)
+                {
+                    item.Nazwa = value;
+                    OnPropertyChanged(() => Nazwa);
+                }
+            }
+        }
+        public string Kategoria
+        {
+            get
+            {
+                return item.Kategoria;
+            }
+            set
+            {
+                if (item.Kategoria != value)
+                {
+                    item.Kategoria = value;
+                    OnPropertyChanged(() => Kategoria);
+                }
+            }
+        }
+        public int? TrenerId
+        {
+            get
+            {
+                return item.TrenerId;
+            }
+            set
+            {
+                if (item.TrenerId != value)
+                {
+                    item.TrenerId = value;
+                    OnPropertyChanged(() => TrenerId);
+                }
+            }
+        }
+        public bool? CzyAktywny
+        {
+            get
+            {
+                return item.CzyAktywny;
+            }
+            set
+            {
+                if (item.CzyAktywny != value)
+                {
+                    item.CzyAktywny = value;
+                    OnPropertyChanged(() => CzyAktywny);
+                }
+            }
+        }
+        public string KtoDodal
+        {
+            get
+            {
+                return item.KtoDodal;
+            }
+            set
+            {
+                if (item.KtoDodal != value)
+                {
+                    item.KtoDodal = value;
+                    OnPropertyChanged(() => KtoDodal);
+                }
+            }
+        }
+        public DateTime? KiedyDodal
+        {
+            get
+            {
+                return item.KiedyDodal;
+            }
+            set
+            {
+                if (item.KiedyDodal != value)
+                {
+                    item.KiedyDodal = value;
+                    OnPropertyChanged(() => KiedyDodal);
+                }
+            }
+        }
+        public string KtoModyfikowal
+        {
+            get
+            {
+                return item.KtoModyfikowal;
+            }
+            set
+            {
+                if (item.KtoModyfikowal != value)
+                {
+                    item.KtoModyfikowal = value;
+                    OnPropertyChanged(() => KtoModyfikowal);
+                }
+            }
+        }
+        public string KtoWykasowal
+        {
+            get
+            {
+                return item.KtoWykasowal;
+            }
+            set
+            {
+                if (item.KtoWykasowal != value)
+                {
+                    item.KtoWykasowal = value;
+                    OnPropertyChanged(() => KtoWykasowal);
+                }
+            }
+        }
+        public string Uwagi
+        {
+            get
+            {
+                return item.Uwagi;
+            }
+            set
+            {
+                if (item.Uwagi != value)
+                {
+                    item.Uwagi = value;
+                    OnPropertyChanged(() => Uwagi);
+                }
+            }
         }
         #endregion
     }
