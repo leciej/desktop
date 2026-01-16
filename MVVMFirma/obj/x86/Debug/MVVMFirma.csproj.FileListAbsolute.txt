@@ -210,27 +210,22 @@ C:\Users\akornatka\Desktop\Zajecia\PDAB\Zajecia\MVVMFirmaPrzedZaj1\MVVMFirma\MVV
 C:\Users\akornatka\Desktop\Zajecia\PDAB\Zajecia\MVVMFirmaPrzedZaj1\MVVMFirma\MVVMFirma\obj\x86\Debug\MVVMFirma.csproj.Up2Date
 C:\Users\akornatka\Desktop\Zajecia\PDAB\Zajecia\MVVMFirmaPrzedZaj1\MVVMFirma\MVVMFirma\obj\x86\Debug\MVVMFirma.exe
 C:\Users\akornatka\Desktop\Zajecia\PDAB\Zajecia\MVVMFirmaPrzedZaj1\MVVMFirma\MVVMFirma\obj\x86\Debug\MVVMFirma.pdb
+C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\KlubSportowy.exe.config
+C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\KlubSportowy.exe
+C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\KlubSportowy.pdb
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\EntityFramework.dll
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\EntityFramework.xml
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\MVVMFirma.csproj.AssemblyReference.cache
-C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\MainWindow.g.cs
-C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\App.g.cs
-C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\MainWindow.baml
-C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\MainWindowResources.baml
-C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\MVVMFirma.csproj.GenerateResource.cache
-C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\MVVMFirma.csproj.CoreCompileInputs.cache
-C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\MVVMFirma.csproj.Up2Date
-C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\KlubSportowy_MarkupCompile.cache
-C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\KlubSportowy_MarkupCompile.lref
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\DruzynyView.g.cs
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\FrekwencjaView.g.cs
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\HarmonogramObiektowView.g.cs
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\KontuzjeView.g.cs
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\LogiOperacjiView.g.cs
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\MagazynyView.g.cs
+C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\MainWindow.g.cs
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\MeczeView.g.cs
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\PlatnosciView.g.cs
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\RodziceView.g.cs
@@ -241,15 +236,19 @@ C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Deb
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\UzytkownicyView.g.cs
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\WypozyczeniaSprzetuView.g.cs
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\ZawodnicyView.g.cs
-C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\KlubSportowy.exe.config
-C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\KlubSportowy.exe
-C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\KlubSportowy.pdb
+C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\App.g.cs
+C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\KlubSportowy_Content.g.cs
+C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\KlubSportowy_MarkupCompile.cache
+C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\KlubSportowy_MarkupCompile.lref
+C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Themes\Generic.baml
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\DruzynyView.baml
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\FrekwencjaView.baml
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\HarmonogramObiektowView.baml
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\KontuzjeView.baml
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\LogiOperacjiView.baml
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\MagazynyView.baml
+C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\MainWindowResources.baml
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\MeczeView.baml
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\PlatnosciView.baml
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\RodziceView.baml
@@ -262,8 +261,8 @@ C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Deb
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\ZawodnicyView.baml
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\KlubSportowy.g.resources
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\KlubSportowy.Properties.Resources.resources
+C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\MVVMFirma.csproj.GenerateResource.cache
+C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\MVVMFirma.csproj.CoreCompileInputs.cache
+C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\MVVMFirma.csproj.Up2Date
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\KlubSportowy.exe
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\KlubSportowy.pdb
-C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\KlubSportowy.exe.config
-C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\KlubSportowy_Content.g.cs
-C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Themes\Generic.baml
