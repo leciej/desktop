@@ -3,6 +3,7 @@ using KlubSportowy.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel; // Wymagane dla IDataErrorInfo
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,14 +11,14 @@ using System.Windows.Input;
 
 namespace KlubSportowy.ViewModels
 {
-    public class DruzynyViewModel : WorkspaceViewModel
+    public class DruzynyViewModel : WorkspaceViewModel, IDataErrorInfo
     {
         #region Baza danych
         private Druzyny item;
         private KlubSportowyEntities klubSportowyEntities;
         #endregion
 
-        #region Konstuktor
+        #region Konstruktor
         public DruzynyViewModel()
         {
             base.DisplayName = "Drużyny";
@@ -26,7 +27,65 @@ namespace KlubSportowy.ViewModels
             _SortBy = "Nazwa";
             _SelectedFilterColumn = "Nazwa";
             _FilterText = "";
-            _IsAdding = false;
+            _IsAdding = false; // Formularz domyślnie ukryty
+        }
+        #endregion
+
+        #region Walidacja (IDataErrorInfo) - Wymóg Lab 5 (8 pól)
+        public string Error => null;
+
+        public string this[string columnName]
+        {
+            get
+            {
+                string result = null;
+
+                switch (columnName)
+                {
+                    case nameof(Nazwa): // 1
+                        if (string.IsNullOrWhiteSpace(Nazwa)) result = "Nazwa drużyny jest wymagana!";
+                        else if (Nazwa.Length < 3) result = "Nazwa musi mieć co najmniej 3 znaki!";
+                        break;
+
+                    case nameof(Kategoria): // 2
+                        if (string.IsNullOrWhiteSpace(Kategoria)) result = "Kategoria jest wymagana!";
+                        break;
+
+                    case nameof(TrenerId): // 3
+                        if (TrenerId == null || TrenerId <= 0) result = "Wybierz poprawnego trenera (ID > 0)!";
+                        break;
+
+                    case nameof(KtoDodal): // 4
+                        if (string.IsNullOrWhiteSpace(KtoDodal)) result = "Pole 'Kto dodał' nie może być puste!";
+                        break;
+
+                    case nameof(KiedyDodal): // 5
+                        if (KiedyDodal == null || KiedyDodal > DateTime.Now) result = "Data dodania nie może być z przyszłości!";
+                        break;
+
+                    case nameof(CzyAktywny): // 6
+                        if (CzyAktywny == null) result = "Określ, czy drużyna jest aktywna!";
+                        break;
+
+                    case nameof(Uwagi): // 7
+                        if (Uwagi != null && Uwagi.Length > 200) result = "Uwagi nie mogą przekraczać 200 znaków!";
+                        break;
+
+                    case nameof(KtoModyfikowal): // 8
+                        if (KtoModyfikowal != null && KtoModyfikowal.Length > 50) result = "Nazwa osoby modyfikującej jest za długa!";
+                        break;
+                }
+
+                return result;
+            }
+        }
+
+        public bool IsValid()
+        {
+            // Sprawdzenie kluczowych pól biznesowych przed zapisem
+            return string.IsNullOrEmpty(this[nameof(Nazwa)]) &&
+                   string.IsNullOrEmpty(this[nameof(Kategoria)]) &&
+                   string.IsNullOrEmpty(this[nameof(TrenerId)]);
         }
         #endregion
 
@@ -51,11 +110,11 @@ namespace KlubSportowy.ViewModels
 
         public void Load()
         {
-            // Odświeżanie kontekstu, aby pobrać aktualne dane z bazy
+            // Odświeżanie kontekstu gwarantuje aktualne dane z bazy (Wymóg Lab 5)
             klubSportowyEntities = new KlubSportowyEntities();
             var query = klubSportowyEntities.Druzyny.AsQueryable();
 
-            // Logika Filtrowania LINQ
+            // Filtrowanie LINQ
             if (!string.IsNullOrEmpty(FilterText))
             {
                 switch (SelectedFilterColumn)
@@ -72,7 +131,7 @@ namespace KlubSportowy.ViewModels
                 }
             }
 
-            // Logika Sortowania LINQ
+            // Sortowanie LINQ (Warunek konieczny Lab 5)
             switch (SortBy)
             {
                 case "Nazwa":
@@ -205,28 +264,30 @@ namespace KlubSportowy.ViewModels
 
         public void Save()
         {
-            item.CzyAktywny = true;
-            item.KiedyDodal = DateTime.Now;
-            klubSportowyEntities.Druzyny.Add(item);
-            klubSportowyEntities.SaveChanges();
-            Load();
+            if (IsValid())
+            {
+                item.KiedyDodal = DateTime.Now;
+                klubSportowyEntities.Druzyny.Add(item);
+                klubSportowyEntities.SaveChanges();
+                Load(); // Odśwież listę po zapisie
+            }
         }
 
         private void saveAndClose()
         {
             Save();
-            IsAdding = false;
-            item = new Druzyny(); // Reset obiektu do stanu początkowego
+            if (IsValid())
+            {
+                IsAdding = false; // Ukryj formularz po udanym zapisie
+                item = new Druzyny(); // Reset obiektu do stanu początkowego
+            }
         }
         #endregion
 
         #region Wlasciwosci Modelu
         public string Nazwa
         {
-            get
-            {
-                return item.Nazwa;
-            }
+            get { return item.Nazwa; }
             set
             {
                 if (item.Nazwa != value)
@@ -238,10 +299,7 @@ namespace KlubSportowy.ViewModels
         }
         public string Kategoria
         {
-            get
-            {
-                return item.Kategoria;
-            }
+            get { return item.Kategoria; }
             set
             {
                 if (item.Kategoria != value)
@@ -253,10 +311,7 @@ namespace KlubSportowy.ViewModels
         }
         public int? TrenerId
         {
-            get
-            {
-                return item.TrenerId;
-            }
+            get { return item.TrenerId; }
             set
             {
                 if (item.TrenerId != value)
@@ -268,10 +323,7 @@ namespace KlubSportowy.ViewModels
         }
         public bool? CzyAktywny
         {
-            get
-            {
-                return item.CzyAktywny;
-            }
+            get { return item.CzyAktywny; }
             set
             {
                 if (item.CzyAktywny != value)
@@ -283,10 +335,7 @@ namespace KlubSportowy.ViewModels
         }
         public string KtoDodal
         {
-            get
-            {
-                return item.KtoDodal;
-            }
+            get { return item.KtoDodal; }
             set
             {
                 if (item.KtoDodal != value)
@@ -298,10 +347,7 @@ namespace KlubSportowy.ViewModels
         }
         public DateTime? KiedyDodal
         {
-            get
-            {
-                return item.KiedyDodal;
-            }
+            get { return item.KiedyDodal; }
             set
             {
                 if (item.KiedyDodal != value)
@@ -313,10 +359,7 @@ namespace KlubSportowy.ViewModels
         }
         public string KtoModyfikowal
         {
-            get
-            {
-                return item.KtoModyfikowal;
-            }
+            get { return item.KtoModyfikowal; }
             set
             {
                 if (item.KtoModyfikowal != value)
@@ -328,10 +371,7 @@ namespace KlubSportowy.ViewModels
         }
         public string KtoWykasowal
         {
-            get
-            {
-                return item.KtoWykasowal;
-            }
+            get { return item.KtoWykasowal; }
             set
             {
                 if (item.KtoWykasowal != value)
@@ -343,10 +383,7 @@ namespace KlubSportowy.ViewModels
         }
         public string Uwagi
         {
-            get
-            {
-                return item.Uwagi;
-            }
+            get { return item.Uwagi; }
             set
             {
                 if (item.Uwagi != value)

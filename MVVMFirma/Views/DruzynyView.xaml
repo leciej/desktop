@@ -5,141 +5,101 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:KlubSportowy.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="550" d:DesignWidth="1000">
 
     <local:WszystkieViewBase.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
+
+        <Style TargetType="TextBox">
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="ToolTip" 
+                            Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                    <Setter Property="BorderBrush" Value="Red"/>
+                    <Setter Property="BorderThickness" Value="1.5"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </local:WszystkieViewBase.Resources>
 
-    <Grid Background="white">
+    <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}"
-                  Grid.Row="0"
-                  Margin="0,0,0,15">
+                  Grid.Row="0" Margin="10" Background="Transparent"
+                  BorderBrush="#DDD" BorderThickness="1" RowHeight="28">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding DruzynaId}"/>
-                <DataGridTextColumn Header="Nazwa" Binding="{Binding Nazwa}"/>
-                <DataGridTextColumn Header="Kategoria" Binding="{Binding Kategoria}"/>
-                <DataGridTextColumn Header="TrenerId" Binding="{Binding TrenerId}"/>
-                <DataGridTextColumn Header="CzyAktywny" Binding="{Binding CzyAktywny}"/>
-                <DataGridTextColumn Header="KtoDodal" Binding="{Binding KtoDodal}"/>
-                <DataGridTextColumn Header="KiedyDodal" Binding="{Binding KiedyDodal}"/>
-                <DataGridTextColumn Header="KtoModyfikowal" Binding="{Binding KtoModyfikowal}"/>
-                <DataGridTextColumn Header="KiedyModyfikowal" Binding="{Binding KiedyModyfikowal}"/>
-                <DataGridTextColumn Header="KtoWykasowal" Binding="{Binding KtoWykasowal}"/>
-                <DataGridTextColumn Header="Uwagi" Binding="{Binding Uwagi}"/>
+                <DataGridTextColumn Header="ID" Binding="{Binding DruzynaId}" Width="50"/>
+                <DataGridTextColumn Header="Nazwa Drużyny" Binding="{Binding Nazwa}" Width="2*"/>
+                <DataGridTextColumn Header="Kategoria" Binding="{Binding Kategoria}" Width="*"/>
+                <DataGridTextColumn Header="ID Trenera" Binding="{Binding TrenerId}" Width="80"/>
+                <DataGridCheckBoxColumn Header="Aktywna" Binding="{Binding CzyAktywny}" Width="70"/>
+                <DataGridTextColumn Header="Uwagi" Binding="{Binding Uwagi}" Width="1.5*"/>
             </DataGrid.Columns>
         </DataGrid>
 
-        <local:JedenViewBase Grid.Row="1" Visibility="{Binding IsAdding, Converter={StaticResource BoolToVis}}">
-            <Grid Margin="0,10,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-
-                <Grid Grid.Row="0" Grid.Column="0" Margin="10,8">
+        <local:JedenViewBase Grid.Row="1" 
+                             Visibility="{Binding IsAdding, Converter={StaticResource BoolToVis}}"
+                             Margin="0,10,0,0">
+            <Border BorderBrush="#B80006" BorderThickness="0,2,0,0" Background="#F9F9F9" Padding="15">
+                <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="90"/>
-                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Label Content="Nazwa"/>
-                    <TextBox Grid.Column="1" Text="{Binding Nazwa, UpdateSourceTrigger=PropertyChanged}"/>
-                </Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
-                <Grid Grid.Row="0" Grid.Column="1" Margin="10,8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="90"/>
-                        <ColumnDefinition Width="150"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Content="Kategoria"/>
-                    <TextBox Grid.Column="1" Text="{Binding Kategoria, UpdateSourceTrigger=PropertyChanged}"/>
-                </Grid>
+                    <StackPanel Grid.Row="0" Grid.Column="0" Margin="10,5">
+                        <Label Content="Nazwa Drużyny:"/>
+                        <TextBox Text="{Binding Nazwa, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                    </StackPanel>
 
-                <Grid Grid.Row="0" Grid.Column="2" Margin="10,8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="90"/>
-                        <ColumnDefinition Width="150"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Content="TrenerId"/>
-                    <TextBox Grid.Column="1" Text="{Binding TrenerId, UpdateSourceTrigger=PropertyChanged}"/>
-                </Grid>
+                    <StackPanel Grid.Row="0" Grid.Column="1" Margin="10,5">
+                        <Label Content="Kategoria:"/>
+                        <TextBox Text="{Binding Kategoria, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                    </StackPanel>
 
-                <Grid Grid.Row="0" Grid.Column="3" Margin="10,8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="90"/>
-                        <ColumnDefinition Width="150"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Content="CzyAktywny"/>
-                    <TextBox Grid.Column="1" Text="{Binding CzyAktywny, UpdateSourceTrigger=PropertyChanged}"/>
-                </Grid>
+                    <StackPanel Grid.Row="0" Grid.Column="2" Margin="10,5">
+                        <Label Content="Trener (ID):"/>
+                        <TextBox Text="{Binding TrenerId, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                    </StackPanel>
 
-                <Grid Grid.Row="0" Grid.Column="4" Margin="10,8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="90"/>
-                        <ColumnDefinition Width="150"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Content="KtoDodal"/>
-                    <TextBox Grid.Column="1" Text="{Binding KtoDodal, UpdateSourceTrigger=PropertyChanged}"/>
-                </Grid>
+                    <StackPanel Grid.Row="0" Grid.Column="3" Margin="10,5">
+                        <Label Content="Status (True/False):"/>
+                        <TextBox Text="{Binding CzyAktywny, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                    </StackPanel>
 
-                <Grid Grid.Row="1" Grid.Column="0" Margin="10,8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="90"/>
-                        <ColumnDefinition Width="150"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Content="KiedyDodal"/>
-                    <TextBox Grid.Column="1" Text="{Binding KiedyDodal, UpdateSourceTrigger=PropertyChanged}"/>
-                </Grid>
+                    <StackPanel Grid.Row="1" Grid.Column="0" Margin="10,5">
+                        <Label Content="Autor wpisu:"/>
+                        <TextBox Text="{Binding KtoDodal, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                    </StackPanel>
 
-                <Grid Grid.Row="1" Grid.Column="1" Margin="10,8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="110"/>
-                        <ColumnDefinition Width="150"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Content="KtoModyfikowal"/>
-                    <TextBox Grid.Column="1" Text="{Binding KtoModyfikowal, UpdateSourceTrigger=PropertyChanged}"/>
-                </Grid>
+                    <StackPanel Grid.Row="1" Grid.Column="1" Margin="10,5">
+                        <Label Content="Data (np. 2026-01-16):"/>
+                        <TextBox Text="{Binding KiedyDodal, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                    </StackPanel>
 
-                <Grid Grid.Row="1" Grid.Column="2" Margin="10,8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="110"/>
-                        <ColumnDefinition Width="150"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Content="KiedyModyfikowal"/>
-                    <TextBox Grid.Column="1" Text="{Binding KiedyModyfikowal, UpdateSourceTrigger=PropertyChanged}"/>
-                </Grid>
+                    <StackPanel Grid.Row="1" Grid.Column="2" Margin="10,5">
+                        <Label Content="Uwagi:"/>
+                        <TextBox Text="{Binding Uwagi, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                    </StackPanel>
 
-                <Grid Grid.Row="1" Grid.Column="3" Margin="10,8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="110"/>
-                        <ColumnDefinition Width="150"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Content="KtoWykasowal"/>
-                    <TextBox Grid.Column="1" Text="{Binding KtoWykasowal, UpdateSourceTrigger=PropertyChanged}"/>
+                    <StackPanel Grid.Row="1" Grid.Column="3" Margin="10,5">
+                        <Label Content="Modyfikował:"/>
+                        <TextBox Text="{Binding KtoModyfikowal, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                    </StackPanel>
                 </Grid>
-
-                <Grid Grid.Row="1" Grid.Column="4" Margin="10,8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="110"/>
-                        <ColumnDefinition Width="150"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Content="Uwagi"/>
-                    <TextBox Grid.Column="1" Text="{Binding Uwagi, UpdateSourceTrigger=PropertyChanged}"/>
-                </Grid>
-            </Grid>
+            </Border>
         </local:JedenViewBase>
     </Grid>
 </local:WszystkieViewBase>
