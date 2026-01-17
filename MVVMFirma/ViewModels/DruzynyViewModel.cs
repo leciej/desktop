@@ -165,7 +165,6 @@ namespace KlubSportowy.ViewModels
         public ICommand AddCommand => new BaseCommand(() => IsAdding = true);
         public ICommand SaveAndCloseCommand => new BaseCommand(saveAndClose);
 
-        // DODANA KOMENDA RAPORTU (Aby przycisk w Generic.xaml zaczął działać)
         public ICommand ShowReportCommand => new BaseCommand(() =>
         {
             Messenger.Default.Send("OpenFinancialReport");

@@ -3,313 +3,235 @@ using KlubSportowy.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace KlubSportowy.ViewModels
 {
-    public class PlatnosciViewModel : WorkspaceViewModel
+    public class PlatnosciViewModel : WorkspaceViewModel, IDataErrorInfo
     {
-        #region BazaDanych
-        protected KlubSportowyEntities klubSportowyEntities;
+        #region Baza danych
         private Platnosci item;
+        private KlubSportowyEntities klubSportowyEntities;
         #endregion
 
-        #region Command
-        private BaseCommand _LoadCommand;
-        public ICommand LoadCommand
+        #region Konstruktor
+        public PlatnosciViewModel()
+        {
+            base.DisplayName = "Płatności";
+            klubSportowyEntities = new KlubSportowyEntities();
+            ResetForm();
+
+            _SortBy = "Data wpłaty";
+            _SelectedFilterColumn = "Status";
+            _FilterText = "";
+            _IsAdding = false;
+
+            Messenger.Default.Register<Zawodnicy>(this, zawodnik =>
+            {
+                if (zawodnik != null)
+                {
+                    this.ZawodnikId = zawodnik.ZawodnikId;
+                }
+            });
+        }
+
+        private void ResetForm()
+        {
+            item = new Platnosci();
+            item.KiedyDodal = DateTime.Now;
+            item.CzyAktywny = true;
+            item.Miesiac = DateTime.Now.ToString("yyyy-MM-dd");
+        }
+        #endregion
+
+        #region Opcje Wyboru
+        public List<string> StatusyOptions => new List<string> { "Opłacone", "Nieopłacone", "Oczekujące" };
+        public List<string> CzyAktywnyOptions => new List<string> { "Tak", "Nie" };
+
+        public string CzyAktywnyWybor
+        {
+            get => item.CzyAktywny == true ? "Tak" : "Nie";
+            set
+            {
+                item.CzyAktywny = (value == "Tak");
+                OnPropertyChanged(() => CzyAktywnyWybor);
+            }
+        }
+        #endregion
+
+        #region Walidacja (IDataErrorInfo)
+        public string Error => null;
+
+        public string this[string columnName]
         {
             get
             {
-                if (_LoadCommand == null) _LoadCommand = new BaseCommand(Load);
-                return _LoadCommand;
+                string result = null;
+
+                switch (columnName)
+                {
+                    case nameof(ZawodnikId):
+                        if (ZawodnikId == null || ZawodnikId <= 0) result = "Wpisz ID zawodnika!";
+                        break;
+
+                    case nameof(Kwota):
+                        if (Kwota == null || Kwota <= 0) result = "Wpisz kwotę!";
+                        break;
+
+                    case nameof(DataWplaty):
+                        if (DataWplaty == null) result = "Wybierz datę wpłaty!";
+                        break;
+
+                    case nameof(Status):
+                        if (string.IsNullOrWhiteSpace(Status)) result = "Wybierz status!";
+                        break;
+                }
+                return result;
             }
         }
 
-        private BaseCommand _SaveAndCloseCommand;
-        public ICommand SaveAndCloseCommand
+        public bool IsValid()
         {
-            get
-            {
-                if (_SaveAndCloseCommand == null) _SaveAndCloseCommand = new BaseCommand(saveAndClose);
-                return _SaveAndCloseCommand;
-            }
+            return string.IsNullOrEmpty(this[nameof(ZawodnikId)]) &&
+                   string.IsNullOrEmpty(this[nameof(Kwota)]) &&
+                   string.IsNullOrEmpty(this[nameof(DataWplaty)]) &&
+                   string.IsNullOrEmpty(this[nameof(Status)]);
         }
         #endregion
 
-        #region Lista
+        #region Logika Listy i LINQ
         private ObservableCollection<Platnosci> _List;
         public ObservableCollection<Platnosci> List
         {
-            get
-            {
-                if (_List == null) Load();
-                return _List;
-            }
-            set
-            {
-                if (_List != value)
-                {
-                    _List = value;
-                    OnPropertyChanged(() => List);
-                }
-            }
+            get { if (_List == null) Load(); return _List; }
+            set { if (_List != value) { _List = value; OnPropertyChanged(() => List); } }
         }
 
-        private void Load()
+        public void Load()
         {
+            klubSportowyEntities = new KlubSportowyEntities();
             var query = klubSportowyEntities.Platnosci.AsQueryable();
 
             if (!string.IsNullOrEmpty(FilterText))
             {
                 switch (SelectedFilterColumn)
                 {
-                    case "Miesiąc":
-                        query = query.Where(z => z.Miesiac.Contains(FilterText));
-                        break;
-                    case "Status":
-                        query = query.Where(z => z.Status.Contains(FilterText));
-                        break;
-                    case "Zawodnik ID":
-                        query = query.Where(z => z.ZawodnikId.ToString().Contains(FilterText));
-                        break;
-                    case "Uwagi":
-                        query = query.Where(z => z.Uwagi.Contains(FilterText));
-                        break;
+                    case "Status": query = query.Where(z => z.Status.Contains(FilterText)); break;
+                    case "Uwagi": query = query.Where(z => z.Uwagi.Contains(FilterText)); break;
                 }
             }
 
             switch (SortBy)
             {
-                case "Kwota":
-                    query = query.OrderBy(z => z.Kwota);
-                    break;
-                case "Miesiąc":
-                    query = query.OrderBy(z => z.Miesiac);
-                    break;
-                case "Status":
-                    query = query.OrderBy(z => z.Status);
-                    break;
-                default:
-                    query = query.OrderByDescending(z => z.Miesiac);
-                    break;
+                case "Kwota": query = query.OrderBy(z => z.Kwota); break;
+                case "Status": query = query.OrderBy(z => z.Status); break;
+                default: query = query.OrderByDescending(z => z.Miesiac); break;
             }
 
             List = new ObservableCollection<Platnosci>(query.ToList());
         }
         #endregion
 
-        #region Filtrowanie i Sortowanie - Wlasciwosci
-        private string _FilterText;
-        public string FilterText
+        #region Komendy
+        private bool _IsAdding;
+        public bool IsAdding
         {
-            get => _FilterText;
-            set
-            {
-                if (_FilterText != value)
-                {
-                    _FilterText = value;
-                    OnPropertyChanged(() => FilterText);
-                    Load();
-                }
-            }
+            get => _IsAdding;
+            set { if (_IsAdding != value) { _IsAdding = value; OnPropertyChanged(() => IsAdding); } }
         }
 
-        private string _SelectedFilterColumn;
-        public string SelectedFilterColumn
-        {
-            get => _SelectedFilterColumn;
-            set
-            {
-                if (_SelectedFilterColumn != value)
-                {
-                    _SelectedFilterColumn = value;
-                    OnPropertyChanged(() => SelectedFilterColumn);
-                    Load();
-                }
-            }
-        }
+        public ICommand LoadCommand => new BaseCommand(Load);
+        public ICommand AddCommand => new BaseCommand(() => IsAdding = true);
+        public ICommand SaveAndCloseCommand => new BaseCommand(saveAndClose);
 
-        public List<string> FilterColumnOptions
+        // KLUCZOWA ZMIANA: Ta komenda musi wysłać komunikat "OpenFinancialReport"
+        public ICommand ShowReportCommand => new BaseCommand(() =>
         {
-            get
-            {
-                return new List<string> { "Miesiąc", "Status", "Zawodnik ID", "Uwagi" };
-            }
-        }
+            Messenger.Default.Send("OpenFinancialReport");
+        });
 
-        private string _SortBy;
-        public string SortBy
+        public ICommand WybierzZawodnikaCommand => new BaseCommand(() =>
         {
-            get => _SortBy;
-            set
-            {
-                if (_SortBy != value)
-                {
-                    _SortBy = value;
-                    OnPropertyChanged(() => SortBy);
-                    Load();
-                }
-            }
-        }
+            Messenger.Default.Send("Zawodnicy All");
+        });
 
-        public List<string> SortOptions
-        {
-            get
-            {
-                return new List<string> { "Kwota", "Miesiąc", "Status" };
-            }
-        }
-        #endregion
-
-        #region Konstuktor
-        public PlatnosciViewModel()
-        {
-            base.DisplayName = "Płatności";
-            klubSportowyEntities = new KlubSportowyEntities();
-            item = new Platnosci();
-            _SortBy = "Miesiąc";
-            _SelectedFilterColumn = "Status";
-            _FilterText = "";
-        }
-        #endregion
-
-        #region Wlasciwosci
-        public int? ZawodnikId
-        {
-            get { return item.ZawodnikId; }
-            set
-            {
-                if (item.ZawodnikId != value)
-                {
-                    item.ZawodnikId = value;
-                    OnPropertyChanged(() => ZawodnikId);
-                }
-            }
-        }
-        public decimal? Kwota
-        {
-            get { return item.Kwota; }
-            set
-            {
-                if (item.Kwota != value)
-                {
-                    item.Kwota = value;
-                    OnPropertyChanged(() => Kwota);
-                }
-            }
-        }
-        public string Miesiac
-        {
-            get { return item.Miesiac; }
-            set
-            {
-                if (item.Miesiac != value)
-                {
-                    item.Miesiac = value;
-                    OnPropertyChanged(() => Miesiac);
-                }
-            }
-        }
-        public string Status
-        {
-            get { return item.Status; }
-            set
-            {
-                if (item.Status != value)
-                {
-                    item.Status = value;
-                    OnPropertyChanged(() => Status);
-                }
-            }
-        }
-        public bool? CzyAktywny
-        {
-            get { return item.CzyAktywny; }
-            set
-            {
-                if (item.CzyAktywny != value)
-                {
-                    item.CzyAktywny = value;
-                    OnPropertyChanged(() => CzyAktywny);
-                }
-            }
-        }
-        public string KtoDodal
-        {
-            get { return item.KtoDodal; }
-            set
-            {
-                if (item.KtoDodal != value)
-                {
-                    item.KtoDodal = value;
-                    OnPropertyChanged(() => KtoDodal);
-                }
-            }
-        }
-        public DateTime? KiedyDodal
-        {
-            get { return item.KiedyDodal; }
-            set
-            {
-                if (item.KiedyDodal != value)
-                {
-                    item.KiedyDodal = value;
-                    OnPropertyChanged(() => KiedyDodal);
-                }
-            }
-        }
-        public string KtoModyfikowal
-        {
-            get { return item.KtoModyfikowal; }
-            set
-            {
-                if (item.KtoModyfikowal != value)
-                {
-                    item.KtoModyfikowal = value;
-                    OnPropertyChanged(() => KtoModyfikowal);
-                }
-            }
-        }
-        public string KtoWykasowal
-        {
-            get { return item.KtoWykasowal; }
-            set
-            {
-                if (item.KtoWykasowal != value)
-                {
-                    item.KtoWykasowal = value;
-                    OnPropertyChanged(() => KtoWykasowal);
-                }
-            }
-        }
-        public string Uwagi
-        {
-            get { return item.Uwagi; }
-            set
-            {
-                if (item.Uwagi != value)
-                {
-                    item.Uwagi = value;
-                    OnPropertyChanged(() => Uwagi);
-                }
-            }
-        }
-        #endregion
-
-        #region Komendy Logika
-        public void Save()
-        {
-            klubSportowyEntities.Platnosci.Add(item);
-            klubSportowyEntities.SaveChanges();
-            Load();
-        }
         private void saveAndClose()
         {
-            Save();
+            if (IsValid())
+            {
+                item.KiedyDodal = DateTime.Now;
+                item.KtoDodal = "System";
+
+                klubSportowyEntities.Platnosci.Add(item);
+                klubSportowyEntities.SaveChanges();
+                Load();
+
+                ResetForm();
+                OdswiezPola();
+                IsAdding = false;
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Formularz zawiera błędy.");
+            }
         }
+
+        private void OdswiezPola()
+        {
+            OnPropertyChanged(() => ZawodnikId);
+            OnPropertyChanged(() => Kwota);
+            OnPropertyChanged(() => DataWplaty);
+            OnPropertyChanged(() => Status);
+            OnPropertyChanged(() => CzyAktywnyWybor);
+            OnPropertyChanged(() => Uwagi);
+        }
+        #endregion
+
+        #region Filtrowanie i Sortowanie
+        private string _FilterText;
+        public string FilterText { get => _FilterText; set { if (_FilterText != value) { _FilterText = value; OnPropertyChanged(() => FilterText); Load(); } } }
+
+        private string _SelectedFilterColumn;
+        public string SelectedFilterColumn { get => _SelectedFilterColumn; set { if (_SelectedFilterColumn != value) { _SelectedFilterColumn = value; OnPropertyChanged(() => SelectedFilterColumn); Load(); } } }
+
+        public List<string> FilterColumnOptions => new List<string> { "Status", "Uwagi" };
+
+        private string _SortBy;
+        public string SortBy { get => _SortBy; set { if (_SortBy != value) { _SortBy = value; OnPropertyChanged(() => SortBy); Load(); } } }
+
+        public List<string> SortOptions => new List<string> { "Kwota", "Status" };
+        #endregion
+
+        #region Właściwości modelu
+        public int? ZawodnikId { get => item.ZawodnikId; set { item.ZawodnikId = value; OnPropertyChanged(() => ZawodnikId); } }
+        public decimal? Kwota { get => item.Kwota; set { item.Kwota = value; OnPropertyChanged(() => Kwota); } }
+
+        public DateTime? DataWplaty
+        {
+            get
+            {
+                if (DateTime.TryParse(item.Miesiac, out DateTime tempDate))
+                    return tempDate;
+                return null;
+            }
+            set
+            {
+                item.Miesiac = value?.ToString("yyyy-MM-dd");
+                OnPropertyChanged(() => DataWplaty);
+            }
+        }
+
+        public string Status { get => item.Status; set { item.Status = value; OnPropertyChanged(() => Status); } }
+        public bool? CzyAktywny { get => item.CzyAktywny; set { item.CzyAktywny = value; OnPropertyChanged(() => CzyAktywny); } }
+        public string KtoDodal { get => item.KtoDodal; set { item.KtoDodal = value; OnPropertyChanged(() => KtoDodal); } }
+        public DateTime? KiedyDodal { get => item.KiedyDodal; set { item.KiedyDodal = value; OnPropertyChanged(() => KiedyDodal); } }
+        public string KtoModyfikowal { get => item.KtoModyfikowal; set { item.KtoModyfikowal = value; OnPropertyChanged(() => KtoModyfikowal); } }
+        public DateTime? KiedyModyfikowal { get => item.KiedyModyfikowal; set { item.KiedyModyfikowal = value; OnPropertyChanged(() => KiedyModyfikowal); } }
+        public string KtoWykasowal { get => item.KtoWykasowal; set { item.KtoWykasowal = value; OnPropertyChanged(() => KtoWykasowal); } }
+        public string Uwagi { get => item.Uwagi; set { item.Uwagi = value; OnPropertyChanged(() => Uwagi); } }
         #endregion
     }
 }
