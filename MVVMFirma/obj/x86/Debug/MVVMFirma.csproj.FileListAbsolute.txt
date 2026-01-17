@@ -1,5 +1,6 @@
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\MVVMFirma.csproj.AssemblyReference.cache
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\MainWindow.baml
+C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\WybierzDruzyneView.baml
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\DruzynyView.g.cs
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\FrekwencjaView.g.cs
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\HarmonogramObiektowView.g.cs
@@ -16,6 +17,7 @@ C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Deb
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\TrenerzyView.g.cs
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\TreningiView.g.cs
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\UzytkownicyView.g.cs
+C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\WybierzDruzyneView.g.cs
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\WybierzTreneraView.g.cs
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\WypozyczeniaSprzetuView.g.cs
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\ZawodnicyView.g.cs
@@ -81,3 +83,5 @@ C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Deb
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\KlubSportowy.exe
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\KlubSportowy.pdb
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\KlubSportowy.exe.config
+C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\WybierzZawodnikaView.baml
+C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\WybierzZawodnikaView.g.cs

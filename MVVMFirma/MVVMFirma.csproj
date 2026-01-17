@@ -204,7 +204,9 @@
     <Compile Include="ViewModels\TreningiViewModel.cs" />
     <Compile Include="ViewModels\UzytkownicyViewModel.cs" />
     <Compile Include="ViewModels\WorkspaceViewModel.cs" />
+    <Compile Include="ViewModels\WybierzDruzyneViewModel.cs" />
     <Compile Include="ViewModels\WybierzTreneraViewModel.cs" />
+    <Compile Include="ViewModels\WybierzZawodnikaViewModel.cs" />
     <Compile Include="ViewModels\WypozyczeniaSprzetuViewModel.cs" />
     <Compile Include="ViewModels\ZawodnicyViewModel.cs" />
     <Compile Include="Views\DruzynyView.xaml.cs">
@@ -257,8 +259,14 @@
       <DependentUpon>UzytkownicyView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WszystkieViewBase.cs" />
+    <Compile Include="Views\WybierzDruzyneView.xaml.cs">
+      <DependentUpon>WybierzDruzyneView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\WybierzTreneraView.xaml.cs">
       <DependentUpon>WybierzTreneraView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WybierzZawodnikaView.xaml.cs">
+      <DependentUpon>WybierzZawodnikaView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WypozyczeniaSprzetuView.xaml.cs">
       <DependentUpon>WypozyczeniaSprzetuView.xaml</DependentUpon>
@@ -365,7 +373,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\WybierzDruzyneView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\WybierzTreneraView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WybierzZawodnikaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

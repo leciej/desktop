@@ -29,6 +29,7 @@ namespace KlubSportowy.ViewModels
             _FilterText = "";
             _IsAdding = false;
 
+            // Rejestracja odbierania zawodnika z okna modalnego
             Messenger.Default.Register<Zawodnicy>(this, zawodnik =>
             {
                 if (zawodnik != null)
@@ -74,7 +75,7 @@ namespace KlubSportowy.ViewModels
                 switch (columnName)
                 {
                     case nameof(ZawodnikId):
-                        if (ZawodnikId == null || ZawodnikId <= 0) result = "Wpisz ID zawodnika!";
+                        if (ZawodnikId == null || ZawodnikId <= 0) result = "Wybierz zawodnika z listy!";
                         break;
 
                     case nameof(Kwota):
@@ -147,12 +148,12 @@ namespace KlubSportowy.ViewModels
         public ICommand AddCommand => new BaseCommand(() => IsAdding = true);
         public ICommand SaveAndCloseCommand => new BaseCommand(saveAndClose);
 
-        // KLUCZOWA ZMIANA: Ta komenda musi wysłać komunikat "OpenFinancialReport"
         public ICommand ShowReportCommand => new BaseCommand(() =>
         {
             Messenger.Default.Send("OpenFinancialReport");
         });
 
+        // Komenda otwierająca okno modalne wyboru zawodnika
         public ICommand WybierzZawodnikaCommand => new BaseCommand(() =>
         {
             Messenger.Default.Send("Zawodnicy All");
@@ -206,7 +207,19 @@ namespace KlubSportowy.ViewModels
         #endregion
 
         #region Właściwości modelu
-        public int? ZawodnikId { get => item.ZawodnikId; set { item.ZawodnikId = value; OnPropertyChanged(() => ZawodnikId); } }
+        public int? ZawodnikId
+        {
+            get => item.ZawodnikId;
+            set
+            {
+                if (item.ZawodnikId != value)
+                {
+                    item.ZawodnikId = value;
+                    OnPropertyChanged(() => ZawodnikId);
+                }
+            }
+        }
+
         public decimal? Kwota { get => item.Kwota; set { item.Kwota = value; OnPropertyChanged(() => Kwota); } }
 
         public DateTime? DataWplaty
@@ -228,9 +241,6 @@ namespace KlubSportowy.ViewModels
         public bool? CzyAktywny { get => item.CzyAktywny; set { item.CzyAktywny = value; OnPropertyChanged(() => CzyAktywny); } }
         public string KtoDodal { get => item.KtoDodal; set { item.KtoDodal = value; OnPropertyChanged(() => KtoDodal); } }
         public DateTime? KiedyDodal { get => item.KiedyDodal; set { item.KiedyDodal = value; OnPropertyChanged(() => KiedyDodal); } }
-        public string KtoModyfikowal { get => item.KtoModyfikowal; set { item.KtoModyfikowal = value; OnPropertyChanged(() => KtoModyfikowal); } }
-        public DateTime? KiedyModyfikowal { get => item.KiedyModyfikowal; set { item.KiedyModyfikowal = value; OnPropertyChanged(() => KiedyModyfikowal); } }
-        public string KtoWykasowal { get => item.KtoWykasowal; set { item.KtoWykasowal = value; OnPropertyChanged(() => KtoWykasowal); } }
         public string Uwagi { get => item.Uwagi; set { item.Uwagi = value; OnPropertyChanged(() => Uwagi); } }
         #endregion
     }

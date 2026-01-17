@@ -156,7 +156,39 @@ namespace KlubSportowy.ViewModels
                 viewModel.RequestClose += (s, e) => window.Close();
                 window.ShowDialog();
             }
-            else if (name == "OpenFinancialReport")
+            else if (name == "Druzyny All")
+            {
+                var viewModel = new WybierzDruzyneViewModel();
+                Window window = new Window
+                {
+                    Title = "Wybierz Drużynę",
+                    Width = 600,
+                    Height = 450,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen,
+                    Content = new WybierzDruzyneView(),
+                    DataContext = viewModel
+                };
+                viewModel.RequestClose += (s, e) => window.Close();
+                window.ShowDialog();
+            }
+            // NOWY BLOK: Wybór Zawodnika (np. dla formularza płatności)
+            else if (name == "Zawodnicy All")
+            {
+                var viewModel = new WybierzZawodnikaViewModel();
+                Window window = new Window
+                {
+                    Title = "Wybierz Zawodnika",
+                    Width = 600,
+                    Height = 450,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen,
+                    Content = new WybierzZawodnikaView(),
+                    DataContext = viewModel
+                };
+                viewModel.RequestClose += (s, e) => window.Close();
+                window.ShowDialog();
+            }
+            // OBSŁUGA RAPORTU
+            else if (name == "OpenFinancialReport" || name == "PlatnosciReport")
             {
                 var viewModel = new RaportFinansowyViewModel();
                 Window reportWindow = new Window

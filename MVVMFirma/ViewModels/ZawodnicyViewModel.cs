@@ -28,6 +28,15 @@ namespace KlubSportowy.ViewModels
             _SelectedFilterColumn = "Nazwisko";
             _FilterText = "";
             _IsAdding = false;
+
+            // Rejestracja odbierania wybranej drużyny z okna modalnego
+            Messenger.Default.Register<Druzyny>(this, druzyna =>
+            {
+                if (druzyna != null)
+                {
+                    this.DruzynaId = druzyna.DruzynaId;
+                }
+            });
         }
 
         private void ResetForm()
@@ -55,7 +64,7 @@ namespace KlubSportowy.ViewModels
                         if (string.IsNullOrWhiteSpace(Nazwisko)) result = "Nazwisko jest wymagane!";
                         break;
                     case nameof(DruzynaId):
-                        if (DruzynaId == null || DruzynaId <= 0) result = "Podaj ID drużyny!";
+                        if (DruzynaId == null || DruzynaId <= 0) result = "Wybierz drużynę z listy!";
                         break;
                 }
                 return result;
@@ -129,10 +138,16 @@ namespace KlubSportowy.ViewModels
 
         public ICommand LoadCommand => new BaseCommand(Load);
         public ICommand SaveAndCloseCommand => new BaseCommand(saveAndClose);
-        
+
         public ICommand ShowReportCommand => new BaseCommand(() =>
         {
             Messenger.Default.Send("OpenFinancialReport");
+        });
+
+        // Komenda do otwierania okna modalnego z listą drużyn
+        public ICommand WybierzDruzyneCommand => new BaseCommand(() =>
+        {
+            Messenger.Default.Send("Druzyny All");
         });
 
         private void saveAndClose()
@@ -152,7 +167,7 @@ namespace KlubSportowy.ViewModels
             }
             else
             {
-                System.Windows.MessageBox.Show("Uzupełnij wymagane pola (Imię, Nazwisko, Drużyna).");
+                System.Windows.MessageBox.Show("Formularz zawiera błędy. Popraw pola zaznaczone na czerwono.");
             }
         }
 
@@ -188,7 +203,20 @@ namespace KlubSportowy.ViewModels
         public string Nazwisko { get => item.Nazwisko; set { item.Nazwisko = value; OnPropertyChanged(() => Nazwisko); } }
         public DateTime? DataUrodzenia { get => item.DataUrodzenia; set { item.DataUrodzenia = value; OnPropertyChanged(() => DataUrodzenia); } }
         public string Pozycja { get => item.Pozycja; set { item.Pozycja = value; OnPropertyChanged(() => Pozycja); } }
-        public int? DruzynaId { get => item.DruzynaId; set { item.DruzynaId = value; OnPropertyChanged(() => DruzynaId); } }
+
+        public int? DruzynaId
+        {
+            get => item.DruzynaId;
+            set
+            {
+                if (item.DruzynaId != value)
+                {
+                    item.DruzynaId = value;
+                    OnPropertyChanged(() => DruzynaId);
+                }
+            }
+        }
+
         public string Uwagi { get => item.Uwagi; set { item.Uwagi = value; OnPropertyChanged(() => Uwagi); } }
         #endregion
     }
