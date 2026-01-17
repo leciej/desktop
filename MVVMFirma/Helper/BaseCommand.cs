@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace KlubSportowy.Helper
 {
-    internal class BaseCommand : ICommand
+    public class BaseCommand : ICommand
     {
         private readonly Action _command;
         private readonly Func<bool> _canExecute;
@@ -23,11 +23,43 @@ namespace KlubSportowy.Helper
 
         public bool CanExecute(object parameter)
         {
-            if (_canExecute == null)
-                return true;
-            return _canExecute();
+            return _canExecute == null || _canExecute();
         }
 
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
+        }
+    }
+
+    public class BaseCommand<T> : ICommand
+    {
+        private readonly Action<T> _command;
+        private readonly Func<T, bool> _canExecute;
+
+        public BaseCommand(Action<T> command, Func<T, bool> canExecute = null)
+        {
+            if (command == null)
+                throw new ArgumentNullException("command");
+            _command = command;
+            _canExecute = canExecute;
+        }
+
+        public bool CanExecute(object parameter)
+        {
+            return _canExecute == null || _canExecute((T)parameter);
+        }
+
+        public void Execute(object parameter)
+        {
+            _command((T)parameter);
+        }
+
+        public event EventHandler CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
+        }
     }
 }

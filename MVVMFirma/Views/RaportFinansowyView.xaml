@@ -7,9 +7,9 @@
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              mc:Ignorable="d" 
              d:DesignHeight="750" d:DesignWidth="1000">
+
     <Grid Background="#F4F7F9">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -39,36 +39,51 @@
                             <Button Content="📊 Generuj" 
                                     Command="{Binding ShowReportCommand}" 
                                     Style="{StaticResource ModernButtonStyle}" 
-                                    Width="120" Height="35"/>
-                            <Button Content="📄 Eksport PDF" 
+                                    Width="110" Height="35" Margin="5,0"/>
+
+                            <Button Content="📄 PDF" 
                                     Command="{Binding ExportToPdfCommand}" 
                                     Style="{StaticResource ModernButtonStyle}" 
-                                    Width="120" Height="35" 
-                                    Background="#333"/>
+                                    Width="110" Height="35" 
+                                    Background="#333" Margin="5,0"/>
+
+                            <Button Content="🖨️ Drukuj" 
+                                    Command="{Binding PrintCommand}" 
+                                    CommandParameter="{Binding ElementName=PrintArea}"
+                                    Style="{StaticResource ModernButtonStyle}" 
+                                    Width="110" Height="35" 
+                                    Background="#555" Margin="5,0"/>
                         </StackPanel>
                     </Grid>
                 </StackPanel>
             </Border>
         </Border>
 
-        <StackPanel Grid.Row="1" HorizontalAlignment="Center" Margin="0,10">
-            <TextBlock Text="{Binding SumaPrzychodow, ConverterCulture='pl-PL', StringFormat={}ŁĄCZNY PRZYCHÓD: {0:C}}" 
-                       FontSize="32" 
-                       FontWeight="Bold" 
-                       Foreground="DarkGreen"/>
-        </StackPanel>
+        <Grid x:Name="PrintArea" Grid.Row="1" Background="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <Border Grid.Row="2" Background="White" Margin="15" CornerRadius="12" BorderThickness="1" BorderBrush="#DCE1E5">
-            <Grid Margin="20">
-                <lvc:CartesianChart Series="{Binding SeriesCollection}" LegendLocation="Bottom">
-                    <lvc:CartesianChart.AxisX>
-                        <lvc:Axis Title="Okres (Miesiąc/Rok)" Labels="{Binding Labels}"/>
-                    </lvc:CartesianChart.AxisX>
-                    <lvc:CartesianChart.AxisY>
-                        <lvc:Axis Title="Kwota" LabelFormatter="{Binding YFormatter}"/>
-                    </lvc:CartesianChart.AxisY>
-                </lvc:CartesianChart>
-            </Grid>
-        </Border>
+            <StackPanel Grid.Row="0" HorizontalAlignment="Center" Margin="0,10">
+                <TextBlock Text="{Binding SumaPrzychodow, ConverterCulture='pl-PL', StringFormat={}ŁĄCZNY PRZYCHÓD: {0:C}}" 
+                           FontSize="32" 
+                           FontWeight="Bold" 
+                           Foreground="DarkGreen"/>
+            </StackPanel>
+
+            <Border Grid.Row="1" Background="White" Margin="15" CornerRadius="12" BorderThickness="1" BorderBrush="#DCE1E5">
+                <Grid Margin="20">
+                    <lvc:CartesianChart Series="{Binding SeriesCollection}" LegendLocation="Bottom">
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis Title="Okres (Miesiąc/Rok)" Labels="{Binding Labels}"/>
+                        </lvc:CartesianChart.AxisX>
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis Title="Kwota" LabelFormatter="{Binding YFormatter}"/>
+                        </lvc:CartesianChart.AxisY>
+                    </lvc:CartesianChart>
+                </Grid>
+            </Border>
+        </Grid>
     </Grid>
 </UserControl>

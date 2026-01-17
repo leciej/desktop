@@ -7,6 +7,8 @@ using KlubSportowy.Models;
 using LiveCharts;
 using LiveCharts.Wpf;
 using System.Globalization;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace KlubSportowy.ViewModels
 {
@@ -25,6 +27,7 @@ namespace KlubSportowy.ViewModels
 
             ShowReportCommand = new BaseCommand(() => GenerujRaport());
             ExportToPdfCommand = new BaseCommand(() => EksportujDoPdf());
+            PrintCommand = new BaseCommand<object>((obj) => Drukuj(obj));
         }
 
         private DateTime _DataOd;
@@ -46,6 +49,7 @@ namespace KlubSportowy.ViewModels
 
         public ICommand ShowReportCommand { get; set; }
         public ICommand ExportToPdfCommand { get; set; }
+        public ICommand PrintCommand { get; set; }
 
         private void GenerujRaport()
         {
@@ -66,7 +70,7 @@ namespace KlubSportowy.ViewModels
                 {
                     Title = "Przychód",
                     Values = new ChartValues<decimal>(pogrupowane.Select(x => x.Wartosc)),
-                    Fill = System.Windows.Media.Brushes.Crimson,
+                    Fill = Brushes.Crimson,
                     DataLabels = true
                 }
             };
@@ -83,6 +87,18 @@ namespace KlubSportowy.ViewModels
             }).ToList();
 
             PdfExporter.ExportDataToPdf("RAPORT FINANSOWY KLUBU", naglowki, wiersze);
+        }
+
+        private void Drukuj(object viewElement)
+        {
+            var visual = viewElement as Visual;
+            if (visual == null) return;
+
+            PrintDialog printDlg = new PrintDialog();
+            if (printDlg.ShowDialog() == true)
+            {
+                printDlg.PrintVisual(visual, "Raport Finansowy " + DateTime.Now.ToShortDateString());
+            }
         }
     }
 }
