@@ -3,10 +3,10 @@ using KlubSportowy.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel; 
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
-using GalaSoft.MvvmLight.Messaging; 
+using GalaSoft.MvvmLight.Messaging;
 
 namespace KlubSportowy.ViewModels
 {
@@ -164,6 +164,12 @@ namespace KlubSportowy.ViewModels
         public ICommand LoadCommand => new BaseCommand(Load);
         public ICommand AddCommand => new BaseCommand(() => IsAdding = true);
         public ICommand SaveAndCloseCommand => new BaseCommand(saveAndClose);
+
+        // DODANA KOMENDA RAPORTU (Aby przycisk w Generic.xaml zaczął działać)
+        public ICommand ShowReportCommand => new BaseCommand(() =>
+        {
+            Messenger.Default.Send("OpenFinancialReport");
+        });
 
         public ICommand WybierzTreneraCommand => new BaseCommand(() =>
         {

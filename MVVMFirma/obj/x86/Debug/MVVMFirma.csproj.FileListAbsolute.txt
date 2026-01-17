@@ -9,6 +9,7 @@ C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Deb
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\MainWindow.g.cs
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\MeczeView.g.cs
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\PlatnosciView.g.cs
+C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\RaportFinansowyView.g.cs
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\RodziceView.g.cs
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\SprzetView.g.cs
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\StatystykiView.g.cs
@@ -26,13 +27,18 @@ C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Deb
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\KlubSportowy.exe.config
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\KlubSportowy.exe
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\KlubSportowy.pdb
+C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\BouncyCastle.Cryptography.dll
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\CommonServiceLocator.dll
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\EntityFramework.dll
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\GalaSoft.MvvmLight.dll
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\GalaSoft.MvvmLight.Extras.dll
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\GalaSoft.MvvmLight.Platform.dll
+C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\itextsharp.dll
+C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\LiveCharts.dll
+C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\LiveCharts.Wpf.dll
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\BouncyCastle.Cryptography.xml
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\EntityFramework.xml
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\GalaSoft.MvvmLight.pdb
@@ -41,6 +47,11 @@ C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\G
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\GalaSoft.MvvmLight.Extras.xml
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\GalaSoft.MvvmLight.Platform.pdb
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\GalaSoft.MvvmLight.Platform.xml
+C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\itextsharp.xml
+C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\LiveCharts.pdb
+C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\LiveCharts.xml
+C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\LiveCharts.Wpf.pdb
+C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\LiveCharts.Wpf.xml
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\App.baml
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Themes\Generic.baml
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\DruzynyView.baml
@@ -52,6 +63,7 @@ C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Deb
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\MainWindowResources.baml
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\MeczeView.baml
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\PlatnosciView.baml
+C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\RaportFinansowyView.baml
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\RodziceView.baml
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\SprzetView.baml
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\Views\StatystykiView.baml
@@ -69,10 +81,3 @@ C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Deb
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\KlubSportowy.exe
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\KlubSportowy.pdb
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\KlubSportowy.exe.config
-C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\BouncyCastle.Cryptography.dll
-C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\itextsharp.dll
-C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\LiveCharts.dll
-C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\BouncyCastle.Cryptography.xml
-C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\itextsharp.xml
-C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\LiveCharts.pdb
-C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\LiveCharts.xml

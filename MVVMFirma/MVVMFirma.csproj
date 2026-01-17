@@ -84,6 +84,9 @@
     <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
       <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
     </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -193,6 +196,7 @@
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\MeczeViewModel.cs" />
     <Compile Include="ViewModels\PlatnosciViewModel.cs" />
+    <Compile Include="ViewModels\RaportFinansowyViewModel.cs" />
     <Compile Include="ViewModels\RodziceViewModel.cs" />
     <Compile Include="ViewModels\SprzetViewModel.cs" />
     <Compile Include="ViewModels\StatystykiViewModel.cs" />
@@ -230,6 +234,9 @@
     </Compile>
     <Compile Include="Views\PlatnosciView.xaml.cs">
       <DependentUpon>PlatnosciView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RaportFinansowyView.xaml.cs">
+      <DependentUpon>RaportFinansowyView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RodziceView.xaml.cs">
       <DependentUpon>RodziceView.xaml</DependentUpon>
@@ -327,6 +334,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PlatnosciView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RaportFinansowyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

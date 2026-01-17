@@ -153,10 +153,22 @@ namespace KlubSportowy.ViewModels
                     Content = new WybierzTreneraView(),
                     DataContext = viewModel
                 };
-
                 viewModel.RequestClose += (s, e) => window.Close();
-
                 window.ShowDialog();
+            }
+            else if (name == "OpenFinancialReport")
+            {
+                var viewModel = new RaportFinansowyViewModel();
+                Window reportWindow = new Window
+                {
+                    Title = "Analiza Finansowa Klubu",
+                    Width = 1000,
+                    Height = 750,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen,
+                    Content = new RaportFinansowyView(),
+                    DataContext = viewModel
+                };
+                reportWindow.Show();
             }
         }
         private void CreateView(WorkspaceViewModel workspace)
