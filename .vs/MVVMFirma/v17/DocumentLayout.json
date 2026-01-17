@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|c:\\users\\leciej\\desktop\\projekt desktop\\projekt2\\mvvmfirma\\mvvmfirma\\views\\zawodnicyview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|solutionrelative:mvvmfirma\\views\\zawodnicyview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|c:\\users\\leciej\\desktop\\projekt desktop\\projekt2\\mvvmfirma\\mvvmfirma\\viewmodels\\zawodnicyviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|solutionrelative:mvvmfirma\\viewmodels\\zawodnicyviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|c:\\users\\leciej\\desktop\\projekt desktop\\projekt2\\mvvmfirma\\mvvmfirma\\viewmodels\\platnosciviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{435572FA-D2A2-48CA-B905-4A7899337063}|MVVMFirma\\MVVMFirma.csproj|solutionrelative:mvvmfirma\\viewmodels\\platnosciviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -14,16 +22,41 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ZawodnicyViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\ViewModels\\ZawodnicyViewModel.cs",
+              "RelativeDocumentMoniker": "MVVMFirma\\ViewModels\\ZawodnicyViewModel.cs",
+              "ToolTip": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\ViewModels\\ZawodnicyViewModel.cs*",
+              "RelativeToolTip": "MVVMFirma\\ViewModels\\ZawodnicyViewModel.cs*",
+              "ViewState": "AgIAALEAAAAAAAAAAAAswMIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-17T08:52:13.218Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "ZawodnicyView.xaml",
+              "DocumentMoniker": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\Views\\ZawodnicyView.xaml",
+              "RelativeDocumentMoniker": "MVVMFirma\\Views\\ZawodnicyView.xaml",
+              "ToolTip": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\Views\\ZawodnicyView.xaml",
+              "RelativeToolTip": "MVVMFirma\\Views\\ZawodnicyView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-01-17T08:51:55.384Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "PlatnosciViewModel.cs",
               "DocumentMoniker": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\ViewModels\\PlatnosciViewModel.cs",
               "RelativeDocumentMoniker": "MVVMFirma\\ViewModels\\PlatnosciViewModel.cs",
-              "ToolTip": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\ViewModels\\PlatnosciViewModel.cs*",
-              "RelativeToolTip": "MVVMFirma\\ViewModels\\PlatnosciViewModel.cs*",
+              "ToolTip": "C:\\Users\\Leciej\\Desktop\\projekt desktop\\projekt2\\MVVMFirma\\MVVMFirma\\ViewModels\\PlatnosciViewModel.cs",
+              "RelativeToolTip": "MVVMFirma\\ViewModels\\PlatnosciViewModel.cs",
               "ViewState": "AgIAAOIAAAAAAAAAAAA8wOwAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-17T08:13:30.161Z",

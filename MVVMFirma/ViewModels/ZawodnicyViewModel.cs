@@ -3,156 +3,18 @@ using KlubSportowy.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace KlubSportowy.ViewModels
 {
-    public class ZawodnicyViewModel : WorkspaceViewModel
+    public class ZawodnicyViewModel : WorkspaceViewModel, IDataErrorInfo
     {
-        #region BazaDanych
+        #region Baza Danych
         protected KlubSportowyEntities klubSportowyEntities;
         private Zawodnicy item;
-        #endregion
-
-        #region Command
-        private BaseCommand _LoadCommand;
-        public ICommand LoadCommand
-        {
-            get
-            {
-                if (_LoadCommand == null) _LoadCommand = new BaseCommand(Load);
-                return _LoadCommand;
-            }
-        }
-        #endregion
-
-        #region Lista
-        private ObservableCollection<Zawodnicy> _List;
-        public ObservableCollection<Zawodnicy> List
-        {
-            get
-            {
-                if (_List == null) Load();
-                return _List;
-            }
-            set
-            {
-                if (_List != value)
-                {
-                    _List = value;
-                    OnPropertyChanged(() => List);
-                }
-            }
-        }
-
-        private void Load()
-        {
-            var query = klubSportowyEntities.Zawodnicy.AsQueryable();
-
-            if (!string.IsNullOrEmpty(FilterText))
-            {
-                switch (SelectedFilterColumn)
-                {
-                    case "Nazwisko":
-                        query = query.Where(z => z.Nazwisko.Contains(FilterText));
-                        break;
-                    case "Imie":
-                        query = query.Where(z => z.Imie.Contains(FilterText));
-                        break;
-                    case "Pozycja":
-                        query = query.Where(z => z.Pozycja.Contains(FilterText));
-                        break;
-                    case "Uwagi":
-                        query = query.Where(z => z.Uwagi.Contains(FilterText));
-                        break;
-                }
-            }
-
-            switch (SortBy)
-            {
-                case "Nazwisko":
-                    query = query.OrderBy(z => z.Nazwisko);
-                    break;
-                case "Imie":
-                    query = query.OrderBy(z => z.Imie);
-                    break;
-                case "Data Urodzenia":
-                    query = query.OrderBy(z => z.DataUrodzenia);
-                    break;
-                case "Pozycja":
-                    query = query.OrderBy(z => z.Pozycja);
-                    break;
-                default:
-                    query = query.OrderBy(z => z.Nazwisko);
-                    break;
-            }
-
-            List = new ObservableCollection<Zawodnicy>(query.ToList());
-        }
-        #endregion
-
-        #region Filtrowanie i Sortowanie - Wlasciwosci
-
-        private string _FilterText;
-        public string FilterText
-        {
-            get => _FilterText;
-            set
-            {
-                if (_FilterText != value)
-                {
-                    _FilterText = value;
-                    OnPropertyChanged(() => FilterText);
-                    Load();
-                }
-            }
-        }
-
-        private string _SelectedFilterColumn;
-        public string SelectedFilterColumn
-        {
-            get => _SelectedFilterColumn;
-            set
-            {
-                if (_SelectedFilterColumn != value)
-                {
-                    _SelectedFilterColumn = value;
-                    OnPropertyChanged(() => SelectedFilterColumn);
-                    Load();
-                }
-            }
-        }
-
-        public List<string> FilterColumnOptions
-        {
-            get
-            {
-                return new List<string> { "Nazwisko", "Imie", "Pozycja", "Uwagi" };
-            }
-        }
-
-        private string _SortBy;
-        public string SortBy
-        {
-            get => _SortBy;
-            set
-            {
-                if (_SortBy != value)
-                {
-                    _SortBy = value;
-                    OnPropertyChanged(() => SortBy);
-                    Load();
-                }
-            }
-        }
-
-        public List<string> SortOptions
-        {
-            get { return new List<string> { "Nazwisko", "Imie", "Data Urodzenia", "Pozycja" }; }
-        }
         #endregion
 
         #region Konstruktor
@@ -160,89 +22,174 @@ namespace KlubSportowy.ViewModels
         {
             base.DisplayName = "Zawodnicy";
             klubSportowyEntities = new KlubSportowyEntities();
-            item = new Zawodnicy();
+            ResetForm();
 
             _SortBy = "Nazwisko";
             _SelectedFilterColumn = "Nazwisko";
             _FilterText = "";
+            _IsAdding = false;
+        }
+
+        private void ResetForm()
+        {
+            item = new Zawodnicy();
+            item.KiedyDodal = DateTime.Now;
+            item.CzyAktywny = true;
+            item.DataUrodzenia = DateTime.Now.AddYears(-15); // Domyślnie 15 lat wstecz
+        }
+        #endregion
+
+        #region Walidacja (IDataErrorInfo)
+        public string Error => null;
+        public string this[string columnName]
+        {
+            get
+            {
+                string result = null;
+                switch (columnName)
+                {
+                    case nameof(Imie):
+                        if (string.IsNullOrWhiteSpace(Imie)) result = "Imię jest wymagane!";
+                        break;
+                    case nameof(Nazwisko):
+                        if (string.IsNullOrWhiteSpace(Nazwisko)) result = "Nazwisko jest wymagane!";
+                        break;
+                    case nameof(DruzynaId):
+                        if (DruzynaId == null || DruzynaId <= 0) result = "Podaj ID drużyny!";
+                        break;
+                }
+                return result;
+            }
+        }
+
+        public bool IsValid()
+        {
+            return string.IsNullOrEmpty(this[nameof(Imie)]) &&
+                   string.IsNullOrEmpty(this[nameof(Nazwisko)]) &&
+                   string.IsNullOrEmpty(this[nameof(DruzynaId)]);
+        }
+        #endregion
+
+        #region Opcje Wyboru
+        public List<string> CzyAktywnyOptions => new List<string> { "Tak", "Nie" };
+
+        public string CzyAktywnyWybor
+        {
+            get => item.CzyAktywny == true ? "Tak" : "Nie";
+            set
+            {
+                item.CzyAktywny = (value == "Tak");
+                OnPropertyChanged(() => CzyAktywnyWybor);
+            }
+        }
+        #endregion
+
+        #region Logika Listy
+        private ObservableCollection<Zawodnicy> _List;
+        public ObservableCollection<Zawodnicy> List
+        {
+            get { if (_List == null) Load(); return _List; }
+            set { if (_List != value) { _List = value; OnPropertyChanged(() => List); } }
+        }
+
+        public void Load()
+        {
+            klubSportowyEntities = new KlubSportowyEntities();
+            var query = klubSportowyEntities.Zawodnicy.AsQueryable();
+
+            if (!string.IsNullOrEmpty(FilterText))
+            {
+                switch (SelectedFilterColumn)
+                {
+                    case "Nazwisko": query = query.Where(z => z.Nazwisko.Contains(FilterText)); break;
+                    case "Imie": query = query.Where(z => z.Imie.Contains(FilterText)); break;
+                    case "Pozycja": query = query.Where(z => z.Pozycja.Contains(FilterText)); break;
+                }
+            }
+
+            switch (SortBy)
+            {
+                case "Nazwisko": query = query.OrderBy(z => z.Nazwisko); break;
+                case "Imie": query = query.OrderBy(z => z.Imie); break;
+                case "Pozycja": query = query.OrderBy(z => z.Pozycja); break;
+                default: query = query.OrderBy(z => z.Nazwisko); break;
+            }
+
+            List = new ObservableCollection<Zawodnicy>(query.ToList());
         }
         #endregion
 
         #region Komendy
-        private BaseCommand _SaveAndCloseCommand;
-        public ICommand SaveAndCloseCommand
+        private bool _IsAdding;
+        public bool IsAdding
         {
-            get
+            get => _IsAdding;
+            set { if (_IsAdding != value) { _IsAdding = value; OnPropertyChanged(() => IsAdding); } }
+        }
+
+        public ICommand LoadCommand => new BaseCommand(Load);
+        public ICommand SaveAndCloseCommand => new BaseCommand(saveAndClose);
+        
+        public ICommand ShowReportCommand => new BaseCommand(() =>
+        {
+            Messenger.Default.Send("OpenFinancialReport");
+        });
+
+        private void saveAndClose()
+        {
+            if (IsValid())
             {
-                if (_SaveAndCloseCommand == null) _SaveAndCloseCommand = new BaseCommand(saveAndClose);
-                return _SaveAndCloseCommand;
+                item.KiedyDodal = DateTime.Now;
+                item.KtoDodal = "System";
+
+                klubSportowyEntities.Zawodnicy.Add(item);
+                klubSportowyEntities.SaveChanges();
+                Load();
+
+                ResetForm();
+                OdswiezPola();
+                IsAdding = false;
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Uzupełnij wymagane pola (Imię, Nazwisko, Drużyna).");
             }
         }
-        public void Save()
+
+        private void OdswiezPola()
         {
-            klubSportowyEntities.Zawodnicy.Add(item);
-            klubSportowyEntities.SaveChanges();
-            Load();
+            OnPropertyChanged(() => Imie);
+            OnPropertyChanged(() => Nazwisko);
+            OnPropertyChanged(() => DataUrodzenia);
+            OnPropertyChanged(() => Pozycja);
+            OnPropertyChanged(() => DruzynaId);
+            OnPropertyChanged(() => CzyAktywnyWybor);
+            OnPropertyChanged(() => Uwagi);
         }
-        private void saveAndClose() { Save(); }
         #endregion
 
-        #region Wlasciwosci (Pelna lista)
-        public string Imie
-        {
-            get { return item.Imie; }
-            set { if (item.Imie != value) { item.Imie = value; OnPropertyChanged(() => Imie); } }
-        }
-        public string Nazwisko
-        {
-            get { return item.Nazwisko; }
-            set { if (item.Nazwisko != value) { item.Nazwisko = value; OnPropertyChanged(() => Nazwisko); } }
-        }
-        public DateTime? DataUrodzenia
-        {
-            get { return item.DataUrodzenia; }
-            set { if (item.DataUrodzenia != value) { item.DataUrodzenia = value; OnPropertyChanged(() => DataUrodzenia); } }
-        }
-        public string Pozycja
-        {
-            get { return item.Pozycja; }
-            set { if (item.Pozycja != value) { item.Pozycja = value; OnPropertyChanged(() => Pozycja); } }
-        }
-        public int? DruzynaId
-        {
-            get { return item.DruzynaId; }
-            set { if (item.DruzynaId != value) { item.DruzynaId = value; OnPropertyChanged(() => DruzynaId); } }
-        }
-        public bool? CzyAktywny
-        {
-            get { return item.CzyAktywny; }
-            set { if (item.CzyAktywny != value) { item.CzyAktywny = value; OnPropertyChanged(() => CzyAktywny); } }
-        }
-        public string KtoDodal
-        {
-            get { return item.KtoDodal; }
-            set { if (item.KtoDodal != value) { item.KtoDodal = value; OnPropertyChanged(() => KtoDodal); } }
-        }
-        public DateTime? KiedyDodal
-        {
-            get { return item.KiedyDodal; }
-            set { if (item.KiedyDodal != value) { item.KiedyDodal = value; OnPropertyChanged(() => KiedyDodal); } }
-        }
-        public string KtoModyfikowal
-        {
-            get { return item.KtoModyfikowal; }
-            set { if (item.KtoModyfikowal != value) { item.KtoModyfikowal = value; OnPropertyChanged(() => KtoModyfikowal); } }
-        }
-        public string KtoWykasowal
-        {
-            get { return item.KtoWykasowal; }
-            set { if (item.KtoWykasowal != value) { item.KtoWykasowal = value; OnPropertyChanged(() => KtoWykasowal); } }
-        }
-        public string Uwagi
-        {
-            get { return item.Uwagi; }
-            set { if (item.Uwagi != value) { item.Uwagi = value; OnPropertyChanged(() => Uwagi); } }
-        }
+        #region Filtrowanie i Sortowanie - Właściwości
+        private string _FilterText;
+        public string FilterText { get => _FilterText; set { if (_FilterText != value) { _FilterText = value; OnPropertyChanged(() => FilterText); Load(); } } }
+
+        private string _SelectedFilterColumn;
+        public string SelectedFilterColumn { get => _SelectedFilterColumn; set { if (_SelectedFilterColumn != value) { _SelectedFilterColumn = value; OnPropertyChanged(() => SelectedFilterColumn); Load(); } } }
+
+        public List<string> FilterColumnOptions => new List<string> { "Nazwisko", "Imie", "Pozycja" };
+
+        private string _SortBy;
+        public string SortBy { get => _SortBy; set { if (_SortBy != value) { _SortBy = value; OnPropertyChanged(() => SortBy); Load(); } } }
+
+        public List<string> SortOptions => new List<string> { "Nazwisko", "Imie", "Pozycja" };
+        #endregion
+
+        #region Właściwości modelu
+        public string Imie { get => item.Imie; set { item.Imie = value; OnPropertyChanged(() => Imie); } }
+        public string Nazwisko { get => item.Nazwisko; set { item.Nazwisko = value; OnPropertyChanged(() => Nazwisko); } }
+        public DateTime? DataUrodzenia { get => item.DataUrodzenia; set { item.DataUrodzenia = value; OnPropertyChanged(() => DataUrodzenia); } }
+        public string Pozycja { get => item.Pozycja; set { item.Pozycja = value; OnPropertyChanged(() => Pozycja); } }
+        public int? DruzynaId { get => item.DruzynaId; set { item.DruzynaId = value; OnPropertyChanged(() => DruzynaId); } }
+        public string Uwagi { get => item.Uwagi; set { item.Uwagi = value; OnPropertyChanged(() => Uwagi); } }
         #endregion
     }
 }
