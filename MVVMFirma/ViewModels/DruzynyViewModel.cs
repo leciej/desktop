@@ -3,10 +3,10 @@ using KlubSportowy.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel; // Wymagane dla IDataErrorInfo
+using System.ComponentModel; 
 using System.Linq;
 using System.Windows.Input;
-using GalaSoft.MvvmLight.Messaging; // Wymagane dla mechanizmu Messenger
+using GalaSoft.MvvmLight.Messaging; 
 
 namespace KlubSportowy.ViewModels
 {
@@ -24,23 +24,18 @@ namespace KlubSportowy.ViewModels
             item = new Druzyny();
             klubSportowyEntities = new KlubSportowyEntities();
 
-            // Ustawienia początkowe listy
             _SortBy = "Nazwa";
             _SelectedFilterColumn = "Nazwa";
             _FilterText = "";
             _IsAdding = false;
 
-            // Domyślne wartości dla nowego rekordu (formularz)
             item.KiedyDodal = DateTime.Now;
             item.CzyAktywny = true;
 
-            // REJESTRACJA MESSENGERA:
-            // Słuchamy, czy jakiekolwiek okno (WybierzTreneraViewModel) wyśle obiekt typu Trenerzy.
             Messenger.Default.Register<Trenerzy>(this, trener =>
             {
                 if (trener != null)
                 {
-                    // Przypisujemy ID trenera odebrane z okna modalnego do naszego obiektu drużyny
                     this.TrenerId = trener.TrenerId;
                 }
             });
@@ -170,8 +165,6 @@ namespace KlubSportowy.ViewModels
         public ICommand AddCommand => new BaseCommand(() => IsAdding = true);
         public ICommand SaveAndCloseCommand => new BaseCommand(saveAndClose);
 
-        // KOMENDA OTWIERAJĄCA OKNO MODALNE:
-        // Wysyłamy wiadomość tekstową, którą musi odebrać MainWindowViewModel, aby otworzyć okno.
         public ICommand WybierzTreneraCommand => new BaseCommand(() =>
         {
             Messenger.Default.Send("Trenerzy All");
@@ -186,10 +179,8 @@ namespace KlubSportowy.ViewModels
                 Load();
                 IsAdding = false;
 
-                // Reset formularza po zapisie
                 item = new Druzyny { KiedyDodal = DateTime.Now, CzyAktywny = true };
 
-                // Odświeżenie widoku formularza
                 OnPropertyChanged(() => Nazwa);
                 OnPropertyChanged(() => Kategoria);
                 OnPropertyChanged(() => TrenerId);

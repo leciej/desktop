@@ -69,3 +69,10 @@ C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Deb
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\KlubSportowy.exe
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\KlubSportowy.pdb
 C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\obj\x86\Debug\KlubSportowy.exe.config
+C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\BouncyCastle.Cryptography.dll
+C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\itextsharp.dll
+C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\LiveCharts.dll
+C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\BouncyCastle.Cryptography.xml
+C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\itextsharp.xml
+C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\LiveCharts.pdb
+C:\Users\Leciej\Desktop\projekt desktop\projekt2\MVVMFirma\MVVMFirma\bin\Debug\LiveCharts.xml

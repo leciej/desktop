@@ -76,6 +76,10 @@
                             <Button Content="📝 Edytuj" Style="{StaticResource ModernButtonStyle}"/>
                             <Button Content="🗑️ Kasuj" Style="{StaticResource ModernButtonStyle}"/>
                             <Button Content="🔄 Odśwież" Command="{Binding LoadCommand}" Style="{StaticResource ModernButtonStyle}"/>
+
+                            <Button Content="📊 Generuj Raport" 
+                                    Command="{Binding ShowReportCommand}" 
+                                    Style="{StaticResource ModernButtonStyle}"/>
                         </StackPanel>
 
                         <Border Grid.Row="1" Background="{StaticResource CardBackgroundBrush}" Margin="15,5" CornerRadius="8" BorderThickness="1" BorderBrush="{StaticResource BorderBrush}">

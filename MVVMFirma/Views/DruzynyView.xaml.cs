@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace KlubSportowy.Views
 {
-    /// <summary>
-    /// Interaction logic for DruzynyView.xaml
-    /// </summary>
     public partial class DruzynyView : WszystkieViewBase
     {
         public DruzynyView()
